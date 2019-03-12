@@ -20,4 +20,3 @@ if (!file_exists(__DIR__ . DIRECTORY_SEPARATOR . 'local_db.php')) {
 }
 
 return require __DIR__ . DIRECTORY_SEPARATOR . 'local_db.php';
-
