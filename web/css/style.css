@@ -1,0 +1,27 @@
+img {
+	max-width: 100%;
+}
+
+.bd-navbar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1071;
+}
+
+.bd-navbar {
+  min-height: 4rem;
+  background-color: #563d7c;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05), inset 0 -1px 0 rgba(0,0,0,.1);
+}
+
+.card-price {
+	font-size: 1rem;
+	font-weight: 500;
+	text-transform: uppercase;
+}
+
+footer {
+	color: #eceeef;
+  background-color: rgb(85, 89, 92);
+}
