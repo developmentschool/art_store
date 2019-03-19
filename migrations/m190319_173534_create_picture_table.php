@@ -16,6 +16,7 @@ class m190319_173534_create_picture_table extends Migration
             'id' => $this->primaryKey(),
             'product_id'=>$this->integer(),
             'title'=>$this->string(255)->notNull(),
+            // TODO: добавить поле extention
             'created_at' => $this->datetime()->notNull(),
             'updated_at' => $this->datetime(),
         ]);

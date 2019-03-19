@@ -24,10 +24,11 @@ class UploadForm extends Model
             [['imageFiles'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxFiles' => 4],
         ];
     }
-
+// TODO: реализовать запись данных в базу данных
     public function upload()
     {
         if ($this->validate()) {
+            // TODO: реализовать проверки размера и сохранения фото в размерах big/mid/small
             foreach ($this->imageFiles as $file) {
                 $file->saveAs('img/mid/' . $file->baseName . '.' . $file->extension);
             }
