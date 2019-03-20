@@ -8,7 +8,10 @@
 
 namespace app\models;
 
+use app\models\tables\Picture;
 use yii\base\Model;
+use yii\db\Exception;
+use yii\imagine\Image;
 use yii\web\UploadedFile;
 
 class UploadForm extends Model
@@ -18,19 +21,41 @@ class UploadForm extends Model
      */
     public $imageFiles;
 
+
     public function rules()
     {
         return [
-            [['imageFiles'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxFiles' => 4],
+            [
+                'imageFiles',
+                'image',
+                'skipOnEmpty' => false,
+                'extensions' => 'png, jpg, gif',
+                'maxFiles' => 4,
+                'minWidth' => 300,
+                'maxWidth' => 360,
+                'minHeight' => 300,
+                'maxHeight' => 360,
+            ],
         ];
     }
+
 // TODO: реализовать запись данных в базу данных
     public function upload()
     {
         if ($this->validate()) {
-            // TODO: реализовать проверки размера и сохранения фото в размерах big/mid/small
             foreach ($this->imageFiles as $file) {
-                $file->saveAs('img/mid/' . $file->baseName . '.' . $file->extension);
+                $model = new Picture(['product_id' => 1,'title' => $file->baseName,'ext' => $file->extension]);
+                $fileFullName = \Yii::getAlias('@bigImg') . DIRECTORY_SEPARATOR . $file->name;
+                $file->saveAs($fileFullName);
+
+                Image::thumbnail($fileFullName, 120,
+                    120)->save(\Yii::getAlias('@midImg') . DIRECTORY_SEPARATOR . $file->name, ['quality' => 100]);
+                Image::thumbnail($fileFullName, 40,
+                    40)->save(\Yii::getAlias('@smallImg') . DIRECTORY_SEPARATOR . $file->name, ['quality' => 100]);
+
+                if(!$model->save()){
+                    throw new Exception("ошибка");
+                };
             }
             return true;
         } else {
