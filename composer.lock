@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "76f5fe4d008c506f376b6d3708860f61",
+    "content-hash": "795fefff7d77ee88f246cce68fc1c864",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -292,6 +292,20 @@
             "time": "2017-05-16T10:31:22+00:00"
         },
         {
+            "name": "npm-asset/bootstrap",
+            "version": "4.3.1",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/bootstrap/-/bootstrap-4.3.1.tgz",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
             "name": "phpspec/php-diff",
             "version": "v1.1.0",
             "source": {
@@ -542,6 +556,75 @@
                 "yii2"
             ],
             "time": "2019-01-29T21:39:45+00:00"
+        },
+        {
+            "name": "yiisoft/yii2-bootstrap4",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/yii2-bootstrap4.git",
+                "reference": "c2c1277d720214e433ef915a6a45316b54d4be3e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap4/zipball/c2c1277d720214e433ef915a6a45316b54d4be3e",
+                "reference": "c2c1277d720214e433ef915a6a45316b54d4be3e",
+                "shasum": ""
+            },
+            "require": {
+                "npm-asset/bootstrap": "^4.2",
+                "yiisoft/yii2": "~2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "<7",
+                "yiisoft/yii2-coding-standards": "~2.0"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii\\bootstrap4\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Klimov",
+                    "email": "klimov.paul@gmail.com"
+                },
+                {
+                    "name": "Alexander Makarov",
+                    "email": "sam@rmcreative.ru",
+                    "homepage": "http://rmcreative.ru/"
+                },
+                {
+                    "name": "Antonio Ramirez",
+                    "email": "amigo.cobos@gmail.com"
+                },
+                {
+                    "name": "Simon Karlen",
+                    "email": "simi.albi@gmail.com"
+                },
+                {
+                    "name": "Qiang Xue",
+                    "email": "qiang.xue@gmail.com",
+                    "homepage": "http://www.yiiframework.com/"
+                }
+            ],
+            "description": "The Twitter Bootstrap extension for the Yii framework",
+            "keywords": [
+                "bootstrap",
+                "bootstrap4",
+                "yii2"
+            ],
+            "time": "2019-03-17T14:50:31+00:00"
         },
         {
             "name": "yiisoft/yii2-composer",
