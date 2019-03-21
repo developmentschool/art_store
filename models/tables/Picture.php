@@ -4,6 +4,7 @@ namespace app\models\tables;
 
 use Yii;
 use yii\db\ActiveRecord;
+
 /**
  * This is the model class for table "picture".
  *
@@ -41,7 +42,7 @@ class Picture extends ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function behaviors ()
+    public function behaviors()
     {
         return [
             'timestamp' => [

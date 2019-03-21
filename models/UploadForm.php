@@ -39,12 +39,12 @@ class UploadForm extends Model
         ];
     }
 
-// TODO: реализовать запись данных в базу данных
+
     public function upload()
     {
         if ($this->validate()) {
             foreach ($this->imageFiles as $file) {
-                $model = new Picture(['product_id' => 1,'title' => $file->baseName,'ext' => $file->extension]);
+                $model = new Picture(['product_id' => 1, 'title' => $file->baseName, 'ext' => $file->extension]);
                 $fileFullName = \Yii::getAlias('@bigImg') . DIRECTORY_SEPARATOR . $file->name;
                 $file->saveAs($fileFullName);
 
@@ -53,7 +53,7 @@ class UploadForm extends Model
                 Image::thumbnail($fileFullName, 40,
                     40)->save(\Yii::getAlias('@smallImg') . DIRECTORY_SEPARATOR . $file->name, ['quality' => 100]);
 
-                if(!$model->save()){
+                if (!$model->save()) {
                     throw new Exception("ошибка");
                 };
             }
