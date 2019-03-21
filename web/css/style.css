@@ -63,10 +63,10 @@ input:focus::placeholder {
   height: 1.1rem;
   line-height: 1.1rem;
   color: #ffffff;
-  font-size: .8rem;
+  font-size: .7rem;
   text-align: center;
   border-radius: 50%;
-  background: #222222;
+  background: #6c757d;
 }
 
 .header-icons {
@@ -125,8 +125,6 @@ input:focus::placeholder {
 
 .header-vertical-menu {
   position: relative;
-  display: -webkit-flex;
-  display: flex;
   padding: 0 20px;
   background: #333;
   width: 16rem;
@@ -134,10 +132,23 @@ input:focus::placeholder {
 }
 
 .header-vertical-menu .dropdown-menu {
+  display: block;
   min-width: 100%;
   margin-top: 0;
   border: 1px solid #ddd;
   border-radius: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: all .25s;
+  -webkit-transform: translateY(10px);
+  transform: translateY(10px);
+}
+
+.header-vertical-menu .dropdown-menu.show {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
 }
 
 .heading-title {

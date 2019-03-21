@@ -75,7 +75,9 @@ AppAsset::register($this);
 				<div class="row justify-content-between align-items-center">
 					<div class="col-auto">
 						<div class="header-vertical-menu d-flex align-items-center">
-							<span>Меню</span>
+						  <nav class="navbar-dark">
+						    <span class="navbar-toggler-icon"></span>
+						  </nav>
               <ul class="dropdown-menu">
                 <a class="dropdown-item" href="#">Home</a>
                 <a class="dropdown-item" href="#">Catalog</a>
