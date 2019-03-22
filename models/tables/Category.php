@@ -9,6 +9,7 @@ use yii\db\ActiveRecord;
  *
  * @property int $id
  * @property string $title
+ * @property int $parent_id
  * @property string $created_at
  * @property string $updated_at
  *
@@ -23,6 +24,7 @@ class Category extends ActiveRecord
     {
         return 'category';
     }
+
     /**
      * {@inheritdoc}
      */
@@ -46,6 +48,7 @@ class Category extends ActiveRecord
     {
         return [
             [['title'], 'required'],
+            [['parent_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['title'], 'string', 'max' => 255],
         ];
@@ -59,6 +62,7 @@ class Category extends ActiveRecord
         return [
             'id' => 'ID',
             'title' => 'Title',
+            'parent_id' => 'Parent ID',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
