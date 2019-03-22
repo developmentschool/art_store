@@ -12,7 +12,7 @@ class m190321_163949_add_foreigh_key_category_id_product_table extends Migration
      */
     public function safeUp()
     {
-        $this->addForeignKey('fk_category_id', 'product', 'category_id', 'category', 'id');
+        $this->addForeignKey('fk_product_category_id', 'product', 'category_id', 'category', 'id');
     }
 
     /**
