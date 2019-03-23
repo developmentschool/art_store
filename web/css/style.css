@@ -99,6 +99,15 @@ img {
     height: 100%;
 }
 
+.nav.header-nav a {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+
+.nav.header-nav a:hover {
+  color: #FFA500;
+}
+
 .wide-nav {
     color: #ffffff;
     background-color: #FFA500;
@@ -113,6 +122,7 @@ img {
 }
 
 .social-item-round {
+<<<<<<< HEAD
     display: inline-block;
     width: 2rem;
     height: 2rem;
@@ -121,10 +131,38 @@ img {
     color: #fff;
     border-radius: 50%;
     background-color: #333333;
+=======
+  display: inline-block;
+  vertical-align: middle;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  color: #fff;
+  border-radius: 50%;
+  background-color: #333333; 
+>>>>>>> develop
+}
+
+.social-item-border-round {
+  display: inline-block;
+  vertical-align: middle;
+  width: 2rem;
+  height: 2rem;
+  line-height: 1.9rem;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 .social-item-round:hover {
     color: #FFA500;
+}
+
+.social-item-border-round:hover {
+  color: #FFA500;
+  border-color: #FFA500;
 }
 
 .header-vertical-menu {
@@ -135,6 +173,7 @@ img {
     height: 2.8rem;
 }
 
+<<<<<<< HEAD
 .header-vertical-menu .dropdown-menu {
     display: block;
     min-width: 100%;
@@ -153,6 +192,56 @@ img {
     opacity: 1;
     -webkit-transform: translateY(0);
     transform: translateY(0);
+=======
+.header-dropdown-menu {
+  min-width: 100%;
+  margin-top: 0;
+  border: 1px solid #ddd;
+  border-radius: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: all .25s;
+  -webkit-transform: translateY(10px);
+  transform: translateY(10px);
+}
+
+.header-dropdown-menu.show {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+>>>>>>> develop
+}
+
+.header-dropdown-menu .dropdown-toggle::after {
+  vertical-align: middle;
+  margin-left: .5em;
+  border-left: 4px solid;
+  border-bottom: 4px solid transparent;
+  border-top: 4px solid transparent;
+}
+
+.header-dropdown-menu li {
+  position: relative;
+}
+
+.header-dropdown-menu li:hover {
+  background-color: #f8f9fa;
+}
+
+.header-dropdown-menu li > .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin: 0;
+  margin-top: -.5rem;
+  border: 1px solid #ddd;
+  border-radius: 0;
+  -webkit-transform: translateY(-1px);
+  transform: translateY(-1px);
+}
+
+.header-dropdown-menu li:hover > .dropdown-menu {
+  display: block;
 }
 
 .heading-title {
@@ -224,7 +313,12 @@ img {
 }
 
 .card-link {
+<<<<<<< HEAD
     color: inherit;
+=======
+  display: inline-block;
+  color: inherit;
+>>>>>>> develop
 }
 
 .card-link:hover {

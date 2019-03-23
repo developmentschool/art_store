@@ -21,8 +21,10 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         // 'css/site.css',
-        'vendor/fontawesome-free-5.7.2-web/css/all.css',
+        // 'vendor/fontawesome-free-5.7.2-web/css/all.css',
         'css/style.css',
+        'css/sidebar.css',
+        'css/product.css',
     ];
     public $js = [
         // 'https://code.jquery.com/jquery-3.3.1.slim.min.js',
