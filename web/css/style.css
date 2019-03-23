@@ -95,6 +95,15 @@ input:focus::placeholder {
   height: 100%;
 }
 
+.nav.header-nav a {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+
+.nav.header-nav a:hover {
+  color: #FFA500;
+}
+
 .wide-nav {
   color: #ffffff;
   background-color: #FFA500;
@@ -110,6 +119,7 @@ input:focus::placeholder {
 
 .social-item-round {
   display: inline-block;
+  vertical-align: middle;
   width: 2rem;
   height: 2rem;
   line-height: 2rem;
@@ -119,8 +129,25 @@ input:focus::placeholder {
   background-color: #333333; 
 }
 
+.social-item-border-round {
+  display: inline-block;
+  vertical-align: middle;
+  width: 2rem;
+  height: 2rem;
+  line-height: 1.9rem;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
 .social-item-round:hover {
   color: #FFA500;
+}
+
+.social-item-border-round:hover {
+  color: #FFA500;
+  border-color: #FFA500;
 }
 
 .header-vertical-menu {
@@ -220,6 +247,7 @@ input:focus::placeholder {
 }
 
 .card-link {
+  display: inline-block;
   color: inherit;
 }
 

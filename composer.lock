@@ -4,8 +4,24 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fc6b0d527372c13c2c9cedf8108830a0",
+    "content-hash": "8854f4f1af35c2a8c97d349f0dda5ff0",
     "packages": [
+        {
+            "name": "bower-asset/fontawesome",
+            "version": "5.0.13",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FortAwesome/Font-Awesome.git",
+                "reference": "bca574eca32c5a766b2a09fdcbedf382a78ebc38"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/bca574eca32c5a766b2a09fdcbedf382a78ebc38",
+                "reference": "bca574eca32c5a766b2a09fdcbedf382a78ebc38",
+                "shasum": null
+            },
+            "type": "bower-asset"
+        },
         {
             "name": "bower-asset/inputmask",
             "version": "3.3.11",
@@ -304,12 +320,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "f45bac46c0975428a7760c3bcc05b1df7d8792a6"
+                "reference": "2d451d972588f6a8d016549ba08a6557de97a9a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/f45bac46c0975428a7760c3bcc05b1df7d8792a6",
-                "reference": "f45bac46c0975428a7760c3bcc05b1df7d8792a6",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/2d451d972588f6a8d016549ba08a6557de97a9a2",
+                "reference": "2d451d972588f6a8d016549ba08a6557de97a9a2",
                 "shasum": ""
             },
             "require": {
@@ -396,7 +412,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2019-03-17T21:34:47+00:00"
+            "time": "2019-03-20T18:48:19+00:00"
         },
         {
             "name": "yiisoft/yii2-bootstrap4",
@@ -2589,12 +2605,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "122a9f0a0c653ecba733ce3b330b27035042d9c6"
+                "reference": "91def169ece5712be974336fdbd6f1954e798f98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/122a9f0a0c653ecba733ce3b330b27035042d9c6",
-                "reference": "122a9f0a0c653ecba733ce3b330b27035042d9c6",
+                "url": "https://api.github.com/repos/symfony/console/zipball/91def169ece5712be974336fdbd6f1954e798f98",
+                "reference": "91def169ece5712be974336fdbd6f1954e798f98",
                 "shasum": ""
             },
             "require": {
@@ -2605,6 +2621,7 @@
             },
             "conflict": {
                 "symfony/dependency-injection": "<3.4",
+                "symfony/event-dispatcher": "<4.3",
                 "symfony/process": "<3.3"
             },
             "provide": {
@@ -2614,7 +2631,7 @@
                 "psr/log": "~1.0",
                 "symfony/config": "~3.4|~4.0",
                 "symfony/dependency-injection": "~3.4|~4.0",
-                "symfony/event-dispatcher": "~3.4|~4.0",
+                "symfony/event-dispatcher": "^4.3",
                 "symfony/lock": "~3.4|~4.0",
                 "symfony/process": "~3.4|~4.0"
             },
@@ -2654,7 +2671,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2019-02-23T15:22:31+00:00"
+            "time": "2019-03-14T07:32:46+00:00"
         },
         {
             "name": "symfony/contracts",
@@ -2662,12 +2679,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/contracts.git",
-                "reference": "fb450641fd0e43647ddc5415f3132276545933ec"
+                "reference": "a4f68e9d0d5eebd8ccf520eed67304f8a4efdd22"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/contracts/zipball/fb450641fd0e43647ddc5415f3132276545933ec",
-                "reference": "fb450641fd0e43647ddc5415f3132276545933ec",
+                "url": "https://api.github.com/repos/symfony/contracts/zipball/a4f68e9d0d5eebd8ccf520eed67304f8a4efdd22",
+                "reference": "a4f68e9d0d5eebd8ccf520eed67304f8a4efdd22",
                 "shasum": ""
             },
             "require": {
@@ -2724,7 +2741,7 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2019-03-14T07:32:36+00:00"
+            "time": "2019-03-19T18:41:07+00:00"
         },
         {
             "name": "symfony/css-selector",
@@ -2842,12 +2859,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "1618e06da6f04285cc8701bf07fe6b0be5c61b9b"
+                "reference": "1a30b070a1dc2338d769df7a76ae68ca9704d181"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/1618e06da6f04285cc8701bf07fe6b0be5c61b9b",
-                "reference": "1618e06da6f04285cc8701bf07fe6b0be5c61b9b",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/1a30b070a1dc2338d769df7a76ae68ca9704d181",
+                "reference": "1a30b070a1dc2338d769df7a76ae68ca9704d181",
                 "shasum": ""
             },
             "require": {
@@ -2898,7 +2915,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2019-02-23T15:22:31+00:00"
+            "time": "2019-03-14T07:32:46+00:00"
         },
         {
             "name": "symfony/finder",
