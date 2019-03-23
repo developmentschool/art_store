@@ -1,9 +1,8 @@
-// Показать меню при наведении
 $(function($) {
-	$('.header-vertical-menu').hover(function() {
-		$(this).find('.dropdown-menu').addClass('show');
+	$('._js_dropdown-menu').hover(function() {
+		$(this).find('.header-dropdown-menu').addClass('show');
 	}, function() {
-		$(this).find('.dropdown-menu').removeClass('show');
+		$(this).find('.header-dropdown-menu').removeClass('show');
 	});
 });
 
@@ -48,3 +47,4 @@ $(function($) {
     fixInputValue.call(this.relatedInput);
   }
 })();
+

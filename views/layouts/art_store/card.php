@@ -85,13 +85,27 @@ FontAwesomeAsset::register($this);
 			<div class="container-fluid">
 				<div class="row justify-content-between align-items-center">
 					<div class="col-auto">
-						<div class="header-vertical-menu d-flex align-items-center">
-						  <nav class="navbar-dark">
+						<div class="header-vertical-menu d-flex align-items-center _js_dropdown-menu">
+						  <div class="navbar-dark">
 						    <span class="navbar-toggler-icon"></span>
-						  </nav>
-              <ul class="dropdown-menu">
+						  </div>
+              <ul class="dropdown-menu header-dropdown-menu">
                 <li><a class="dropdown-item" href="#">Home</a></li>
-                <li><a class="dropdown-item" href="#">Catalog</a></li>
+                <li><a class="dropdown-item" href="#">Catalog</a>
+                	<ul class="dropdown-menu">
+	                  <li><a class="dropdown-item" href="#">Home</a></li>
+	                  <li><a class="dropdown-item" href="#">Catalog</a></li>
+	                  <li><a class="dropdown-item" href="#">About</a>
+	                  	<ul class="dropdown-menu">
+			                  <li><a class="dropdown-item" href="#">Home</a></li>
+			                  <li><a class="dropdown-item" href="#">Catalog</a></li>
+			                  <li><a class="dropdown-item" href="#">About</a></li>
+			                  <li><a class="dropdown-item" href="#">Contacts</a></li>
+		                	</ul>
+	                  </li>
+	                  <li><a class="dropdown-item" href="#">Contacts</a></li>
+	                </ul>
+                </li>
                 <li><a class="dropdown-item" href="#">About</a></li>
                 <li><a class="dropdown-item" href="#">Contacts</a></li>
               </ul>
