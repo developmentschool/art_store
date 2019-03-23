@@ -120,7 +120,6 @@ AppAsset::register($this);
             </div>
           </div>
         </div>
-
         <div class="col-sm-6 col-lg-3">
           <div class="card mb-4">
           	<a href="card.html">
