@@ -5,7 +5,7 @@ use yii\widgets\LinkPager;
 
 ?>
 <div class="row">
-   <?php $pagination = $pages;?>
+
     <?php foreach ($products as $product): ?>
 
         <div class="col-sm-6 col-lg-3">
@@ -28,7 +28,7 @@ use yii\widgets\LinkPager;
     <?php
 
     echo LinkPager::widget([
-        'pagination' => $pagination,
+        'pagination' => $pages,
     ]) ?>
 </div>
 

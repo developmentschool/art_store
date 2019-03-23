@@ -15,7 +15,7 @@
             </a>
             <div class="d-flex justify-content-between align-items-center">
                 <span class="card-price"><?= $product['price'] ?> руб</span>
-                <a href="#" class="card-link"><i class="fas fa-eye"></i></a>
+                <a href="product/view/<?= $product['id'] ?>" class="card-link"><i class="fas fa-eye"></i></a>
             </div>
             <div class="card-summary">
                 <div class="card-summary__inner">

@@ -14,15 +14,15 @@ use yii\helpers\ArrayHelper;
 
 class CategoryService
 {
-    public static function getRandomCategory(): array
+    public static function getRandomCategory($sum): array
     {
-        $array = static::randIntArray();
+        $array = static::randIntArray($sum);
         $cats = Category::find()->where(['id' => $array])->asArray()->all();
         return $cats;
 
     }
 
-    private static function randIntArray(): array
+    private static function randIntArray($sum): array
     {
         $quantityOfCategory = Category::find()->count();
         $data = Category::find()->select('id')->asArray(true)->all();
@@ -30,7 +30,7 @@ class CategoryService
         $array = [];
         $iterator = 1;
 
-        while ($iterator < 8) {
+        while ($iterator <= $sum) {
             $int = random_int(1, $quantityOfCategory);
             if (in_array($int, $array) || !in_array($int, $ids)) {
                 continue;

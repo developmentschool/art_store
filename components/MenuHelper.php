@@ -11,26 +11,15 @@ namespace app\components;
 
 class MenuHelper
 {
-    public static $arrayFromModel;
-
-    /**
-     * MenuHelper constructor.
-     *
-     * @param $arrayFromModel array
-     */
-    public function __construct(array $arrayFromModel)
-    {
-        self::$arrayFromModel = $arrayFromModel;
-    }
 
     /**
      * @param $parent
      *
      * @return array
      */
-    public static function formTree(): array
+    public static function formTree($items): array
     {
-        $items = self::$arrayFromModel;
+
         $result = [];
         foreach ($items as $item) {
             if (is_null($item['parent_id'])) {
@@ -43,13 +32,14 @@ class MenuHelper
 
     public static function buildTree(array $tree, $parent_id): string
     {
+
         //TODO: вставить нужные блоки HTML для вывода многоуровневого dropdownMenu
         if (is_array($tree) && isset($tree[$parent_id])) {
-            $html = '<ul>';
+            $html = '<ul class="dropdown-menu">';
             foreach ($tree[$parent_id] as $cat) {
-                $html .= '<li>' . $cat['title'];
+                $html .= '<li><a class="dropdown-item dropdown-toggle" href="#">' . $cat['title'];
                 $html .= static::buildTree($tree, $cat['id']);
-                $html .= '</li>';
+                $html .= '</a></li>';
             }
             $html .= '</ul>';
         } else {
