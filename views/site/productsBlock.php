@@ -10,7 +10,7 @@
     <div class="col-sm-6 col-md-4 col-lg-3 col-xl-20pr">
         <div class="card p-3 mb-4">
             <h5 class="card-title text-center"><?= $product['title'] ?></h5>
-            <a href="product/view/<?=$product['id']?>" class="card-img mb-3">
+            <a href="product/view/<?= $product['id'] ?>" class="card-img mb-3">
                 <img src="http://placehold.it/640x640/33bee5/ffffff/&text=Image" alt="#">
             </a>
             <div class="d-flex justify-content-between align-items-center">
