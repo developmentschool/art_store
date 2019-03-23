@@ -9,8 +9,10 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use app\assets\FontAwesomeAsset;
 
 AppAsset::register($this);
+FontAwesomeAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -74,15 +76,29 @@ AppAsset::register($this);
 			<div class="container-fluid">
 				<div class="row justify-content-between align-items-center">
 					<div class="col-auto">
-						<div class="header-vertical-menu d-flex align-items-center">
-						  <nav class="navbar-dark">
+						<div class="header-vertical-menu d-flex align-items-center _js_dropdown-menu">
+						  <div class="navbar-dark">
 						    <span class="navbar-toggler-icon"></span>
-						  </nav>
-              <ul class="dropdown-menu">
-                <a class="dropdown-item" href="#">Home</a>
-                <a class="dropdown-item" href="#">Catalog</a>
-                <a class="dropdown-item" href="#">About</a>
-                <a class="dropdown-item" href="#">Contacts</a>
+						  </div>
+              <ul class="dropdown-menu header-dropdown-menu">
+                <li><a class="dropdown-item" href="#">Home</a></li>
+                <li><a class="dropdown-item dropdown-toggle" href="#">Catalog</a>
+                	<ul class="dropdown-menu">
+	                  <li><a class="dropdown-item" href="#">Home</a></li>
+	                  <li><a class="dropdown-item" href="#">Catalog</a></li>
+	                  <li><a class="dropdown-item dropdown-toggle" href="#">About</a>
+	                  	<ul class="dropdown-menu">
+			                  <li><a class="dropdown-item" href="#">Home</a></li>
+			                  <li><a class="dropdown-item" href="#">Catalog</a></li>
+			                  <li><a class="dropdown-item" href="#">About</a></li>
+			                  <li><a class="dropdown-item" href="#">Contacts</a></li>
+		                	</ul>
+	                  </li>
+	                  <li><a class="dropdown-item" href="#">Contacts</a></li>
+	                </ul>
+                </li>
+                <li><a class="dropdown-item" href="#">About</a></li>
+                <li><a class="dropdown-item" href="#">Contacts</a></li>
               </ul>
             </div>
 					</div>
