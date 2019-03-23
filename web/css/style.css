@@ -159,14 +159,12 @@ input:focus::placeholder {
 }
 
 .header-dropdown-menu {
-  display: block;
   min-width: 100%;
   margin-top: 0;
   border: 1px solid #ddd;
   border-radius: 0;
   visibility: hidden;
   opacity: 0;
-  display: block;
   transition: all .25s;
   -webkit-transform: translateY(10px);
   transform: translateY(10px);
@@ -177,6 +175,14 @@ input:focus::placeholder {
   opacity: 1;
   -webkit-transform: translateY(0);
   transform: translateY(0);
+}
+
+.header-dropdown-menu .dropdown-toggle::after {
+  vertical-align: middle;
+  margin-left: .5em;
+  border-left: 4px solid;
+  border-bottom: 4px solid transparent;
+  border-top: 4px solid transparent;
 }
 
 .header-dropdown-menu li {

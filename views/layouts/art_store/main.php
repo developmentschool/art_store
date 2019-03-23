@@ -82,11 +82,11 @@ FontAwesomeAsset::register($this);
 						  </div>
               <ul class="dropdown-menu header-dropdown-menu">
                 <li><a class="dropdown-item" href="#">Home</a></li>
-                <li><a class="dropdown-item" href="#">Catalog</a>
+                <li><a class="dropdown-item dropdown-toggle" href="#">Catalog</a>
                 	<ul class="dropdown-menu">
 	                  <li><a class="dropdown-item" href="#">Home</a></li>
 	                  <li><a class="dropdown-item" href="#">Catalog</a></li>
-	                  <li><a class="dropdown-item" href="#">About</a>
+	                  <li><a class="dropdown-item dropdown-toggle" href="#">About</a>
 	                  	<ul class="dropdown-menu">
 			                  <li><a class="dropdown-item" href="#">Home</a></li>
 			                  <li><a class="dropdown-item" href="#">Catalog</a></li>
