@@ -122,6 +122,16 @@ img {
 }
 
 .social-item-round {
+<<<<<<< HEAD
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    color: #fff;
+    border-radius: 50%;
+    background-color: #333333;
+=======
   display: inline-block;
   vertical-align: middle;
   width: 2rem;
@@ -131,6 +141,7 @@ img {
   color: #fff;
   border-radius: 50%;
   background-color: #333333; 
+>>>>>>> develop
 }
 
 .social-item-border-round {
@@ -161,6 +172,27 @@ img {
     width: 16rem;
     height: 2.8rem;
 }
+
+<<<<<<< HEAD
+.header-vertical-menu .dropdown-menu {
+    display: block;
+    min-width: 100%;
+    margin-top: 0;
+    border: 1px solid #ddd;
+    border-radius: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .25s;
+    -webkit-transform: translateY(10px);
+    transform: translateY(10px);
+}
+
+.header-vertical-menu .dropdown-menu.show {
+    visibility: visible;
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+=======
 .header-dropdown-menu {
   min-width: 100%;
   margin-top: 0;
@@ -178,7 +210,7 @@ img {
   opacity: 1;
   -webkit-transform: translateY(0);
   transform: translateY(0);
-
+>>>>>>> develop
 }
 
 .header-dropdown-menu .dropdown-toggle::after {
@@ -281,10 +313,12 @@ img {
 }
 
 .card-link {
-
+<<<<<<< HEAD
+    color: inherit;
+=======
   display: inline-block;
   color: inherit;
-
+>>>>>>> develop
 }
 
 .card-link:hover {
