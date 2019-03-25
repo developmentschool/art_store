@@ -320,12 +320,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "ecec08ffc282c835b19cfb23df5278b89ba4286e"
+                "reference": "5d5bac9eec63083f9472740515e79f9dd5ec9230"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/ecec08ffc282c835b19cfb23df5278b89ba4286e",
-                "reference": "ecec08ffc282c835b19cfb23df5278b89ba4286e",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/5d5bac9eec63083f9472740515e79f9dd5ec9230",
+                "reference": "5d5bac9eec63083f9472740515e79f9dd5ec9230",
                 "shasum": ""
             },
             "require": {
@@ -412,7 +412,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2019-03-23T08:29:38+00:00"
+            "time": "2019-03-24T12:57:46+00:00"
         },
         {
             "name": "yiisoft/yii2-bootstrap4",
@@ -544,12 +544,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-debug.git",
-                "reference": "ac53384fcaf395e6c0fe31066d071208d08fa367"
+                "reference": "6e68c03dfa865c250360659949f4fb4d6c7be26f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/ac53384fcaf395e6c0fe31066d071208d08fa367",
-                "reference": "ac53384fcaf395e6c0fe31066d071208d08fa367",
+                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/6e68c03dfa865c250360659949f4fb4d6c7be26f",
+                "reference": "6e68c03dfa865c250360659949f4fb4d6c7be26f",
                 "shasum": ""
             },
             "require": {
@@ -593,7 +593,7 @@
                 "debugger",
                 "yii2"
             ],
-            "time": "2019-03-22T15:09:27+00:00"
+            "time": "2019-03-25T17:11:51+00:00"
         },
         {
             "name": "yiisoft/yii2-gii",
@@ -2607,12 +2607,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "91def169ece5712be974336fdbd6f1954e798f98"
+                "reference": "33ba4d57d5e75181f1cd10049e9777b0bc239937"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/91def169ece5712be974336fdbd6f1954e798f98",
-                "reference": "91def169ece5712be974336fdbd6f1954e798f98",
+                "url": "https://api.github.com/repos/symfony/console/zipball/33ba4d57d5e75181f1cd10049e9777b0bc239937",
+                "reference": "33ba4d57d5e75181f1cd10049e9777b0bc239937",
                 "shasum": ""
             },
             "require": {
@@ -2635,7 +2635,8 @@
                 "symfony/dependency-injection": "~3.4|~4.0",
                 "symfony/event-dispatcher": "^4.3",
                 "symfony/lock": "~3.4|~4.0",
-                "symfony/process": "~3.4|~4.0"
+                "symfony/process": "~3.4|~4.0",
+                "symfony/var-dumper": "^4.3"
             },
             "suggest": {
                 "psr/log": "For using the console logger",
@@ -2673,7 +2674,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2019-03-14T07:32:46+00:00"
+            "time": "2019-03-24T10:32:26+00:00"
         },
         {
             "name": "symfony/contracts",
