@@ -10,9 +10,12 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use Cloudinary;
+use Cloudinary\Uploader;
 
 class SiteController extends Controller
 {
+
     /**
      * {@inheritdoc}
      */
@@ -62,7 +65,12 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-
+//        $file1=Yii::getAlias('@webroot/img/baner1.jpg');
+//        $file2=Yii::getAlias('@webroot/img/baner2.jpg');
+//        $file3=Yii::getAlias('@webroot/img/baner3.jpg');
+//        Yii::$app->cloudinary->uploadImage($file1,['public_id'=>'slider1']);
+//        Yii::$app->cloudinary->uploadImage($file2,['public_id'=>'slider2']);
+//        Yii::$app->cloudinary->uploadImage($file3,['public_id'=>'slider3']);
         return $this->render('index');
     }
 

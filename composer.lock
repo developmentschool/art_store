@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c4ff381a23ca1f3f189c58edb1b4b613",
+    "content-hash": "2b563bcf2db7757642eee145c43e9c70",
     "packages": [
         {
             "name": "bower-asset/fontawesome",
@@ -160,6 +160,58 @@
                 "markdown-extra"
             ],
             "time": "2018-12-10T09:41:35+00:00"
+        },
+        {
+            "name": "cloudinary/cloudinary_php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cloudinary/cloudinary_php.git",
+                "reference": "fd6a49f1ca585c896f0730ec46bf37967bb454db"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cloudinary/cloudinary_php/zipball/fd6a49f1ca585c896f0730ec46bf37967bb454db",
+                "reference": "fd6a49f1ca585c896f0730ec46bf37967bb454db",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.8.*"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src"
+                ],
+                "files": [
+                    "src/Helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cloudinary",
+                    "homepage": "https://github.com/cloudinary/cloudinary_php/graphs/contributors"
+                }
+            ],
+            "description": "Cloudinary PHP SDK",
+            "homepage": "https://github.com/cloudinary/cloudinary_php",
+            "keywords": [
+                "cdn",
+                "cloud",
+                "cloudinary",
+                "image management",
+                "sdk"
+            ],
+            "time": "2019-03-07T12:15:03+00:00"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -378,21 +430,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-<<<<<<< HEAD
                 "reference": "5d5bac9eec63083f9472740515e79f9dd5ec9230"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/5d5bac9eec63083f9472740515e79f9dd5ec9230",
                 "reference": "5d5bac9eec63083f9472740515e79f9dd5ec9230",
-=======
-                "reference": "ecec08ffc282c835b19cfb23df5278b89ba4286e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/ecec08ffc282c835b19cfb23df5278b89ba4286e",
-                "reference": "ecec08ffc282c835b19cfb23df5278b89ba4286e",
->>>>>>> develop
                 "shasum": ""
             },
             "require": {
@@ -479,11 +522,7 @@
                 "framework",
                 "yii2"
             ],
-<<<<<<< HEAD
             "time": "2019-03-24T12:57:46+00:00"
-=======
-            "time": "2019-03-23T08:29:38+00:00"
->>>>>>> develop
         },
         {
             "name": "yiisoft/yii2-bootstrap4",
@@ -615,21 +654,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-debug.git",
-<<<<<<< HEAD
                 "reference": "6264f51882811121c8a2497dd8b4a0c5bd9ca02f"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/6264f51882811121c8a2497dd8b4a0c5bd9ca02f",
                 "reference": "6264f51882811121c8a2497dd8b4a0c5bd9ca02f",
-=======
-                "reference": "ac53384fcaf395e6c0fe31066d071208d08fa367"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/ac53384fcaf395e6c0fe31066d071208d08fa367",
-                "reference": "ac53384fcaf395e6c0fe31066d071208d08fa367",
->>>>>>> develop
                 "shasum": ""
             },
             "require": {
@@ -673,11 +703,7 @@
                 "debugger",
                 "yii2"
             ],
-<<<<<<< HEAD
             "time": "2019-03-24T13:53:15+00:00"
-=======
-            "time": "2019-03-22T15:09:27+00:00"
->>>>>>> develop
         },
         {
             "name": "yiisoft/yii2-gii",
@@ -729,7 +755,6 @@
                 "yii2"
             ],
             "time": "2019-03-22T15:08:43+00:00"
-<<<<<<< HEAD
         },
         {
             "name": "yiisoft/yii2-imagine",
@@ -778,8 +803,6 @@
                 "yii2"
             ],
             "time": "2018-02-22T11:57:06+00:00"
-=======
->>>>>>> develop
         },
         {
             "name": "yiisoft/yii2-swiftmailer",
@@ -3483,7 +3506,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "yiisoft/yii2-imagine": 20
+        "yiisoft/yii2-imagine": 20,
+        "cloudinary/cloudinary_php": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

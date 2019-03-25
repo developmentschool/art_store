@@ -14,13 +14,13 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img class="d-block w-100" src="http://placehold.it/1440x480/33bee5/ffffff/&text=Slide 1" alt="#">
+            <img class="d-block w-100" src="<?= Yii::$app->cloudinary->getImageURL('slider1.jpg') ?>" alt="#">
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="http://placehold.it/1440x480/ffc107/ffffff/&text=Slide 2" alt="#">
+            <img class="d-block w-100" src="<?= Yii::$app->cloudinary->getImageURL('slider2.jpg') ?>" alt="#">
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="http://placehold.it/1440x480/6610f2/ffffff/&text=Slide 3" alt="#">
+            <img class="d-block w-100" src="<?= Yii::$app->cloudinary->getImageURL('slider3.jpg') ?>" alt="#">
         </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
