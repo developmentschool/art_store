@@ -378,12 +378,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
+<<<<<<< HEAD
                 "reference": "5d5bac9eec63083f9472740515e79f9dd5ec9230"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/5d5bac9eec63083f9472740515e79f9dd5ec9230",
                 "reference": "5d5bac9eec63083f9472740515e79f9dd5ec9230",
+=======
+                "reference": "ecec08ffc282c835b19cfb23df5278b89ba4286e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/ecec08ffc282c835b19cfb23df5278b89ba4286e",
+                "reference": "ecec08ffc282c835b19cfb23df5278b89ba4286e",
+>>>>>>> develop
                 "shasum": ""
             },
             "require": {
@@ -470,7 +479,11 @@
                 "framework",
                 "yii2"
             ],
+<<<<<<< HEAD
             "time": "2019-03-24T12:57:46+00:00"
+=======
+            "time": "2019-03-23T08:29:38+00:00"
+>>>>>>> develop
         },
         {
             "name": "yiisoft/yii2-bootstrap4",
@@ -602,12 +615,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-debug.git",
+<<<<<<< HEAD
                 "reference": "6264f51882811121c8a2497dd8b4a0c5bd9ca02f"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/6264f51882811121c8a2497dd8b4a0c5bd9ca02f",
                 "reference": "6264f51882811121c8a2497dd8b4a0c5bd9ca02f",
+=======
+                "reference": "ac53384fcaf395e6c0fe31066d071208d08fa367"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/ac53384fcaf395e6c0fe31066d071208d08fa367",
+                "reference": "ac53384fcaf395e6c0fe31066d071208d08fa367",
+>>>>>>> develop
                 "shasum": ""
             },
             "require": {
@@ -651,7 +673,11 @@
                 "debugger",
                 "yii2"
             ],
+<<<<<<< HEAD
             "time": "2019-03-24T13:53:15+00:00"
+=======
+            "time": "2019-03-22T15:09:27+00:00"
+>>>>>>> develop
         },
         {
             "name": "yiisoft/yii2-gii",
@@ -703,6 +729,7 @@
                 "yii2"
             ],
             "time": "2019-03-22T15:08:43+00:00"
+<<<<<<< HEAD
         },
         {
             "name": "yiisoft/yii2-imagine",
@@ -751,6 +778,8 @@
                 "yii2"
             ],
             "time": "2018-02-22T11:57:06+00:00"
+=======
+>>>>>>> develop
         },
         {
             "name": "yiisoft/yii2-swiftmailer",

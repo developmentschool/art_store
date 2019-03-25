@@ -2,52 +2,75 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+
 ?>
-<div class="site-index">
+<?php echo $this->render('carusel') ?>
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+<div class="section-elements">
+    <div class="row">
+        <?php
+        echo $this->render('categoryBlock', ['cats' => \app\services\CategoryService::getRandomCategory(7)]);
+        ?>
     </div>
+</div><!-- .section-elements end -->
 
-    <div class="body-content">
+<div class="section-elements">
+    <h5 class="heading-title">
+        <hr>
+        <span>Top News</span>
+    </h5>
+    <div class="row">
+        <?php
+        echo $this->render('productsBlock', ['products' => \app\services\ProductService::getNewProducts(5)]);
+        ?>
 
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+    </div>
+</div><!-- .section-elements end -->
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
+<div class="section-elements">
+    <h5 class="heading-title">
+        <hr>
+        <span>Top News "Other brands"</span>
+    </h5>
+    <div class="row">
+        <?php
+        echo $this->render('productsBlock',
+            ['products' => \app\services\ProductService::getNewsOtherProducts(5)])
+        ?>
+    </div><!-- .section-elements end -->
+
+    <div class="section-elements">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-auto mb-4">
+                <a href="#" class="brand">
+                    <img src="http://placehold.it/64x64/FFA500/ffffff/&text=Brand" alt="#">
+                </a>
             </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
+            <div class="col-auto mb-4">
+                <a href="#" class="brand">
+                    <img src="http://placehold.it/180x64/FFA500/ffffff/&text=Brand" alt="#">
+                </a>
             </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+            <div class="col-auto mb-4">
+                <a href="#" class="brand">
+                    <img src="http://placehold.it/180x100/FFA500/ffffff/&text=Brand" alt="#">
+                </a>
+            </div>
+            <div class="col-auto mb-4">
+                <a href="#" class="brand">
+                    <img src="http://placehold.it/120x120/FFA500/ffffff/&text=Brand" alt="#">
+                </a>
+            </div>
+            <div class="col-auto mb-4">
+                <a href="#" class="brand">
+                    <img src="http://placehold.it/90x70/FFA500/ffffff/&text=Brand" alt="#">
+                </a>
             </div>
         </div>
+    </div><!-- .section-elements end -->
 
-    </div>
 </div>
+
+
