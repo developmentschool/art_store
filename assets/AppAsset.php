@@ -7,6 +7,7 @@
 
 namespace app\assets;
 
+use yii\bootstrap\BootstrapAsset;
 use yii\web\AssetBundle;
 
 /**
