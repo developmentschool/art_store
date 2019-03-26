@@ -3,13 +3,10 @@
 
 /* @var $content string */
 
-use app\widgets\Alert;
-use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use app\assets\FontAwesomeAsset;
+use yii\bootstrap4\Breadcrumbs;
+use yii\helpers\Html;
 
 AppAsset::register($this);
 FontAwesomeAsset::register($this);
@@ -80,14 +77,14 @@ FontAwesomeAsset::register($this);
                                 <div class="navbar-dark">
                                     <span class="navbar-toggler-icon"></span>
                                 </div>
-                            <ul class="dropdown-menu header-dropdown-menu">-->
-<!--                                    --><?php
-//                                    $models=\app\models\tables\Category::find()->all();
-//                                    $tree=\app\components\MenuHelper::formTree($models);
-//                                    $string=\app\components\MenuHelper::buildTree($tree, 0);
-//                                   // var_dump($string);exit;
-//                                    echo $string;
-//                                    ?>
+                                <ul class="dropdown-menu header-dropdown-menu">-->
+                                    <!--                                    --><?php
+                                    //                                    $models=\app\models\tables\Category::find()->all();
+                                    //                                    $tree=\app\components\MenuHelper::formTree($models);
+                                    //                                    $string=\app\components\MenuHelper::buildTree($tree, 0);
+                                    //                                   // var_dump($string);exit;
+                                    //                                    echo $string;
+                                    //                                    ?>
 
                                     <li><a class="dropdown-item" href="#">Home</a></li>
                                     <li><a class="dropdown-item dropdown-toggle" href="#">Catalog</a>
@@ -122,6 +119,9 @@ FontAwesomeAsset::register($this);
             </div>
         </header>
 
+        <?= Breadcrumbs::widget([
+            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : []
+        ]) ?>
 
         <div class="container-fluid py-5">
             <?= $content ?>
@@ -173,9 +173,11 @@ FontAwesomeAsset::register($this);
             <div class="footer-bottom-bar text-center">
                 <div class="container-fluid">
                     <div class="row justify-content-between align-items-center">
-                        <div class="col">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, doloribus.
+                        <div class="col">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit,
+                            doloribus.
                         </div>
-                        <div class="col">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, doloribus.
+                        <div class="col">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit,
+                            doloribus.
                         </div>
                         <div class="col">8 333 333 55 77<br> 8 333 333 55 77</div>
                     </div>

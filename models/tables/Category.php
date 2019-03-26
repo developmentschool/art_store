@@ -2,8 +2,8 @@
 
 namespace app\models\tables;
 
-use Yii;
 use yii\db\ActiveRecord;
+
 /**
  * This is the model class for table "category".
  *
@@ -28,7 +28,7 @@ class Category extends ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function behaviors ()
+    public function behaviors()
     {
         return [
             'timestamp' => [
@@ -41,6 +41,7 @@ class Category extends ActiveRecord
             ],
         ];
     }
+
     /**
      * {@inheritdoc}
      */
@@ -74,5 +75,21 @@ class Category extends ActiveRecord
     public function getProducts()
     {
         return $this->hasMany(Product::className(), ['category_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getParent()
+    {
+        return $this->hasOne(Category::className(), ['id' => 'parent_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategories()
+    {
+        return $this->hasMany(Category::className(), ['parent_id' => 'id']);
     }
 }

@@ -1,9 +1,9 @@
 <?php
-/* @var $this yii\web\View */
-?>
-<h1>category/index</h1>
+/* @var $this \yii\web\View */
+/* @var $categoryDataProvider \yii\data\ActiveDataProvider */
 
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+$this->title = 'Category';
+
+$this->params['breadcrumbs'][] = $this->title;
+
+ echo $this->render('categoryView', ['categoryDataProvider' => $categoryDataProvider]);
