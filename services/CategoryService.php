@@ -14,19 +14,26 @@ use yii\helpers\ArrayHelper;
 
 class CategoryService
 {
-    public static function getRandomCategory($sum): array
+    public static function getRandomCategory(int $sum): array
     {
+        if ($sum < 1 || is_null($sum)) {
+            return [];
+        }
         $array = static::randIntArray($sum);
         $cats = Category::find()->where(['id' => $array])->asArray()->all();
         return $cats;
 
     }
 
-    private static function randIntArray($sum): array
+    private static function randIntArray(int $sum): array
     {
         $quantityOfCategory = Category::find()->count();
+
         $data = Category::find()->select('id')->asArray(true)->all();
         $ids = ArrayHelper::getColumn($data, 'id');
+        if ($quantityOfCategory <= $sum) {
+            return $ids;
+        }
         $array = [];
         $iterator = 1;
 
