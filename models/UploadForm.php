@@ -11,6 +11,7 @@ namespace app\models;
 use app\models\tables\Picture;
 use yii\base\Model;
 use yii\db\Exception;
+use yii\helpers\Html;
 use yii\imagine\Image;
 use yii\web\UploadedFile;
 
@@ -44,14 +45,10 @@ class UploadForm extends Model
     {
         if ($this->validate()) {
             foreach ($this->imageFiles as $file) {
-                $model = new Picture(['product_id' => 1, 'title' => $file->baseName, 'ext' => $file->extension]);
-                $fileFullName = \Yii::getAlias('@bigImg') . DIRECTORY_SEPARATOR . $file->name;
-                $file->saveAs($fileFullName);
+                $public_id = Html::encode(str_replace(' ', '', $file->baseName));
+                \Yii::$app->cloudinary->uploadImage($file->tempName, ['public_id' => str_replace(' ', '', $public_id)]);
 
-                Image::thumbnail($fileFullName, 120,
-                    120)->save(\Yii::getAlias('@midImg') . DIRECTORY_SEPARATOR . $file->name, ['quality' => 100]);
-                Image::thumbnail($fileFullName, 40,
-                    40)->save(\Yii::getAlias('@smallImg') . DIRECTORY_SEPARATOR . $file->name, ['quality' => 100]);
+                $model = new Picture(['product_id' => 2, 'title' => $public_id, 'ext' => $file->extension]);
 
                 if (!$model->save()) {
                     throw new Exception("ошибка");

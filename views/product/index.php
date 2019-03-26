@@ -11,7 +11,7 @@ use yii\widgets\LinkPager;
         <div class="col-sm-6 col-lg-3">
             <div class="card mb-4">
                 <a href="product/view/<?= $product['id'] ?>">
-                    <img src="http://placehold.it/640x640/33bee5/ffffff/&text=Image" alt="#">
+                    <img src="<?= $pictures[$product['id']]?>" alt="#">
                 </a>
                 <div class="card-body">
                     <h5 class="card-title"><?= $product['title'] ?></h5>

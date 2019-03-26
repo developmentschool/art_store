@@ -11,6 +11,7 @@ namespace app\components;
 
 use Cloudinary\Uploader;
 use yii\base\Component;
+use app\models\tables\Picture;
 
 class CloudinaryComponent extends Component
 {
@@ -48,5 +49,30 @@ class CloudinaryComponent extends Component
             return true;
         };
         return false;
+    }
+
+    public function deleteImage(string $public_id, array $options = [])
+    {
+        if (Uploader::destroy($public_id, $options)) {
+            return true;
+        };
+        return false;
+    }
+
+    public function getImageUrlsByProductIds(array $productModels): array
+    {
+        $pictures = [];
+        foreach ($productModels as $product) {
+            $pictureModel = Picture::findOne(['product_id' => $product->id]);
+            if ($pictureModel) {
+                $picName = $pictureModel->title . '.' . $pictureModel->ext;
+                $picture = \Yii::$app->cloudinary->getImageUrl($picName);
+            } else {
+                $picture = 'http://placehold.it/640x640/33bee5/ffffff/&text=Image';
+            }
+
+            $pictures["{$product->id}"] = Html::decode($picture);
+        }
+        return $pictures;
     }
 }

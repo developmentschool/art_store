@@ -2,8 +2,10 @@
 
 namespace app\controllers;
 
+use app\models\tables\Picture;
 use app\models\tables\Product;
 use yii\data\Pagination;
+use yii\helpers\Html;
 
 class ProductController extends \yii\web\Controller
 {
@@ -16,7 +18,13 @@ class ProductController extends \yii\web\Controller
             ->offset($pages->offset)
             ->limit($pages->limit)
             ->all();
-        return $this->render('index', ['products' => $products, 'pages' => $pages]);
+        $pictures = \Yii::$app->cloudinary->getImageUrlsByProductIds($products);
+
+        return $this->render('index', [
+            'products' => $products,
+            'pages' => $pages,
+            'pictures' => $pictures,
+        ]);
 
     }
 
