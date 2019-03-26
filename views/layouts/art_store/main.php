@@ -65,11 +65,9 @@ FontAwesomeAsset::register($this);
             <div class="container-fluid py-4">
                 <div class="row justify-content-between align-items-center">
                     <div class="col-auto">
-<<<<<<< HEAD
+
                         <a href="#" class="logo"><img src="<?= Yii::$app->cloudinary->getImageURL('logo.png') ?>" alt="Логотип"></a>
-=======
-                        <a href="#" class="logo"><img src="<?= \yii\helpers\Url::to(['@web/img/logo.png']) ?>" alt="Логотип"></a>
->>>>>>> develop
+
                     </div>
                 </div>
             </div>
