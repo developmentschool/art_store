@@ -77,34 +77,37 @@ FontAwesomeAsset::register($this);
                                 <div class="navbar-dark">
                                     <span class="navbar-toggler-icon"></span>
                                 </div>
-                                <ul class="dropdown-menu header-dropdown-menu">-->
-                                    <!--                                    --><?php
-                                    //                                    $models=\app\models\tables\Category::find()->all();
-                                    //                                    $tree=\app\components\MenuHelper::formTree($models);
-                                    //                                    $string=\app\components\MenuHelper::buildTree($tree, 0);
-                                    //                                   // var_dump($string);exit;
-                                    //                                    echo $string;
-                                    //                                    ?>
 
-                                    <li><a class="dropdown-item" href="#">Home</a></li>
-                                    <li><a class="dropdown-item dropdown-toggle" href="#">Catalog</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">Home</a></li>
-                                            <li><a class="dropdown-item" href="#">Catalog</a></li>
-                                            <li><a class="dropdown-item dropdown-toggle" href="#">About</a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#">Home</a></li>
-                                                    <li><a class="dropdown-item" href="#">Catalog</a></li>
-                                                    <li><a class="dropdown-item" href="#">About</a></li>
-                                                    <li><a class="dropdown-item" href="#">Contacts</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a class="dropdown-item" href="#">Contacts</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">About</a></li>
-                                    <li><a class="dropdown-item" href="#">Contacts</a></li>
-                                </ul>
+                                <?= \yii\widgets\Menu::widget([
+                                    'items' => \app\services\MenuService::getItems([
+                                        'class' => \app\models\tables\Category::class,
+                                    ]),
+                                    'options' => [
+                                        'class' => 'dropdown-menu header-dropdown-menu'
+                                    ],
+                                ]) ?>
+
+
+                                <!--                                <ul class="dropdown-menu header-dropdown-menu">-->
+                                <!--                                    <li><a class="dropdown-item" href="#">Home</a></li>-->
+                                <!--                                    <li><a class="dropdown-item dropdown-toggle" href="#">Catalog</a>-->
+                                <!--                                        <ul class="dropdown-menu">-->
+                                <!--                                            <li><a class="dropdown-item" href="#">Home</a></li>-->
+                                <!--                                            <li><a class="dropdown-item" href="#">Catalog</a></li>-->
+                                <!--                                            <li><a class="dropdown-item dropdown-toggle" href="#">About</a>-->
+                                <!--                                                <ul class="dropdown-menu">-->
+                                <!--                                                    <li><a class="dropdown-item" href="#">Home</a></li>-->
+                                <!--                                                    <li><a class="dropdown-item" href="#">Catalog</a></li>-->
+                                <!--                                                    <li><a class="dropdown-item" href="#">About</a></li>-->
+                                <!--                                                    <li><a class="dropdown-item" href="#">Contacts</a></li>-->
+                                <!--                                                </ul>-->
+                                <!--                                            </li>-->
+                                <!--                                            <li><a class="dropdown-item" href="#">Contacts</a></li>-->
+                                <!--                                        </ul>-->
+                                <!--                                    </li>-->
+                                <!--                                    <li><a class="dropdown-item" href="#">About</a></li>-->
+                                <!--                                    <li><a class="dropdown-item" href="#">Contacts</a></li>-->
+                                <!--                                </ul>-->
                             </div>
                         </div>
                         <div class="col-auto">
@@ -119,9 +122,14 @@ FontAwesomeAsset::register($this);
             </div>
         </header>
 
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : []
-        ]) ?>
+        <div class="container-fluid ">
+            <?= Breadcrumbs::widget([
+                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                'navOptions' => [
+                    //'class' => 'container-fluid'
+                ],
+            ]) ?>
+        </div>
 
         <div class="container-fluid py-5">
             <?= $content ?>
