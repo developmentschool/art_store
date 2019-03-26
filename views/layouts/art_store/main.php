@@ -65,7 +65,7 @@ FontAwesomeAsset::register($this);
             <div class="container-fluid py-4">
                 <div class="row justify-content-between align-items-center">
                     <div class="col-auto">
-                        <a href="#" class="logo"><img src="img/logo.png" alt="Логотип"></a>
+                        <a href="#" class="logo"><img src="<?= \yii\helpers\Url::to(['@web/img/logo.png']) ?>" alt="Логотип"></a>
                     </div>
                 </div>
             </div>
