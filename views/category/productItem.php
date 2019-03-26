@@ -3,7 +3,7 @@
 ?>
 
     <div class="card mb-4">
-        <a href="product/view/<?= $model['id'] ?>">
+        <a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $model['id']]) ?>">
             <img src="http://placehold.it/640x640/33bee5/ffffff/&text=Image" alt="#">
         </a>
         <div class="card-body">
