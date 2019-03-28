@@ -31,10 +31,10 @@ class UploadForm extends Model
                 'image',
                 'skipOnEmpty' => false,
                 'extensions' => 'png, jpg, gif',
-                'maxFiles' => 4,
-                'minWidth' => 300,
+                'maxFiles' => 36,
+                'minWidth' => 200,
                 'maxWidth' => 360,
-                'minHeight' => 300,
+                'minHeight' => 200,
                 'maxHeight' => 360,
             ],
         ];
@@ -46,12 +46,14 @@ class UploadForm extends Model
         if ($this->validate()) {
             foreach ($this->imageFiles as $file) {
                 $public_id = Html::encode(str_replace(' ', '', $file->baseName));
-                \Yii::$app->cloudinary->uploadImage($file->tempName, ['public_id' => str_replace(' ', '', $public_id)]);
+                \Yii::$app->cloudinary->uploadImage($file->tempName, ['public_id' => $public_id]);
 
-                $model = new Picture(['product_id' => 2, 'title' => $public_id, 'ext' => $file->extension]);
-
+                $model = new Picture([
+                    'title' => $public_id,
+                    'ext' => $file->extension]);
+//var_dump($model);exit;
                 if (!$model->save()) {
-                    throw new Exception("ошибка");
+                    throw new \yii\base\Exception(['message'=>'jib,rf']);
                 };
             }
             return true;

@@ -62,7 +62,7 @@
             </h5>
             <div class="row">
                 <?php
-                echo $this->render('productsBlock', [
+                echo $this->render('productItem', [
                     'products' => \app\services\ProductService::getProductsByCategory($model->category_id, 4),
                 ])
                 ?>

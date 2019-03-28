@@ -14,8 +14,7 @@ class m190319_173534_create_picture_table extends Migration
     {
         $this->createTable('{{%picture}}', [
             'id' => $this->primaryKey(),
-            'product_id' => $this->integer(),
-            'title' => $this->string(255)->notNull(),
+            'title' => $this->string(255)->notNull()->unique(),
             'ext' => $this->string(12)->notNull(),
             'created_at' => $this->datetime()->notNull(),
             'updated_at' => $this->datetime(),

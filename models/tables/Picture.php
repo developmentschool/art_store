@@ -9,7 +9,6 @@ use yii\db\ActiveRecord;
  * This is the model class for table "picture".
  *
  * @property int $id
- * @property int $product_id
  * @property string $title
  * @property string $ext
  * @property string $created_at
@@ -31,10 +30,9 @@ class Picture extends ActiveRecord
     public function rules()
     {
         return [
-            [['product_id'], 'integer'],
             [['title', 'ext'], 'required'],
             [['created_at', 'updated_at'], 'safe'],
-            [['title'], 'string', 'max' => 255],
+            [['title'], 'string', 'max' => 255,],
             [['ext'], 'string', 'max' => 12],
         ];
     }

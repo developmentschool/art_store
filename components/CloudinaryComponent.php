@@ -9,6 +9,7 @@
 namespace app\components;
 
 
+use app\models\tables\ProductPicture;
 use Cloudinary\Uploader;
 use yii\base\Component;
 use app\models\tables\Picture;
@@ -59,20 +60,54 @@ class CloudinaryComponent extends Component
         return false;
     }
 
-    public function getImageUrlsByProductIds(array $productModels): array
+    public function getImageUrlsByProductIds(array $productArrays): array
     {
-        $pictures = [];
-        foreach ($productModels as $product) {
-            $pictureModel = Picture::findOne(['product_id' => $product->id]);
-            if ($pictureModel) {
-                $picName = $pictureModel->title . '.' . $pictureModel->ext;
-                $picture = \Yii::$app->cloudinary->getImageUrl($picName);
-            } else {
-                $picture = 'http://placehold.it/640x640/33bee5/ffffff/&text=Image';
+
+        foreach ($productArrays as $key => $product) {
+            $models = ProductPicture::findAll(['product_id' => $product['id']]);
+            $product['pictureUrl'] = $this->getUrl($models);
+            $productArrays[$key] = $product;
+        }
+        return $productArrays;
+    }
+
+    public function getUrl(array $productPictureModels = null): string
+    {
+        $result = 'http://placehold.it/640x640/33bee5/ffffff/&text=Image';
+        /**
+         * @var $model ProductPicture;
+         */
+        if (is_null($productPictureModels)) {
+            return $result;
+        }
+        foreach ($productPictureModels as $model) {
+            if ($model->is_main) {
+                /**
+                 * @var Picture $picture
+                 */
+                $picture = $model->getPicture()->one();
+
+                /**
+                 * @property CloudinaryComponent cloudinary
+                 */
+                return $result = $this->getImageUrl($picture->title . '.' . $picture->ext);
+
+            }
+            if (!$model->is_main) {
+                /**
+                 * @var Picture $picture
+                 */
+                $picture = $model->getPicture()->one();
+                $result = $this->getImageUrl($picture->title . '.' . $picture->ext);
             }
 
-            $pictures["{$product->id}"] = Html::decode($picture);
         }
-        return $pictures;
+        return $result;
+    }
+
+    public function getMainPicUrl($id): string
+    {
+        $models = ProductPicture::findAll(['product_id' => $id]);
+        return $this->getUrl($models);
     }
 }
