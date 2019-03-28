@@ -51,9 +51,8 @@ class UploadForm extends Model
                 $model = new Picture([
                     'title' => $public_id,
                     'ext' => $file->extension]);
-//var_dump($model);exit;
                 if (!$model->save()) {
-                    throw new \yii\base\Exception(['message'=>'jib,rf']);
+                    throw new \yii\base\Exception(['message'=>'Here is something happens']);
                 };
             }
             return true;
