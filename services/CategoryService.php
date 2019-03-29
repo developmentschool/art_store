@@ -20,7 +20,8 @@ class CategoryService
             return [];
         }
         $array = static::randIntArray($sum);
-        $cats = Category::find()->where(['id' => $array])->asArray()->all();
+        $cats = Category::find()->where(['id' => $array])->all();
+
         return $cats;
 
     }

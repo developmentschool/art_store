@@ -2,14 +2,14 @@
 
 /* @var $this yii\web\View */
 
-?>
+use app\models\tables\Product; ?>
 <div class="row flex-nowrap">
     <?php echo $this->render('sideBar') ?>
     <div class="col-auto flex-fill">
         <div class="row">
             <div class="col-6">
                 <div class="product-img">
-                    <img src="http://placehold.it/640x640/ffc107/ffffff/&text=Image" alt="Изображение">
+                    <img src="<?= $model->mainPictureUrl ?>" alt="Изображение">
                 </div>
             </div>
             <div class="col-6">
@@ -62,8 +62,12 @@
             </h5>
             <div class="row">
                 <?php
-                echo $this->render('productItem', [
-                    'products' => \app\services\ProductService::getProductsByCategory($model->category_id, 4),
+                echo $this->render('productView', [
+                    'productDataProvider' => (new \yii\data\ActiveDataProvider([
+                        'query' => Product::find()
+                            ->where(['category_id' => $model->category_id]),
+                        'totalCount' => 4,
+                    ])),
                 ])
                 ?>
 
