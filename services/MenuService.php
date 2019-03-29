@@ -51,6 +51,7 @@ class MenuService extends Component
 
     /**
      * @param array $params
+     *
      * @return array
      */
     public static function getItems(array $params)
@@ -73,6 +74,7 @@ class MenuService extends Component
 
     /**
      * @param array $models
+     *
      * @return array
      */
     protected function createArrayItems(array $models)
@@ -82,19 +84,19 @@ class MenuService extends Component
             $linkClass = [];
             $array = [
                 'label' => $model->title,
-                'url' => ['category/view', 'id' => $model->id]
+                'url' => ['category/view', 'id' => $model->id],
             ];
             $linkClass[] = $this->linkCssClass;
             if ($children = $model->categories) {
                 $array['items'] = $this->createArrayItems($children);
                 $array['submenuTemplate'] = strtr($this->submenuTemplate, [
-                    '{class}' => $this->submenuCssClass ? "class='{$this->submenuCssClass}'" : ''
+                    '{class}' => $this->submenuCssClass ? "class='{$this->submenuCssClass}'" : '',
                 ]);
                 $linkClass[] = $this->linkSubmenuCssClass;
             }
             $this->activateItems && $this->isItemActive($model) && $linkClass[] = $this->activeCssClass;
             $array['template'] = strtr($this->linkTemplate, [
-                '{class}' => $linkClass ? "class='" . implode(' ', $linkClass) . "'" : ''
+                '{class}' => $linkClass ? "class='" . implode(' ', $linkClass) . "'" : '',
             ]);
             $outArray[] = $array;
         }
@@ -104,6 +106,7 @@ class MenuService extends Component
 
     /**
      * @param ActiveRecord $model
+     *
      * @return bool
      */
     protected function isItemActive(ActiveRecord $model)

@@ -2,21 +2,25 @@
 
 namespace app\controllers;
 
-use app\models\tables\Product;
-use yii\data\Pagination;
 
-class ProductController extends \yii\web\Controller
+use app\models\tables\Product;
+use yii\data\ActiveDataProvider;
+use yii\web\Controller;
+
+
+class ProductController extends Controller
 {
     public function actionIndex()
     {
-        $query = Product::find();
-        $countQuery = clone $query;
-        $pages = new Pagination(['totalCount' => $countQuery->all(), 'pageSize' => 10,]);
-        $products = $query
-            ->offset($pages->offset)
-            ->limit($pages->limit)
-            ->all();
-        return $this->render('index', ['products' => $products, 'pages' => $pages]);
+        $productDataProvider = new ActiveDataProvider([
+            'query' => Product::find(),
+            'pagination' => [
+                'pageSize' => 12,
+            ],
+        ]);
+        return $this->render('index', [
+            'productDataProvider' => $productDataProvider,
+        ]);
 
     }
 

@@ -10,9 +10,12 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use Cloudinary;
+use Cloudinary\Uploader;
 
 class SiteController extends Controller
 {
+
     /**
      * {@inheritdoc}
      */
@@ -62,7 +65,6 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-
         return $this->render('index');
     }
 

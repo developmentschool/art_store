@@ -18,6 +18,7 @@ FontAwesomeAsset::register($this);
         <meta charset="<?= Yii::$app->charset ?>">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--        <link rel="shortcut icon" href="--><?php //Yii::$app->cloudinary->getImageUrl('favicon.ico') ?><!--" type="image/png">-->
         <?php $this->registerCsrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
@@ -65,7 +66,9 @@ FontAwesomeAsset::register($this);
             <div class="container-fluid py-4">
                 <div class="row justify-content-between align-items-center">
                     <div class="col-auto">
-                        <a href="#" class="logo"><img src="<?= \yii\helpers\Url::to(['@web/img/logo.png']) ?>" alt="Логотип"></a>
+
+                        <a href="/" class="logo"><img src="<?= Yii::$app->cloudinary->getImageURL('logo.png') ?>" alt="Art-Store-Studio"></a>
+
                     </div>
                 </div>
             </div>

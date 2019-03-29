@@ -2,6 +2,7 @@
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
+$cloudinary = require __DIR__ . '/cloudinary.php';
 
 $config = [
     'id' => 'basic',
@@ -10,9 +11,18 @@ $config = [
     'layout' => 'art_store/main',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm' => '@vendor/npm-asset',
+        '@bigImg' => '@app/web/img/big',
+        '@midImg' => '@app/web/img/mid',
+        '@smallImg' => '@app/web/img/small',
     ],
     'components' => [
+        'cloudinary' => [
+            'class' => '\app\components\CloudinaryComponent',
+            'cloud_name' => $cloudinary['cloud_name'],
+            'api_key' => $cloudinary['api_key'],
+            'api_secret' => $cloudinary['api_secret'],
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'ttLpN8mfk0zDy-adsCsV6QIAwr40vO2O',
@@ -49,10 +59,10 @@ $config = [
             'class' => 'yii\web\UrlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'enableStrictParsing'=>false,
+            'enableStrictParsing' => false,
             'rules' => [
-                '/'=>'site/index',
-                '<controller:\w+>/'=>'<controller>/index',
+                '/' => 'site/index',
+                '<controller:\w+>/' => '<controller>/index',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
