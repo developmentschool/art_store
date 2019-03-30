@@ -18,7 +18,8 @@ FontAwesomeAsset::register($this);
         <meta charset="<?= Yii::$app->charset ?>">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--        <link rel="shortcut icon" href="--><?php //Yii::$app->cloudinary->getImageUrl('favicon.ico') ?><!--" type="image/png">-->
+        <!--        <link rel="shortcut icon" href="-->
+        <?php //Yii::$app->cloudinary->getImageUrl('favicon.ico') ?><!--" type="image/png">-->
         <?php $this->registerCsrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
@@ -53,7 +54,23 @@ FontAwesomeAsset::register($this);
                             </li>
                             <li>
                                 <div class="header-account">
-                                    <a href="#" class="link">Login or Register</a>
+                                    <?php
+                                    if (Yii::$app->user->isGuest) {
+                                        echo Html::a('Login or Register', ['site/login'], ['class' => 'link']);
+                                    } else {
+                                        echo Html::a(
+                                            'Logout',
+                                            ['site/logout'],
+                                            [
+                                                'class' => 'link',
+                                                'data' => [
+                                                    'method' => 'post',
+                                                    'confirm' => 'Вы действительно хотите выйти?'
+                                                ]
+                                            ]
+                                        );
+                                    }
+                                    ?>
                                 </div>
                             </li>
                         </ul>
@@ -67,7 +84,8 @@ FontAwesomeAsset::register($this);
                 <div class="row justify-content-between align-items-center">
                     <div class="col-auto">
 
-                        <a href="/" class="logo"><img src="<?= Yii::$app->cloudinary->getImageURL('logo.png') ?>" alt="Art-Store-Studio"></a>
+                        <a href="/" class="logo"><img src="<?= Yii::$app->cloudinary->getImageURL('logo.png') ?>"
+                                                      alt="Art-Store-Studio"></a>
 
                     </div>
                 </div>
@@ -80,7 +98,6 @@ FontAwesomeAsset::register($this);
                                 <div class="navbar-dark">
                                     <span class="navbar-toggler-icon"></span>
                                 </div>
-
                                 <?= \yii\widgets\Menu::widget([
                                     'items' => \app\services\MenuService::getItems([
                                         'class' => \app\models\tables\Category::class,
@@ -89,28 +106,6 @@ FontAwesomeAsset::register($this);
                                         'class' => 'dropdown-menu header-dropdown-menu'
                                     ],
                                 ]) ?>
-
-
-                                <!--                                <ul class="dropdown-menu header-dropdown-menu">-->
-                                <!--                                    <li><a class="dropdown-item" href="#">Home</a></li>-->
-                                <!--                                    <li><a class="dropdown-item dropdown-toggle" href="#">Catalog</a>-->
-                                <!--                                        <ul class="dropdown-menu">-->
-                                <!--                                            <li><a class="dropdown-item" href="#">Home</a></li>-->
-                                <!--                                            <li><a class="dropdown-item" href="#">Catalog</a></li>-->
-                                <!--                                            <li><a class="dropdown-item dropdown-toggle" href="#">About</a>-->
-                                <!--                                                <ul class="dropdown-menu">-->
-                                <!--                                                    <li><a class="dropdown-item" href="#">Home</a></li>-->
-                                <!--                                                    <li><a class="dropdown-item" href="#">Catalog</a></li>-->
-                                <!--                                                    <li><a class="dropdown-item" href="#">About</a></li>-->
-                                <!--                                                    <li><a class="dropdown-item" href="#">Contacts</a></li>-->
-                                <!--                                                </ul>-->
-                                <!--                                            </li>-->
-                                <!--                                            <li><a class="dropdown-item" href="#">Contacts</a></li>-->
-                                <!--                                        </ul>-->
-                                <!--                                    </li>-->
-                                <!--                                    <li><a class="dropdown-item" href="#">About</a></li>-->
-                                <!--                                    <li><a class="dropdown-item" href="#">Contacts</a></li>-->
-                                <!--                                </ul>-->
                             </div>
                         </div>
                         <div class="col-auto">
