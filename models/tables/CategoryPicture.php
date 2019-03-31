@@ -26,7 +26,7 @@ class CategoryPicture extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'category_picture';
+        return 'cp';
     }
 
     public function behaviors()
