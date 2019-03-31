@@ -12,18 +12,21 @@
         "irc": "irc://irc.freenode.net/yii",
         "source": "https://github.com/yiisoft/yii2"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.4.0",
         "ext-gd": "*",
         "yiisoft/yii2": "~2.0.14",
-        "yiisoft/yii2-bootstrap": "~2.0.0",
+        "yiisoft/yii2-bootstrap4": "~1.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "yiisoft/yii2-debug": "~2.0.0",
-        "yiisoft/yii2-gii": "~2.0.0"
+        "yiisoft/yii2-gii": "~2.0.0",
+        "bower-asset/fontawesome": "~5.0.0",
+        "yiisoft/yii2-imagine": "^2.0@dev",
+        "cloudinary/cloudinary_php": "dev-master"
+
     },
     "require-dev": {
-
         "yiisoft/yii2-faker": "~2.0.0",
         "codeception/base": "~2.3.0",
         "codeception/verify": "~0.4.0",
@@ -37,7 +40,8 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "yii\\composer\\Installer::postInstall"
+            "yii\\composer\\Installer::postInstall",
+            "sh post-install-cmd.sh"
         ],
         "post-create-project-cmd": [
             "yii\\composer\\Installer::postCreateProject",
@@ -58,6 +62,10 @@
             "generateCookieValidationKey": [
                 "config/web.php"
             ]
+        },
+        "asset-installer-paths": {
+            "npm-asset-library": "vendor/npm",
+            "bower-asset-library": "vendor/bower"
         }
     },
     "repositories": [

@@ -1,14 +1,22 @@
 <?php
 
-return [
-    'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=us-cdbr-iron-east-03.cleardb.net;dbname=heroku_b59b517fd555530',
-    'username' => 'bdcfc1b415a131',
-    'password' => 'bc208bbe',
-    'charset' => 'utf8',
+if (getenv("CLEARDB_DATABASE_URL")) {
+    $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+    return [
+        'class' => 'yii\db\Connection',
+        'dsn' => "mysql:host={$url["host"]};dbname=" . substr($url["path"], 1),
+        'username' => $url["user"],
+        'password' => $url["pass"],
+        'charset' => 'utf8',
 
-    // Schema cache options (for production environment)
-    //'enableSchemaCache' => true,
-    //'schemaCacheDuration' => 60,
-    //'schemaCache' => 'cache',
-];
+        // Schema cache options (for production environment)
+        'enableSchemaCache' => true,
+        //'schemaCacheDuration' => 60,
+        //'schemaCache' => 'cache',
+    ];
+}
+if (!file_exists(__DIR__ . DIRECTORY_SEPARATOR . 'local_db.php')) {
+    die('Не найден файл локальной конфигурации базы банных "config/local_db.php"');
+}
+
+return require __DIR__ . DIRECTORY_SEPARATOR . 'local_db.php';
