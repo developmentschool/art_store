@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?= $form->field($model, 'password')->passwordInput() ?>
 
-            <?= $form->field($model, 'captcha')->widget(\yii\captcha\Captcha::class) ?>
+            <?= $form->field($model, 'captcha', ['inputOptions' => ['autocomplete' => 'off']])->widget(\yii\captcha\Captcha::class) ?>
 
             <?= $form->field($model, 'rememberMe')->checkbox([
                 'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
@@ -39,6 +39,10 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
 
             <?php ActiveForm::end(); ?>
+
+            <div class="col-lg-offset-1 col-lg-11">
+                <?= Html::a('Reset password', ['request-password-reset']) ?>
+            </div>
 
         </div>
     </div>
