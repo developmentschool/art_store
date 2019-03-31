@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?= $form->field($model, 'password_repeat')->passwordInput() ?>
 
-            <?= $form->field($model, 'captcha')->widget(\yii\captcha\Captcha::class) ?>
+            <?= $form->field($model, 'captcha', ['inputOptions' => ['autocomplete' => 'off']])->widget(\yii\captcha\Captcha::class) ?>
 
             <div class="form-group">
                 <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>

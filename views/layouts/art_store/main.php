@@ -130,6 +130,7 @@ FontAwesomeAsset::register($this);
         </div>
 
         <div class="container-fluid py-5">
+            <?= \app\widgets\Alert::widget() ?>
             <?= $content ?>
         </div>
 

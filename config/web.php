@@ -7,6 +7,7 @@ $mail = require __DIR__ . '/mail.php';
 
 $config = [
     'id' => 'basic',
+    'name' => 'ArtStore',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'layout' => 'art_store/main',
