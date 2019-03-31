@@ -3,6 +3,7 @@
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 $cloudinary = require __DIR__ . '/cloudinary.php';
+$mail = require __DIR__ . '/mail.php';
 
 $config = [
     'id' => 'basic',
@@ -39,10 +40,18 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => $mail['host'],
+                'username' => $mail['username'],
+                'password' => $mail['password'],
+                'port' => $mail['port'],
+                'encryption' => $mail['encryption'],
+            ],
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-            'useFileTransport' => true,
+            'useFileTransport' => false,
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
