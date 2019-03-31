@@ -2,7 +2,7 @@
 
 namespace app\models\tables;
 
-use app\components\ProductBehavior;
+use app\components\PictureBehavior;
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -46,7 +46,8 @@ class Product extends ActiveRecord
                 'value' => date('Y-m-d H:i:s'),
             ],
             'mainPictureUrl' => [
-                'class' => ProductBehavior::className(),
+                'class' => PictureBehavior::className(),
+                'connectedClassName' => ProductPicture::className(),
             ],
         ];
     }

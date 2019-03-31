@@ -7,9 +7,10 @@ namespace app\components;
 use yii\base\Behavior;
 use yii\db\ActiveRecord;
 
-class ProductBehavior extends Behavior
+class PictureBehavior extends Behavior
 {
     public $mainPictureUrl;
+    public $connectedClassName;
 
     /**
      * @return mixed
@@ -24,7 +25,7 @@ class ProductBehavior extends Behavior
      */
     public function setMainPictureUrl()
     {
-        $mainPictureUrl = \Yii::$app->cloudinary->getMainPicUrl($this->owner->id);
+        $mainPictureUrl = \Yii::$app->cloudinary->getMainPicUrl($this->owner->id, $this->connectedClassName);
         $this->owner->mainPictureUrl = $mainPictureUrl;
     }
 

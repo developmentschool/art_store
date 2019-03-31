@@ -3,32 +3,32 @@
 namespace app\models\tables;
 
 use app\components\PictureBehavior;
+use Yii;
 use yii\db\ActiveRecord;
 
 /**
- * This is the model class for table "category".
+ * This is the model class for table "category_picture".
  *
  * @property int $id
- * @property string $title
- * @property int $parent_id
+ * @property int $product_id
+ * @property int $picture_id
+ * @property int $is_main
  * @property string $created_at
  * @property string $updated_at
  *
- * @property Product[] $products
+ * @property Picture $picture
+ * @property Product $product
  */
-class Category extends ActiveRecord
+class CategoryPicture extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'category';
+        return 'category_picture';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function behaviors()
     {
         return [
@@ -40,10 +40,6 @@ class Category extends ActiveRecord
                 ],
                 'value' => date('Y-m-d H:i:s'),
             ],
-            'mainPictureUrl' => [
-                'class' => PictureBehavior::className(),
-                'connectedClassName' => CategoryPicture::className(),
-            ],
         ];
     }
 
@@ -53,10 +49,11 @@ class Category extends ActiveRecord
     public function rules()
     {
         return [
-            [['title'], 'required'],
-            [['parent_id'], 'integer'],
+            [['product_id', 'picture_id', 'is_main', 'created_at'], 'required'],
+            [['product_id', 'picture_id', 'is_main'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['title'], 'string', 'max' => 255],
+            [['picture_id'], 'exist', 'skipOnError' => true, 'targetClass' => Picture::className(), 'targetAttribute' => ['picture_id' => 'id']],
+            [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['product_id' => 'id']],
         ];
     }
 
@@ -67,8 +64,9 @@ class Category extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'parent_id' => 'Parent ID',
+            'product_id' => 'Product ID',
+            'picture_id' => 'Picture ID',
+            'is_main' => 'Is Main',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
@@ -77,24 +75,16 @@ class Category extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProducts()
+    public function getPicture()
     {
-        return $this->hasMany(Product::className(), ['category_id' => 'id']);
+        return $this->hasOne(Picture::className(), ['id' => 'picture_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getParent()
+    public function getProduct()
     {
-        return $this->hasOne(Category::className(), ['id' => 'parent_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCategories()
-    {
-        return $this->hasMany(Category::className(), ['parent_id' => 'id']);
+        return $this->hasOne(Product::className(), ['id' => 'product_id']);
     }
 }

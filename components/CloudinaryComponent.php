@@ -105,9 +105,9 @@ class CloudinaryComponent extends Component
         return $result;
     }
 
-    public function getMainPicUrl($id): string
+    public function getMainPicUrl($id, $connectedClassName): string
     {
-        $models = ProductPicture::findAll(['product_id' => $id]);
+        $models = $connectedClassName::findAll(['product_id' => $id]);
         return $this->getUrl($models);
     }
 }

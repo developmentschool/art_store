@@ -8,10 +8,11 @@
 /**
  * @var $model \app\models\tables\Product
  */
-?>
-<div class="col">
+
+use yii\helpers\Url; ?>
+<!--<div class="col">-->
     <div class="card mb-4">
-        <a href="product/view/<?= $model['id'] ?>">
+        <a href="<?= Url::to(['view', 'id' => $model['id']]) ?>">
             <img src="<?= $model['mainPictureUrl'] ?>" alt="#">
         </a>
         <div class="card-body">
@@ -23,5 +24,5 @@
             </div>
         </div>
     </div>
-</div>
+<!--</div>-->
 

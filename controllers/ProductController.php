@@ -26,6 +26,7 @@ class ProductController extends Controller
 
     public function actionView($id)
     {
+
         $model = Product::findOne($id);
         return $this->render('card', [
             'model' => $model,
