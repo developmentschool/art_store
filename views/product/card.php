@@ -2,9 +2,26 @@
 
 /* @var $this yii\web\View */
 
-use app\models\tables\Product; ?>
+use app\models\tables\Product;
+use yii\widgets\Menu;
+
+?>
 <div class="row flex-nowrap">
-    <?php echo $this->render('sideBar') ?>
+    <div class="col-auto">
+        <div class="sidebar">
+            <div class="sidenav-title">AVAILABLE CATEGORIES</div>
+            <?php
+            echo Menu::widget([
+                'items' => $menu,
+                'options' => [
+                    'class' => 'nav sidenav',
+                ],
+            ]);
+            ?>
+        </div>
+    </div>
+
+
     <div class="col-auto flex-fill">
         <div class="row">
             <div class="col-6">
@@ -54,25 +71,26 @@ use app\models\tables\Product; ?>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+    <div class="mt-5 pt-5">
+        <h5 class="heading-title">
+            <hr>
+            <span>Похожие товары</span>
+        </h5>
+        <div class="row">
+            <?php
+            echo $this->render('productView', [
+                'productDataProvider' => (new \yii\data\ActiveDataProvider([
+                    'query' => Product::find()
+                        ->where(['category_id' => $model->category_id]),
+                    'totalCount' => 4,
+                ])),
+            ])
+            ?>
 
-        <div class="mt-5 pt-5">
-            <h5 class="heading-title">
-                <hr>
-                <span>Похожие товары</span>
-            </h5>
-            <div class="row">
-                <?php
-                echo $this->render('productView', [
-                    'productDataProvider' => (new \yii\data\ActiveDataProvider([
-                        'query' => Product::find()
-                            ->where(['category_id' => $model->category_id]),
-                        'totalCount' => 4,
-                    ])),
-                ])
-                ?>
-
-            </div>
         </div>
     </div>
+</div>
 </div>
 
