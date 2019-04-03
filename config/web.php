@@ -8,6 +8,7 @@ $mail = require __DIR__ . '/mail.php';
 $config = [
     'id' => 'basic',
     'name' => 'ArtStore',
+    'language' => 'ru-RU',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'layout' => 'art_store/main',
@@ -85,7 +86,38 @@ $config = [
                 '<module:[\w-]+>/<controller:[\w-]+>/<id:\d+>' => '<module>/<controller>/view',
             ],
         ],
-
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            //'defaultRoles' => ['guest'],
+        ],
+        'i18n' => [
+            'translations' => [
+                'yii2mod.rbac' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/modules/rbac/messages',
+                ],
+                // ...
+            ],
+        ]
+    ],
+    'modules' => [
+        'rbac' => [
+            'class' => 'rbac\Module',
+            'controllerMap' => [
+                'assignment' => [
+                    'class' => 'rbac\controllers\AssignmentController',
+                    'searchClass' => [
+                        'class' => 'rbac\models\search\AssignmentSearch',
+                        'pageSize' => 10,
+                    ],
+                    'gridViewColumns' => [
+                        'id',
+                        'username',
+                        'email'
+                    ],
+                ],
+            ],
+        ],
     ],
     'params' => $params,
 ];
