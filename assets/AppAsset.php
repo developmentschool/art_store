@@ -26,6 +26,8 @@ class AppAsset extends AssetBundle
         'css/style.css',
         'css/sidebar.css',
         'css/product.css',
+        'css/account.css',
+        'css/order.css',
     ];
     public $js = [
         // 'https://code.jquery.com/jquery-3.3.1.slim.min.js',
