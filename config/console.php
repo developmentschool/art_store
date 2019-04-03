@@ -33,7 +33,7 @@ $config = [
     ],
     'modules' => [
         'rbac' => [
-            'class' => 'yii2mod\rbac\ConsoleModule'
+            'class' => 'rbac\ConsoleModule'
         ]
     ],
     'params' => $params,

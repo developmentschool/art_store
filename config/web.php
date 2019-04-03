@@ -81,13 +81,13 @@ $config = [
         ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
-            'defaultRoles' => ['guest', 'user'],
+            //'defaultRoles' => ['guest'],
         ],
         'i18n' => [
             'translations' => [
                 'yii2mod.rbac' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@yii2mod/rbac/messages',
+                    'basePath' => '@app/modules/rbac/messages',
                 ],
                 // ...
             ],
@@ -95,7 +95,21 @@ $config = [
     ],
     'modules' => [
         'rbac' => [
-            'class' => 'yii2mod\rbac\Module',
+            'class' => 'rbac\Module',
+            'controllerMap' => [
+                'assignment' => [
+                    'class' => 'rbac\controllers\AssignmentController',
+                    'searchClass' => [
+                        'class' => 'rbac\models\search\AssignmentSearch',
+                        'pageSize' => 10,
+                    ],
+                    'gridViewColumns' => [
+                        'id',
+                        'username',
+                        'email'
+                    ],
+                ],
+            ],
         ],
     ],
     'params' => $params,
