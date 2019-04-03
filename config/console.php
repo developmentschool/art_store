@@ -33,7 +33,7 @@ $config = [
     ],
     'modules' => [
         'rbac' => [
-            'class' => 'rbac\ConsoleModule'
+            'class' => 'rbac\ConsoleRbac'
         ]
     ],
     'params' => $params,

@@ -77,7 +77,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "rbac\\": "modules/rbac"
+            "rbac\\": "modules/admin/modules/rbac"
         }
     }
 }

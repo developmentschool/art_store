@@ -31,7 +31,7 @@ namespace rbac;
  *  ],
  * ```php
  */
-class Module extends \yii\base\Module
+class Rbac extends \yii\base\Module
 {
 
     public function init()

@@ -82,7 +82,7 @@ $config = [
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-                '<module:[\w-]+>/'=>'<module>/default',
+                '<module:[\w-]+>/' => '<module>/default',
                 '<module:[\w-]+>/<controller:[\w-]+>/<id:\d+>' => '<module>/<controller>/view',
             ],
         ],
@@ -99,25 +99,6 @@ $config = [
                 // ...
             ],
         ]
-    ],
-    'modules' => [
-        'rbac' => [
-            'class' => 'rbac\Module',
-            'controllerMap' => [
-                'assignment' => [
-                    'class' => 'rbac\controllers\AssignmentController',
-                    'searchClass' => [
-                        'class' => 'rbac\models\search\AssignmentSearch',
-                        'pageSize' => 10,
-                    ],
-                    'gridViewColumns' => [
-                        'id',
-                        'username',
-                        'email'
-                    ],
-                ],
-            ],
-        ],
     ],
     'params' => $params,
 ];

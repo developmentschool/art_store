@@ -11,7 +11,7 @@ namespace rbac;
  *          ]
  *      ],
  */
-class ConsoleModule extends Module
+class ConsoleRbac extends Rbac
 {
     /**
      * @var string the namespace that controller classes are in
