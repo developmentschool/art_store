@@ -1,0 +1,13 @@
+.account-form {
+  max-width: 400px;
+  margin: 1.75rem auto;
+}
+
+.account-long-form {
+  max-width: 800px;
+  margin: 1.75rem auto;
+}
+
+.label {
+	font-size: .9rem;
+}
