@@ -1,13 +1,16 @@
 <?php
 /* @var $this yii\web\View */
 ?>
+
+
+<?php \yii\widgets\Pjax::begin([
+    'linkSelector' => '.order-steps-item',
+])?>
 <?php
 
 echo $this->render('head',['mark'=>$mark]);
 ?>
-<?php //\yii\widgets\Pjax::begin([
-//       'linkSelector' => 'h2:has(:contains("01"))',
-//])?>
+
 <div class="container-fluid my-5">
     <table class="table table-bordered order-table">
         <tr>
@@ -98,4 +101,4 @@ echo $this->render('head',['mark'=>$mark]);
         </div>
     </div>
 </div>
-<!--//--><?php //\yii\widgets\Pjax::end()?>
+<?php \yii\widgets\Pjax::end()?>

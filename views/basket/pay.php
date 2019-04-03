@@ -4,6 +4,9 @@
 use yii\web\View;
 
 ?>
+<?php \yii\widgets\Pjax::begin([
+    'linkSelector' => '.order-steps-item',
+])?>
 <?php
 echo $this->render('head',['mark'=>$mark]);
 ?>
@@ -27,3 +30,4 @@ echo $this->render('head',['mark'=>$mark]);
         </div>
     </form>
 </div>
+<?php \yii\widgets\Pjax::end()?>
