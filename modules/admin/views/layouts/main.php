@@ -148,19 +148,28 @@ if (count($this->params['breadcrumbs'])) {
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>RBAC</span>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                    <a class="dropdown-item" href="<?= Url::to(['/admin/rbac/assignment/index']) ?>">Users</a>
-                    <a class="dropdown-item" href="<?= Url::to(['/admin/rbac/role/index']) ?>">Role</a>
-                    <a class="dropdown-item" href="<?= Url::to(['/admin/rbac/permission/index']) ?>">Permission</a>
-                    <a class="dropdown-item" href="<?= Url::to(['/admin/rbac/rule/index']) ?>">Rule</a>
-                </div>
-            </li>
+            <?php if (isset($this->params['sidebar'])): ?>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-fw fa-folder"></i>
+                        <span>RBAC</span>
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                        <?php foreach ($this->params['sidebar'] as $item): ?>
+                            <a class="dropdown-item" href="<?= Url::to($item['url']) ?>"><?= $item['label'] ?></a>
+                        <?php endforeach; ?>
+
+                    </div>
+                </li>
+            <?php else: ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= Url::to(['/admin/rbac/assignment/index']) ?>">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>RBAC</span></a>
+                </li>
+            <?php endif; ?>
         </ul>
 
         <div id="content-wrapper">

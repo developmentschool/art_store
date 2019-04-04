@@ -34,13 +34,6 @@ namespace rbac;
 class Rbac extends \yii\base\Module
 {
 
-    public function init()
-    {
-        parent::init();
-        $config = require __DIR__ . '/config.php';
-        \Yii::configure($this, $config);
-    }
-
     /**
      * @var string the default route of this module. Defaults to 'default'
      */
@@ -50,4 +43,31 @@ class Rbac extends \yii\base\Module
      * @var string the namespace that controller classes are in
      */
     public $controllerNamespace = 'rbac\controllers';
+
+
+    /**
+     * Initializes the operation of the module.
+     */
+    public function init()
+    {
+        parent::init();
+        $config = require __DIR__ . '/config.php';
+        \Yii::configure($this, $config['config']);
+        $this->setConfigComponentsApp($config['components']);
+    }
+
+    /**
+     * Complements the application component configuration
+     * from module configuration
+     *
+     * @param $config array
+     */
+    protected function setConfigComponentsApp($config)
+    {
+        foreach ($config as $componentName => $properties) {
+            foreach ($properties as $propertyName => $value) {
+                \Yii::$app->$componentName->$propertyName = array_merge_recursive(\Yii::$app->$componentName->$propertyName, $value);
+            }
+        }
+    }
 }

@@ -13,6 +13,7 @@ use yii\widgets\Pjax;
 
 $this->title = Yii::t('yii2mod.rbac', 'Assignments');
 $this->params['breadcrumbs'][] = $this->title;
+$this->render('/layouts/_sidebar');
 ?>
 <div class="assignment-index">
 
@@ -40,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'buttons' => [
                     'view' => function ($url) {
                         return Html::tag('a', '<i class="far fa-eye"></i>', ['href' => $url]);
-                    }
+                    },
                 ]
             ],
         ]),

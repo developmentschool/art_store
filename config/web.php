@@ -84,21 +84,15 @@ $config = [
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
                 '<module:[\w-]+>/' => '<module>/default',
                 '<module:[\w-]+>/<controller:[\w-]+>/<id:\d+>' => '<module>/<controller>/view',
+                '<module1:[\w-]+>/<module2:[\w-]+>/' => '<module1>/<module2>/index',
+                '<module1:[\w-]+>/<module2:[\w-]+>/<controller:[\w-]+>/<id:\d+>' => '<module1>/<module2>/<controller>/view',
+                '<module1:[\w-]+>/<module2:[\w-]+>/<controller:[\w-]+>/<action:\w+>/<id:\w+>' => '<module1>/<module2>/<controller>/<action>',
             ],
         ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
             //'defaultRoles' => ['guest'],
         ],
-        'i18n' => [
-            'translations' => [
-                'yii2mod.rbac' => [
-                    'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@app/modules/rbac/messages',
-                ],
-                // ...
-            ],
-        ]
     ],
     'params' => $params,
 ];

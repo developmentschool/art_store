@@ -10,6 +10,7 @@ use yii\widgets\Pjax;
 
 $this->title = Yii::t('yii2mod.rbac', 'Rules');
 $this->params['breadcrumbs'][] = $this->title;
+$this->render('/layouts/_sidebar');
 ?>
 <div class="role-index">
 
