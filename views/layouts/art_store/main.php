@@ -7,7 +7,8 @@ use app\assets\AppAsset;
 use app\assets\FontAwesomeAsset;
 use yii\bootstrap4\Breadcrumbs;
 use yii\helpers\Html;
-
+$session=Yii::$app->session;
+$session->open();
 AppAsset::register($this);
 FontAwesomeAsset::register($this);
 ?>
@@ -49,7 +50,7 @@ FontAwesomeAsset::register($this);
                             <li>
                                 <a href="#" class="count-item">
                                     <i class="fas fa-shopping-cart"></i>
-                                    <div class="count-item__count">12</div>
+                                    <div class="count-item__count"><?= Yii::$app->basket->getProductNum(); ?></div>
                                 </a>
                             </li>
                             <li>

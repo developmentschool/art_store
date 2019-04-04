@@ -24,6 +24,9 @@ $config = [
         ],
     ],
     'components' => [
+        'basket'=>[
+            'class' => '\app\components\BasketComponent',
+        ],
         'cloudinary' => [
             'class' => '\app\components\CloudinaryComponent',
             'cloud_name' => $cloudinary['cloud_name'],
@@ -81,7 +84,7 @@ $config = [
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-                '<module:[\w-]+>/'=>'<module>/default',
+                '<module:[\w-]+>/' => '<module>/default',
                 '<module:[\w-]+>/<controller:[\w-]+>/<id:\d+>' => '<module>/<controller>/view',
             ],
         ],
