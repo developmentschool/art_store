@@ -1,13 +1,32 @@
 <?php
 
 namespace app\modules\admin;
+
+use rbac\commands\User;
 use Yii;
+use yii\filters\AccessControl;
 
 /**
  * admin module definition class
  */
 class Admin extends \yii\base\Module
 {
+
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => [User::PERMISSION_ADMIN_PANEL]
+                    ]
+                ]
+            ]
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
