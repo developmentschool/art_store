@@ -42,18 +42,18 @@ use yii\widgets\Menu;
                             <span class="mr-3">Quantity:</span>
                             <div class="input-quantity _js_quantity">
                                 <button class="btn btn-outline-secondary _js_minus" type="button">-</button>
-                                <input type="text" class="form-control _js_input" value="1">
+                                <input type="text" class="form-control _js_input" id="product-quantity" value="1">
                                 <button class="btn btn-outline-secondary _js_plus" type="button">+</button>
                             </div>
                         </div>
-                        <button class="btn btn-outline-secondary">Add to cart</button>
+                        <button class="btn btn-outline-secondary  basket-button" data-id="<?= $model->id ?>">Add to cart</button>
                     </div>
                 </div>
                 <hr>
                 <div class="product-info-item">
                     <div class="product-price"><?= $model->price ?> РУБ</div>
 
-                    <a href="#" class="card-link mt-4">
+                    <a href="" class="card-link mt-4" ">
                         <i class="far fa-heart"></i>
                         <span>Add to cart</span>
                     </a>
@@ -73,24 +73,24 @@ use yii\widgets\Menu;
         </div>
     </div>
 </div>
-    <div class="mt-5 pt-5">
-        <h5 class="heading-title">
-            <hr>
-            <span>Похожие товары</span>
-        </h5>
-        <div class="row">
-            <?php
-            echo $this->render('productView', [
-                'productDataProvider' => (new \yii\data\ActiveDataProvider([
-                    'query' => Product::find()
-                        ->where(['category_id' => $model->category_id]),
-                    'totalCount' => 4,
-                ])),
-            ])
-            ?>
+<div class="mt-5 pt-5">
+    <h5 class="heading-title">
+        <hr>
+        <span>Похожие товары</span>
+    </h5>
+    <div class="row">
+        <?php
+        echo $this->render('productView', [
+            'productDataProvider' => (new \yii\data\ActiveDataProvider([
+                'query' => Product::find()
+                    ->where(['category_id' => $model->category_id]),
+                'totalCount' => 4,
+            ])),
+        ])
+        ?>
 
-        </div>
     </div>
+</div>
 </div>
 </div>
 

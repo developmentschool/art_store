@@ -25,7 +25,7 @@
                             <i class="far fa-heart"></i>
                             <span>Wishlist</span>
                         </a>
-                        <a href="#" class="card-link">
+                        <a href="#" class="card-link basket-button" data-id="<?= $model['id'] ?>">
                             <i class="fas fa-shopping-basket"></i>
                             <span>Add to cart</span>
                         </a>
