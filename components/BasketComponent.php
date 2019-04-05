@@ -25,7 +25,7 @@ class BasketComponent extends Component implements IBasket
         $session->set('basket', $arr);
     }
 
-    public function delFromBasket($id, $count = 1)
+    public function delFromBasket($id, $count = null)
     {
         $session = Yii::$app->session;
         $session->open();
@@ -33,7 +33,7 @@ class BasketComponent extends Component implements IBasket
         if (is_null($basket) || !isset($basket[$id])) {
             return;
         }
-        if ($basket[$id] <= $count) {
+        if ($basket[$id] <= $count || is_null($count)) {
             unset($basket[$id]);
         } else {
             $basket[$id] -= $count;

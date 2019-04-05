@@ -23,51 +23,27 @@ echo $this->render('head', ['mark' => $mark]);
                 <th>Сумма</th>
                 <th>X</th>
             </tr>
-            <tr>
-                <td>1</td>
-                <td><img src="http://placehold.it/100x100/33bee5/ffffff/&text=Slide 1" alt="#"></td>
-                <td>1/48 MESSERSCHMITT Me 410B-2/U2/R4 HEAVY FIGHTER</td>
-                <td>1000 РУБ</td>
-                <td>
-                    <div class="input-quantity _js_quantity">
-                        <button class="btn btn-outline-secondary _js_minus" type="button">-</button>
-                        <input type="text" class="form-control _js_input" value="1">
-                        <button class="btn btn-outline-secondary _js_plus" type="button">+</button>
-                    </div>
-                </td>
-                <td>1000 РУБ</td>
-                <td><span class="delete-order">X</span></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td><img src="http://placehold.it/100x100/33bee5/ffffff/&text=Slide 1" alt="#"></td>
-                <td>1/48 MESSERSCHMITT Me 410B-2/U2/R4 HEAVY FIGHTER</td>
-                <td>1000 РУБ</td>
-                <td>
-                    <div class="input-quantity _js_quantity">
-                        <button class="btn btn-outline-secondary _js_minus" type="button">-</button>
-                        <input type="text" class="form-control _js_input" value="1">
-                        <button class="btn btn-outline-secondary _js_plus" type="button">+</button>
-                    </div>
-                </td>
-                <td>1000 РУБ</td>
-                <td><span class="delete-order">X</span></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td><img src="http://placehold.it/100x100/33bee5/ffffff/&text=Slide 1" alt="#"></td>
-                <td>1/48 MESSERSCHMITT Me 410B-2/U2/R4 HEAVY FIGHTER</td>
-                <td>1000 РУБ</td>
-                <td>
-                    <div class="input-quantity _js_quantity">
-                        <button class="btn btn-outline-secondary _js_minus" type="button">-</button>
-                        <input type="text" class="form-control _js_input" value="1">
-                        <button class="btn btn-outline-secondary _js_plus" type="button">+</button>
-                    </div>
-                </td>
-                <td>1000 РУБ</td>
-                <td><span class="delete-order">X</span></td>
-            </tr>
+            <?php foreach ($products as $product): ?>
+                <tr>
+                    <td><?= $product['num'] ?></td>
+                    <td><img src="<?= $product['product']->mainPictureUrl ?>" alt="#"></td>
+                    <td><?= $product['product']->title ?></td>
+                    <td><span class="prod-price"><?= $product['product']->price ?></span> РУБ</td>
+                    <td>
+                        <div class="input-quantity _js_quantity">
+                            <button class="btn btn-outline-secondary _js_minus" type="button">-</button>
+                            <input type="text" class="form-control _js_input"
+                                   value="<?= $product['quantity'] ?>">
+                            <button class="btn btn-outline-secondary _js_plus" type="button">+</button>
+                        </div>
+                    </td>
+                    <td><span class="product-sum"><?= $product['product']->price * $product['quantity'] ?></span> РУБ
+                    </td>
+                    <td><span class="delete-order"><a href="
+                    <?= \yii\helpers\Url::toRoute(['basket/delete','id'=>$product['product']->id]) ?>
+">X</a></span></td>
+                </tr>
+            <?php endforeach; ?>
         </table>
 
         <div class="row mt-5">

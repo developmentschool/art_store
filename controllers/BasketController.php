@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\tables\Product;
 use Yii;
 use yii\helpers\Url;
 use yii\web\Controller;
@@ -10,7 +11,28 @@ class BasketController extends Controller
 {
     public function actionIndex()
     {
-        return $this->render('index', ['mark' => $this->activeMarks()]);
+
+        $basket = Yii::$app->basket->getBasket();
+
+        if (!is_null($basket)) {
+            $products = [];
+            $iterator = 1;
+            foreach ($basket as $id => $quantity) {
+                if ($product = Product::findOne(['id' => $id])) {
+                    $products[] = [
+                        'product' => $product,
+                        'quantity' => $quantity,
+                        'num' => $iterator,
+                    ];
+                    $iterator++;
+                }
+            }
+            //  var_dump($products);
+        }
+        return $this->render('index', [
+            'mark' => $this->activeMarks(),
+            'products' => $products,
+        ]);
     }
 
     public function actionCheckout()
@@ -72,6 +94,12 @@ class BasketController extends Controller
             $arr = json_encode($arr);
             return $arr;
         }
+    }
+
+    public function actionDelete($id)
+    {
+        Yii::$app->basket->delFromBasket($id);
+        $this->redirect(Yii::$app->request->referrer);
     }
 
 }

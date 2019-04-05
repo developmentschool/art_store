@@ -28,3 +28,13 @@ $(".basket-button").on("click", function (event) {
         }
     });
 });
+$(document).on("click", (event) => {
+    if ($(event.target).hasClass("_js_plus") || $(event.target).hasClass("_js_minus")) {
+        let parent = $(event.target).parent().parent().parent();
+        let quantity =parent.find("._js_input").val();
+        let price = parent.find(".prod-price").html();
+        console.log(price);
+        parent.find(".product-sum").html(`${quantity * price}`);
+    }
+
+});
