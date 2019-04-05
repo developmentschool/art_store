@@ -52,11 +52,13 @@ class BasketController extends Controller
     public function actionAdd()
     {
         if (Yii::$app->request->isAjax) {
-            $data = Yii::$app->request->getUrl();
-            $id = (parse_url($data))['query'];
-            Yii::$app->basket->addToBasket($id);
+            $data = Yii::$app->request->get();
+            $id = $data['id'];
+            $quantity = $data['quantity'];
+            Yii::$app->basket->addToBasket($id, $quantity);
             $arr = [];
-            $arr['data'] = Yii::$app->basket->getProductNum();
+            $countProduct = Yii::$app->basket->getProductNum();
+            $arr['data'] = $countProduct;
             $arr = json_encode($arr);
             return $arr;
         }
