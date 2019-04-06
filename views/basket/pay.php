@@ -1,6 +1,7 @@
 <?php
 /* @var $this yii\web\View */
 
+use yii\helpers\Url;
 use yii\web\View;
 use yii\widgets\Pjax;
 
@@ -16,18 +17,19 @@ echo $this->render('head', ['mark' => $mark]);
         <form action="#" style="display: inline-block;">
             <div class="form-group">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Order number: <strong>83778</strong></li>
-                    <li class="list-group-item">Date: <strong>3 April, 2019</strong></li>
-                    <li class="list-group-item">Total: <strong class="price">6000 РУБ</strong></li>
-                    <li class="list-group-item">Payment method: <strong>Credit Card</strong></li>
+                    <li class="list-group-item">Номер заказа: <strong><?= $order['orderId']?></strong></li>
+                    <li class="list-group-item">Дата: <strong><?= date('dd-mm-YY')?></strong></li>
+                    <li class="list-group-item">Номер телефона для связи: <strong><?= $order['phone']?></strong></li>
+                    <li class="list-group-item">Адрес доставки: <strong><?= $order['address']?></strong></li>
+                    <li class="list-group-item">Сумма к оплате: <strong class="price"><?= $order['totalSum']?> РУБ</strong></li>
+                    <li class="list-group-item">Способ оплаты: <strong><?= $order['payment']?></strong></li>
                 </ul>
             </div>
             <div class="form-group">
-                Thanks for your order, please push the button to pay it with credit card.
+                Спасибо за Ваш заказ!!!.
             </div>
             <div class="form-group">
-                <button class="btn btn-primary">Pay with credit card</button>
-                <button class="btn btn-primary">Cancel order</button>
+                <a class="btn btn-primary" href="<?= Url::toRoute('/product') ?>" role="button">Вернуться на сайт</a>
             </div>
         </form>
     </div>

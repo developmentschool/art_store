@@ -24,7 +24,7 @@ $config = [
         ],
     ],
     'components' => [
-        'basket'=>[
+        'basket' => [
             'class' => '\app\components\BasketComponent',
         ],
         'cloudinary' => [
@@ -56,6 +56,13 @@ $config = [
                 'password' => $mail['password'],
                 'port' => $mail['port'],
                 'encryption' => $mail['encryption'],
+                'streamOptions' => [
+                    'ssl' => [
+                        'allow_self_signed' => true,
+                        'verify_peer' => false,
+                        'verify_peer_name' => false,
+                    ],
+                ],
             ],
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
