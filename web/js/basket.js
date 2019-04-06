@@ -1,10 +1,11 @@
 "use strict";
 $(document).ready(function () {
     $.ajax({
-        url: "http://art-store.local/basket-ajax/getnum",
+        url: `${location.origin}/basket-ajax/getnum`,
         success: function (result) {
             let data = JSON.parse(result);
             console.log(data);
+            console.log(location.origin);
             $(".count-item__count:last").html(data.basketCount);
         }
     });
@@ -18,7 +19,7 @@ $(".basket-button").on("click", function (event) {
     let quantity = $("#product-quantity").val();
     quantity = (typeof (quantity) === "undefined" ? 1 : quantity);
     $.ajax({
-        url: "http://art-store.local/basket-ajax/add",
+        url: `${location.origin}/basket-ajax/add`,
         data: {
             id: id,
             quantity: quantity,
@@ -41,7 +42,7 @@ $(document).on("click", (event) => {
         console.log(action);
         parent.find(".product-sum").html(`${quantity * price}`);
         $.ajax({
-            url: `http://art-store.local/basket-ajax/${action}`,
+            url: `${location.origin}/basket-ajax/${action}`,
             data: {
                 id: id,
                 quantity: 1,
