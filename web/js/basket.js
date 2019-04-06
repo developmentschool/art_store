@@ -1,21 +1,24 @@
 "use strict";
 $(document).ready(function () {
     $.ajax({
-        url: "http://art-store.local/basket/getnum",
+        url: "http://art-store.local/basket-ajax/getnum",
         success: function (result) {
             let data = JSON.parse(result);
             console.log(data);
-            $(".count-item__count:last").html(data.data);
+            $(".count-item__count:last").html(data.basketCount);
         }
     });
 });
 $(".basket-button").on("click", function (event) {
     event.preventDefault();
-    let id = event.target.dataset.id;
+    let id = (event.target.tagName === "SPAN" ? event.target.parentNode.dataset.id : event.target.dataset.id);
+
+    console.log();
+    console.log(`id=${id}`);
     let quantity = $("#product-quantity").val();
     quantity = (typeof (quantity) === "undefined" ? 1 : quantity);
     $.ajax({
-        url: "http://art-store.local/basket/add",
+        url: "http://art-store.local/basket-ajax/add",
         data: {
             id: id,
             quantity: quantity,
@@ -23,18 +26,32 @@ $(".basket-button").on("click", function (event) {
         success: function (result) {
             let data = JSON.parse(result);
             console.log(data);
-            // $(".count-item__count:last").html(data.data);
-            // $("#modal").modal();
+            $(".count-item__count:last").html(data.basketCount);
+            $("#modal").modal();
         }
     });
 });
 $(document).on("click", (event) => {
     if ($(event.target).hasClass("_js_plus") || $(event.target).hasClass("_js_minus")) {
         let parent = $(event.target).parent().parent().parent();
-        let quantity =parent.find("._js_input").val();
+        let id = parent.data("id");
+        let quantity = parent.find("._js_input").val();
         let price = parent.find(".prod-price").html();
-        console.log(price);
+        let action = ($(event.target).hasClass("_js_plus") ? "add" : "del");
+        console.log(action);
         parent.find(".product-sum").html(`${quantity * price}`);
+        $.ajax({
+            url: `http://art-store.local/basket-ajax/${action}`,
+            data: {
+                id: id,
+                quantity: 1,
+            },
+            success: function (result) {
+                let data = JSON.parse(result);
+                $("#subTotalSum").html(data.basketSum + " РУБ");
+                $("#totalSum").html(data.basketSum + " РУБ");
+            }
+        });
     }
 
 });

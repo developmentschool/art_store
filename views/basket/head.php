@@ -12,8 +12,8 @@ use yii\web\View;
                 <a href="<?=$mark['urls']['index']?>" class="order-steps-item <?=$mark['active']['index']?>">
                     <h2 class="num">01</h2>
                     <div>
-                        <h4 class="text-uppercase">Shopping Cart</h4>
-                        <p>Manage your items list.</p>
+                        <h4 class="text-uppercase">Корзина</h4>
+                        <p>Проверь список покупки</p>
                     </div>
                 </a>
             </div>
@@ -21,8 +21,8 @@ use yii\web\View;
                 <a href="<?=$mark['urls']['checkout']?>" class="order-steps-item <?=$mark['active']['checkout']?>">
                     <h2 class="num">02</h2>
                     <div>
-                        <h4 class="text-uppercase">Checkout details</h4>
-                        <p>Checkout your items list</p>
+                        <h4 class="text-uppercase">Оформление</h4>
+                        <p>Проверьте и оформите покупку</p>
                     </div>
                 </a>
             </div>
@@ -30,8 +30,8 @@ use yii\web\View;
                 <a href="<?=$mark['urls']['pay']?>" class="order-steps-item <?=$mark['active']['pay']?>">
                     <h2 class="num">03</h2>
                     <div>
-                        <h4 class="text-uppercase">Order Complete</h4>
-                        <p>Review and submit your order</p>
+                        <h4 class="text-uppercase">Подтверждение</h4>
+                        <p>Подтвердите покупку</p>
                     </div>
                 </a>
             </div>

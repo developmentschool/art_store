@@ -2,12 +2,13 @@
 /* @var $this yii\web\View */
 
 use yii\widgets\Pjax;
+use yii\helpers\Url;
 
 ?>
 
 
 <?php Pjax::begin([
-    'linkSelector' => '.order-steps-item',
+    'linkSelector' => '.basket-next',
 ]) ?>
 <?php
 echo $this->render('head', ['mark' => $mark]);
@@ -24,7 +25,7 @@ echo $this->render('head', ['mark' => $mark]);
                 <th>X</th>
             </tr>
             <?php foreach ($products as $product): ?>
-                <tr>
+                <tr data-id="<?= $product['product']->id ?>">
                     <td><?= $product['num'] ?></td>
                     <td><img src="<?= $product['product']->mainPictureUrl ?>" alt="#"></td>
                     <td><?= $product['product']->title ?></td>
@@ -40,7 +41,7 @@ echo $this->render('head', ['mark' => $mark]);
                     <td><span class="product-sum"><?= $product['product']->price * $product['quantity'] ?></span> РУБ
                     </td>
                     <td><span class="delete-order"><a href="
-                    <?= \yii\helpers\Url::toRoute(['basket/delete','id'=>$product['product']->id]) ?>
+                    <?= \yii\helpers\Url::toRoute(['basket/delete-item', 'id' => $product['product']->id]) ?>
 ">X</a></span></td>
                 </tr>
             <?php endforeach; ?>
@@ -49,32 +50,36 @@ echo $this->render('head', ['mark' => $mark]);
         <div class="row mt-5">
             <div class="col-md-6">
                 <form action="#">
-                    <h2 class="h3 pb-3">Coupon</h2>
+                    <h2 class="h3 pb-3">Купон</h2>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter coupon">
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Введите купон">
                     </div>
-                    <button type="submit" class="btn btn-primary">Apply coupon</button>
+                    <button type="submit" class="btn btn-primary">Ввести купон</button>
                 </form>
             </div>
             <div class="col-md-6">
                 <form action="#">
-                    <h2 class="h3 pb-3">Cart total</h2>
+                    <h2 class="h3 pb-3">Сумма корзины</h2>
                     <table class="table table-bordered total-table">
                         <tr>
-                            <td class="font-weight-bold">Subtotal</td>
-                            <td class="text-center">3000 РУБ</td>
+                            <td class="font-weight-bold">Сумма покупки</td>
+                            <td class="text-center" id="subTotalSum"><?= $totalSum ?> РУБ</td>
                         </tr>
                         <tr>
-                            <td class="font-weight-bold">Shipping</td>
-                            <td class="text-center"></td>
+                            <td class="font-weight-bold">Доставка</td>
+                            <td class="text-center">0 РУБ</td>
                         </tr>
                         <tr>
-                            <td class="font-weight-bold">Total</td>
-                            <td class="text-center">3000 РУБ</td>
+                            <td class="font-weight-bold">Всего к оплате</td>
+                            <td class="text-center" id="totalSum"><?= $totalSum ?> РУБ</td>
                         </tr>
                     </table>
-                    <button class="btn btn-primary">Update cart</button>
-                    <button class="btn btn-primary">Proceed to checkout</button>
+                    <a class="btn btn-primary" href="<?= Url::toRoute('/product') ?>" role="button">Продолжить
+                        покупки</a>
+                    <a class="btn btn-primary basket-next" href="<?= Url::toRoute('/basket/checkout') ?>" role="button">Оформить
+                        заказ</a>
+                    <a class="btn btn-primary" href="<?= Url::toRoute('/basket/delete') ?>" role="button">Удалить
+                        корзину</a>
                 </form>
             </div>
         </div>

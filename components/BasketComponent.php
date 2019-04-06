@@ -55,12 +55,6 @@ class BasketComponent extends Component implements IBasket
         return isset($session['basket']) ? $session['basket'] : null;
     }
 
-    public function getProductNum()
-    {
-        $session = Yii::$app->session;
-        $session->open();
-        $basket = $session->get('basket', 0);
-        return $basket===0 ? 0 : count($basket);
-    }
+
 
 }

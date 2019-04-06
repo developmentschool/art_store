@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\tables\Product;
+use app\services\BasketService;
 use Yii;
 use yii\helpers\Url;
 use yii\web\Controller;
@@ -12,36 +13,30 @@ class BasketController extends Controller
     public function actionIndex()
     {
 
-        $basket = Yii::$app->basket->getBasket();
-
-        if (!is_null($basket)) {
-            $products = [];
-            $iterator = 1;
-            foreach ($basket as $id => $quantity) {
-                if ($product = Product::findOne(['id' => $id])) {
-                    $products[] = [
-                        'product' => $product,
-                        'quantity' => $quantity,
-                        'num' => $iterator,
-                    ];
-                    $iterator++;
-                }
-            }
-            //  var_dump($products);
-        }
-        return $this->render('index', [
+        $products = BasketService::getProductsInBasket();
+        $totalSum = BasketService::getTotalSum();
+        $view = (isset($products[0]) ? 'index' : 'emptyBasket');
+        return $this->render($view, [
             'mark' => $this->activeMarks(),
             'products' => $products,
+            'totalSum' => $totalSum,
         ]);
     }
 
     public function actionCheckout()
     {
-        return $this->render('checkout', ['mark' => $this->activeMarks()]);
+        $products = BasketService::getProductsInBasket();
+        $totalSum = BasketService::getTotalSum();
+        return $this->render('checkout', [
+            'mark' => $this->activeMarks(),
+            'products' => $products,
+            'totalSum' => $totalSum,
+        ]);
     }
 
-    public function actionPay()
+    public function actionOrder()
     {
+
         return $this->render('pay', ['mark' => $this->activeMarks()]);
     }
 
@@ -71,32 +66,13 @@ class BasketController extends Controller
         return $marks;
     }
 
-    public function actionAdd()
+    public function actionDelete()
     {
-        if (Yii::$app->request->isAjax) {
-            $data = Yii::$app->request->get();
-            $id = $data['id'];
-            $quantity = $data['quantity'];
-            Yii::$app->basket->addToBasket($id, $quantity);
-            $arr = [];
-            $countProduct = Yii::$app->basket->getProductNum();
-            $arr['data'] = $countProduct;
-            $arr = json_encode($arr);
-            return $arr;
-        }
+        Yii::$app->basket->clearBasket();
+        $this->redirect(Yii::$app->request->referrer);
     }
 
-    public function actionGetnum()
-    {
-        if (Yii::$app->request->isAjax) {
-            $arr = [];
-            $arr['data'] = Yii::$app->basket->getProductNum();
-            $arr = json_encode($arr);
-            return $arr;
-        }
-    }
-
-    public function actionDelete($id)
+    public function actionDeleteItem($id)
     {
         Yii::$app->basket->delFromBasket($id);
         $this->redirect(Yii::$app->request->referrer);
