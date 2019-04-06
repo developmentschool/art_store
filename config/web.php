@@ -8,6 +8,7 @@ $mail = require __DIR__ . '/mail.php';
 $config = [
     'id' => 'basic',
     'name' => 'ArtStore',
+    'language' => 'ru-RU',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'layout' => 'art_store/main',
@@ -87,15 +88,26 @@ $config = [
             'enableStrictParsing' => false,
             'rules' => [
                 '/' => 'site/index',
-                '<controller:\w+>/' => '<controller>/index',
+                '<module:(admin)>/' => '<module>/default',
+                '<module1:(admin)>/<module2:(rbac)>' => '<module1>/<module2>/assignment',
+                '<module1:(admin)>/<module2:(rbac)>/<controller:[\w-]+>' => '<module1>/<module2>/<controller>',
+                '<module:(admin)>/<controller:[\w-]+>' => '<module>/<controller>',
+                '<module:(admin)>/<controller:[\w-]+>/<action:[\w-]+>' => '<module>/<controller>/<action>',
+                //'<module:(admin)>/<controller:[\w-]+>/<id:\d+>' => '<module>/<controller>/view',
+                '<module1:(admin)>/<module2:(rbac)>/<controller:[\w-]+>/<id:\d+>' => '<module1>/<module2>/<controller>/view',
+                '<module1:(admin)>/<module2:(rbac)>/<controller:[\w-]+>/<action:\w+>/<id:\w+>' => '<module1>/<module2>/<controller>/<action>',
+                '<controller:\w+>' => '<controller>/index',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
-                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-                '<module:[\w-]+>/' => '<module>/default',
-                '<module:[\w-]+>/<controller:[\w-]+>/<id:\d+>' => '<module>/<controller>/view',
+
+                '<controller:\w+>/<action:[\w-]+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:[\w-]+>' => '<controller>/<action>',
+
             ],
         ],
-
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            //'defaultRoles' => ['guest'],
+        ],
     ],
     'params' => $params,
 ];

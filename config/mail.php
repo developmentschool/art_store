@@ -10,7 +10,7 @@ if (getenv("GMAIL_URL")) {
     ];
 }
 if (!file_exists(__DIR__ . DIRECTORY_SEPARATOR . 'local_mail.php')) {
-    die('Не найден файл локальной конфигурации базы банных "config/local_mail.php"');
+    die('Не найден файл локальной конфигурации компопента mailer "config/local_mail.php"');
 }
 
 return require __DIR__ . DIRECTORY_SEPARATOR . 'local_mail.php';
