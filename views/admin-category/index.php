@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use yii\widgets\LinkPager;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\CategorySearch */
@@ -33,8 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'created_at',
             // 'updated_at',
 
-            ['class' => 'yii\grid\ActionColumn',
-                'template' => '{view} {update} {delete}',
+            [
+                'class' => 'yii\grid\ActionColumn',
+                // 'template' => '{view} {update} {delete}',
                 'buttons' => [
                     'view' => function ($url, $model) {
                         return Html::a('<i class="fas fa-eye"></i>', $url);
@@ -48,9 +48,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ],
         ],
+        'pager' => [
+            'firstPageLabel' => 'Начало',
+            'lastPageLabel' => 'Конец',
+            'prevPageLabel' => '«',
+            'nextPageLabel' => '»',
+            'linkContainerOptions' => ['class' => 'page-item'],
+            'linkOptions' => ['class' => 'page-link'],
+            'disabledListItemSubTagOptions' => ['tag' => 'a', 'class' => 'page-link'],
+            'maxButtonCount' => 3,
+        ],
     ]); ?>
-
-
-
 
 </div>
