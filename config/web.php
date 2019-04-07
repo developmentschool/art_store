@@ -25,6 +25,9 @@ $config = [
         ],
     ],
     'components' => [
+        'basket' => [
+            'class' => '\app\components\BasketComponent',
+        ],
         'cloudinary' => [
             'class' => '\app\components\CloudinaryComponent',
             'cloud_name' => $cloudinary['cloud_name'],
@@ -54,6 +57,13 @@ $config = [
                 'password' => $mail['password'],
                 'port' => $mail['port'],
                 'encryption' => $mail['encryption'],
+                'streamOptions' => [
+                    'ssl' => [
+                        'allow_self_signed' => true,
+                        'verify_peer' => false,
+                        'verify_peer_name' => false,
+                    ],
+                ],
             ],
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
@@ -88,6 +98,7 @@ $config = [
                 '<module1:(admin)>/<module2:(rbac)>/<controller:[\w-]+>/<action:\w+>/<id:\w+>' => '<module1>/<module2>/<controller>/<action>',
                 '<controller:\w+>' => '<controller>/index',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
+
                 '<controller:\w+>/<action:[\w-]+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:[\w-]+>' => '<controller>/<action>',
             ],

@@ -7,7 +7,10 @@ use app\assets\AppAsset;
 use app\assets\FontAwesomeAsset;
 use yii\bootstrap4\Breadcrumbs;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
+$session = Yii::$app->session;
+$session->open();
 AppAsset::register($this);
 FontAwesomeAsset::register($this);
 ?>
@@ -47,9 +50,9 @@ FontAwesomeAsset::register($this);
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="count-item">
+                                <a href=" <?=Url::toRoute('/basket')?>" class="count-item">
                                     <i class="fas fa-shopping-cart"></i>
-                                    <div class="count-item__count">12</div>
+                                    <div class="count-item__count">0</div>
                                 </a>
                             </li>
                             <li>
@@ -65,8 +68,8 @@ FontAwesomeAsset::register($this);
                                                 'class' => 'link',
                                                 'data' => [
                                                     'method' => 'post',
-                                                    'confirm' => 'Вы действительно хотите выйти?'
-                                                ]
+                                                    'confirm' => 'Вы действительно хотите выйти?',
+                                                ],
                                             ]
                                         );
                                     }
@@ -103,7 +106,7 @@ FontAwesomeAsset::register($this);
                                         'class' => \app\models\tables\Category::class,
                                     ]),
                                     'options' => [
-                                        'class' => 'dropdown-menu header-dropdown-menu'
+                                        'class' => 'dropdown-menu header-dropdown-menu',
                                     ],
                                 ]) ?>
                             </div>
@@ -133,6 +136,16 @@ FontAwesomeAsset::register($this);
             <?= \app\widgets\Alert::widget() ?>
             <?= $content ?>
         </div>
+
+        <?php
+        \yii\bootstrap4\Modal::begin([
+            'headerOptions' => ['id' => 'modalHeader'],
+            'id' => 'modal',
+            'size' => 'modal-sm',
+        ]);
+        echo '<p>Товар в корзине!!!</p>';
+        \yii\bootstrap4\Modal::end();
+        ?>
 
         <footer class="mt-auto">
             <div class="footer-top-bar">
