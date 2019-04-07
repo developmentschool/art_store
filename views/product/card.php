@@ -9,7 +9,7 @@ use yii\widgets\Menu;
 <div class="row flex-nowrap">
     <div class="col-auto">
         <div class="sidebar">
-            <div class="sidenav-title">AVAILABLE CATEGORIES</div>
+            <div class="sidenav-title">Доступные категории</div>
             <?php
             echo Menu::widget([
                 'items' => $menu,
@@ -31,7 +31,7 @@ use yii\widgets\Menu;
             </div>
             <div class="col-6">
                 <div class="product-info-item">
-                    <p class="h6 mb-3">SKU: <?= $model->id ?></p>
+                    <p class="h6 mb-3">Код товара: <?= $model->id ?></p>
                     <p class="h6 mb-3"><?= $model->description ?></p>
                     <h1 class="h2 mb-3"><?= $model->title ?></h1>
                 </div>
@@ -39,29 +39,29 @@ use yii\widgets\Menu;
                 <div class="product-info-item">
                     <div class="input-group justify-content-between">
                         <div class="input-group-prepend align-items-center">
-                            <span class="mr-3">Quantity:</span>
+                            <span class="mr-3">Количество:</span>
                             <div class="input-quantity _js_quantity">
                                 <button class="btn btn-outline-secondary _js_minus" type="button">-</button>
                                 <input type="text" class="form-control _js_input" id="product-quantity" value="1">
                                 <button class="btn btn-outline-secondary _js_plus" type="button">+</button>
                             </div>
                         </div>
-                        <button class="btn btn-outline-secondary  basket-button" data-id="<?= $model->id ?>">Add to cart</button>
+                        <button class="btn btn-outline-secondary  basket-button" data-id="<?= $model->id ?>">Добавить в корзину</button>
                     </div>
                 </div>
                 <hr>
                 <div class="product-info-item">
                     <div class="product-price"><?= $model->price ?> РУБ</div>
 
-                    <a href="" class="card-link mt-4" ">
+                    <a href="" class="card-link mt-4">
                         <i class="far fa-heart"></i>
-                        <span>Add to cart</span>
+                        <span>Хочу</span>
                     </a>
                 </div>
                 <hr>
                 <div class="product-info-item">
                     <div>
-                        <span class="mr-3">Share it:</span>
+                        <span class="mr-3">Поделится:</span>
                         <a href="#" class="social-item-border-round mr-3"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social-item-border-round mr-3"><i class="fab fa-twitter"></i></a>
                         <a href="#" class="social-item-border-round mr-3"><i class="fab fa-youtube"></i></a>
