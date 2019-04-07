@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\LinkPager;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\CategorySearch */
@@ -29,12 +30,27 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
             'parent_id',
-            'created_at',
-            'updated_at',
+            // 'created_at',
+            // 'updated_at',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {update} {delete}',
+                'buttons' => [
+                    'view' => function ($url, $model) {
+                        return Html::a('<i class="fas fa-eye"></i>', $url);
+                    },
+                    'update' => function ($url, $model) {
+                        return Html::a('<i class="fas fa-pencil-alt"></i>', $url);
+                    },
+                    'delete' => function ($url, $model) {
+                        return Html::a('<i class="far fa-trash-alt"></i>', $url);
+                    },
+                ],
+            ],
         ],
     ]); ?>
+
+
 
 
 </div>
