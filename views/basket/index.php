@@ -32,10 +32,10 @@ echo $this->render('head', ['mark' => $mark]);
                     <td><span class="prod-price"><?= $product['product']->price ?></span> РУБ</td>
                     <td>
                         <div class="input-quantity _js_quantity">
-                            <button class="btn btn-outline-secondary _js_minus" type="button">-</button>
+                            <button class="btn btn-outline-secondary _js_minus btn-basket-minus" type="button">-</button>
                             <input type="text" class="form-control _js_input"
                                    value="<?= $product['quantity'] ?>">
-                            <button class="btn btn-outline-secondary _js_plus" type="button">+</button>
+                            <button class="btn btn-outline-secondary _js_plus btn-basket-plus" type="button">+</button>
                         </div>
                     </td>
                     <td><span class="product-sum"><?= $product['product']->price * $product['quantity'] ?></span> РУБ

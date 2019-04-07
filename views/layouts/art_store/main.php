@@ -158,12 +158,12 @@ FontAwesomeAsset::register($this);
                         <div class="col-auto">
                             <ul class="nav footer-nav">
                                 <li>&nbsp;</li>
-                                <li><a href="#">Downloads</a></li>
-                                <li><a href="#">Delivery Information</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Terms & Condition</a></li>
-                                <li><a href="#">About us</a></li>
-                                <li><a href="#">Order & Return</a></li>
+                                <li><a href="#">Загрузки</a></li>
+                                <li><a href="#">Доставка</a></li>
+                                <li><a href="#">Политика конфидециальности</a></li>
+                                <li><a href="#">Порядок и условия</a></li>
+                                <li><a href="#">О нас</a></li>
+                                <li><a href="#">Заказы и возврат</a></li>
                             </ul>
                         </div>
                     </div>
@@ -183,7 +183,7 @@ FontAwesomeAsset::register($this);
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Email">
                                 <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button">Subscribe</button>
+                                    <button class="btn btn-outline-secondary" type="button">Подписаться</button>
                                 </div>
                             </div>
                         </div>
