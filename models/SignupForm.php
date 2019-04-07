@@ -65,7 +65,9 @@ class SignupForm extends Model
      */
     protected function sendEmail($user)
     {
-        return Yii::$app
+
+
+        $mail = Yii::$app
             ->mailer
             ->compose(
                 ['html' => 'emailVerify-html', 'text' => 'emailVerify-text'],
@@ -73,7 +75,19 @@ class SignupForm extends Model
             )
             ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->name . ' robot'])
             ->setTo($this->email)
-            ->setSubject('Account registration at ' . Yii::$app->name)
-            ->send();
+            ->setSubject('Account registration at ' . Yii::$app->name);
+
+        for ($i = 0, $res = false; !$res && $i < 5; $i++) {
+
+            try {
+                $res = $mail->send();
+            } catch (\Swift_TransportException $e) {
+                Yii::error($e->getMessage(), __CLASS__);
+                $res = false;
+            }
+
+            sleep(1);
+        }
+        return $res;
     }
 }
