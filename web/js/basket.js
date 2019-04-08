@@ -1,5 +1,7 @@
 "use strict";
 $(document).ready(function () {
+    $("#phoneNumber").mask("+7 (999) 999-99-99");
+
     $.ajax({
         url: `${location.origin}/basket-ajax/getnum`,
         success: function (result) {

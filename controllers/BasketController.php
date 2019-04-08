@@ -73,7 +73,7 @@ class BasketController extends Controller
         }
         $model = new OrderForm();
 
-        if ($model->load(Yii::$app->request->post())) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $orderArr = [];
             $order = new Orders([
                 'shipment_addr' => $model->address,

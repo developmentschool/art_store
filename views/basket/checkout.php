@@ -4,7 +4,7 @@
 use yii\helpers\Url;
 use yii\web\View;
 use yii\widgets\Pjax;
-use yii\widgets\ActiveForm;
+use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
 
 ?>
@@ -56,7 +56,11 @@ echo $this->render('head', ['mark' => $mark]);
                     <div class="col">
                         <div class="form-group">
 
-                            <?= $form->field($model, 'phoneNum')->textInput(['value' => $userData['phone']]) ?>
+                            <?= $form->field($model, 'phoneNum')->textInput([
+                                'value' => $userData['phone'],
+                                'placeholder' => '+7(999)999-99-99',
+                                'id' => 'phoneNumber',
+                            ]) ?>
 
                         </div>
                     </div>
