@@ -23,6 +23,11 @@ class AssignmentSearch extends Model
     public $username;
 
     /**
+     * @var string email
+     */
+    public $email;
+
+    /**
      * @var string role
      */
     public $roleName;
@@ -38,7 +43,7 @@ class AssignmentSearch extends Model
     public function rules(): array
     {
         return [
-            [['id', 'username', 'roleName'], 'safe'],
+            [['id', 'username', 'roleName', 'email'], 'safe'],
         ];
     }
 
@@ -49,10 +54,19 @@ class AssignmentSearch extends Model
      * @param \yii\db\ActiveRecord $class
      * @param $idField
      * @param string $usernameField
+     * @param string $emailField
+     * @param array $otherFilters
      *
      * @return ActiveDataProvider
      */
-    public function search(array $params, $class, string $idField, string $usernameField): ActiveDataProvider
+    public function search(
+        array $params,
+        $class,
+        string $idField,
+        string $usernameField,
+        string $emailField,
+        array $otherFilters
+    ): ActiveDataProvider
     {
         $query = $class::find();
 
@@ -71,6 +85,11 @@ class AssignmentSearch extends Model
 
         $query->andFilterWhere([$idField => $this->id]);
         $query->andFilterWhere(['like', $usernameField, $this->username]);
+        $query->andFilterWhere(['like', $emailField, $this->email]);
+
+        foreach ($otherFilters as $filter) {
+            $query->andFilterWhere($filter);
+        }
 
         if ($this->roleName) {
             $query->leftJoin('auth_assignment', '`auth_assignment`.`user_id` = `users`.`id`');

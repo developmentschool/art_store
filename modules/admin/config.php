@@ -3,7 +3,7 @@ return [
     'layout' => 'main',
     'components' => [
         'view' => [
-            'class'=>\yii\web\View::className(),
+            'class' => \yii\web\View::className(),
         ],
     ],
     'modules' => [
@@ -21,6 +21,9 @@ return [
                         'username',
                         'email'
                     ],
+                    'otherFilters' => [
+                        ['status' => \app\models\User::STATUS_ACTIVE],
+                    ]
                 ],
             ],
         ],

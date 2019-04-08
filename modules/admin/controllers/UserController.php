@@ -108,8 +108,7 @@ class UserController extends Controller
         $model = $this->findModel($id);
         $model->setAttribute('status', User::STATUS_DELETED);
         $model->save();
-
-        return $this->goBack();
+        return $this->actionIndex();
     }
 
     /**

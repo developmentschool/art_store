@@ -54,6 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             return Html::a($icon, $url, [
                                 'data-confirm' => Yii::t('yii', 'Are you sure you want to mark this user as deleted?'),
                                 'data-method' => 'post',
+                                'data-pjax' => '',
                             ]);
                         }
                         return '';
