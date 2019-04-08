@@ -18,23 +18,31 @@ class InitController extends Controller
 
     public function actionIndex()
     {
-        $username = $this->prompt(
-            'Username:',
-            [
-                'required' => true,
-                'validator' => function ($input, &$error) {
-                    $user = new User(['username' => $input]);
-                    if (!$user->validate()) {
-                        $error = $user->getFirstError('username');
-                        return false;
+        try {
+            $username = $this->prompt(
+                'Username:',
+                [
+                    'required' => true,
+                    'validator' => function ($input, &$error) {
+                        $user = new User(['username' => $input]);
+                        if (!$user->validate()) {
+                            $error = $user->getFirstError('username');
+                            return false;
+                        }
+                        return true;
                     }
-                    return true;
-                }
-            ]
-        );
-        $user = new User(['username' => $username]);
-        $user->assignAdmin();
-        $this->stdout('Done', Console::FG_GREEN, Console::BG_GREY);
+                ]
+            );
+            if (!$this->isExistRbacTables()) {
+                $this->createRbacTable();
+            }
+            $user = new User(['username' => $username]);
+            $user->assignAdmin();
+            $this->stdout('Done', Console::FG_GREEN, Console::BG_GREY);
+        } catch (\Exception $e) {
+            $this->stdout("Error: {$e->getMessage()}", Console::FG_GREEN, Console::BG_GREY);
+            \Yii::error("Error: {$e->getMessage()}", __CLASS__);
+        }
     }
 
 

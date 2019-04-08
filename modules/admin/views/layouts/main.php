@@ -12,7 +12,7 @@ use yii\helpers\Url;
 AdminAsset::register($this);
 FontAwesomeAsset::register($this);
 
-if (count($this->params['breadcrumbs'])) {
+if (is_array($this->params['breadcrumbs']) && count($this->params['breadcrumbs'])) {
     $this->params['breadcrumbs'] = array_reverse($this->params['breadcrumbs']);
     $this->params['breadcrumbs'][] = ['label' => 'Admin panel', 'url' => ['/admin/default']];
     $this->params['breadcrumbs'] = array_reverse($this->params['breadcrumbs']);
