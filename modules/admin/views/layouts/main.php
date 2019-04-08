@@ -40,8 +40,6 @@ if (is_array($this->params['breadcrumbs']) && count($this->params['breadcrumbs']
         <!-- Custom fonts for this template-->
 
         <!-- Custom styles for this template-->
-        <link href="css/sb-admin.css" rel="stylesheet">
-
     </head>
 
     <body id="page-top">
