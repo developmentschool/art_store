@@ -2,7 +2,7 @@
 
 // comment out the following two lines when deployed to production
 defined('YII_DEBUG') or define('YII_DEBUG', true);
-$env = !getenv("DYNO ") ? 'dev' : getenv("ENV") ?: 'prod';
+$env = !getenv("DYNO") ? 'dev' : getenv("ENV") ?: 'prod';
 defined('YII_ENV') or define('YII_ENV', $env);
 
 require __DIR__ . '/../vendor/autoload.php';
