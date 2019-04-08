@@ -2,12 +2,12 @@
 
 namespace rbac\controllers;
 
+use rbac\models\AssignmentModel;
+use rbac\models\search\AssignmentSearch;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
-use rbac\models\AssignmentModel;
-use rbac\models\search\AssignmentSearch;
 
 /**
  * Class AssignmentController
@@ -37,6 +37,16 @@ class AssignmentController extends Controller
      * @var string username column name
      */
     public $usernameField = 'username';
+
+    /**
+     * @var string email column name
+     */
+    public $emailField = 'email';
+
+    /**
+     * @var array other filters users
+     */
+    public $otherFilters = [];
 
     /**
      * @var array assignments GridView columns
@@ -98,7 +108,14 @@ class AssignmentController extends Controller
         $searchModel = Yii::createObject($this->searchClass);
 
         if ($searchModel instanceof AssignmentSearch) {
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $this->userIdentityClass, $this->idField, $this->usernameField);
+            $dataProvider = $searchModel->search(
+                Yii::$app->request->queryParams,
+                $this->userIdentityClass,
+                $this->idField,
+                $this->usernameField,
+                $this->emailField,
+                $this->otherFilters
+            );
         } else {
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         }

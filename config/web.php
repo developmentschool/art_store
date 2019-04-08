@@ -91,11 +91,12 @@ $config = [
                 '<module:(admin)>/' => '<module>/default',
                 '<module1:(admin)>/<module2:(rbac)>' => '<module1>/<module2>/assignment',
                 '<module1:(admin)>/<module2:(rbac)>/<controller:[\w-]+>' => '<module1>/<module2>/<controller>',
-                '<module:(admin)>/<controller:[\w-]+>' => '<module>/<controller>',
-                '<module:(admin)>/<controller:[\w-]+>/<action:[\w-]+>' => '<module>/<controller>/<action>',
-                //'<module:(admin)>/<controller:[\w-]+>/<id:\d+>' => '<module>/<controller>/view',
                 '<module1:(admin)>/<module2:(rbac)>/<controller:[\w-]+>/<id:\d+>' => '<module1>/<module2>/<controller>/view',
                 '<module1:(admin)>/<module2:(rbac)>/<controller:[\w-]+>/<action:\w+>/<id:\w+>' => '<module1>/<module2>/<controller>/<action>',
+                '<module:(admin)>/<controller:[\w-]+>' => '<module>/<controller>',
+                '<module:(admin)>/<controller:[\w-]+>/<action:[\w-]+>' => '<module>/<controller>/<action>',
+                '<module:(admin)>/<controller:[\w-]+>/<action:[\w-]+>/<id:\w+>' => '<module>/<controller>/<action>',
+                //'<module:(admin)>/<controller:[\w-]+>/<id:\d+>' => '<module>/<controller>/view',
                 '<controller:\w+>' => '<controller>/index',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
 
@@ -117,7 +118,7 @@ if (YII_ENV_DEV) {
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+        'allowedIPs' => ['*', '::1'],
     ];
 
     $config['bootstrap'][] = 'gii';
