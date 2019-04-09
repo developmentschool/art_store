@@ -24,7 +24,8 @@ class OrderForm extends Model
         return [
 
             ['email', 'trim'],
-            [['email', 'firstName', 'lastName', 'city', 'phoneNum','isAgree','payment'], 'required'],
+            [['email', 'firstName', 'lastName', 'city', 'phoneNum','isAgree','payment','address'], 'required'],
+
             ['email', 'email'],
             [['email', 'firstName', 'lastName', 'city', 'address'], 'string', 'max' => 255],
         ];

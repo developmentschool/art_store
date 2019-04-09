@@ -15,6 +15,7 @@ use yii\helpers\Html;
 echo $this->render('head', ['mark' => $mark]);
 ?>
 
+
     <div class="container-fluid my-5">
         <?php $form = ActiveForm::begin([
             'action' => Url::toRoute('/basket/order'),
@@ -66,7 +67,10 @@ echo $this->render('head', ['mark' => $mark]);
                     </div>
                     <div class="col">
                         <div class="form-group">
-                            <?= $form->field($model, 'email')->textInput(['value' => $userData['email']]) ?>
+                            <?= $form->field($model, 'email')->textInput([
+                                'value' => $userData['email'],
+                                'placeholder' => 'name@domain.com',
+                            ]) ?>
                         </div>
                     </div>
                 </div>
@@ -101,10 +105,28 @@ echo $this->render('head', ['mark' => $mark]);
                         <?= $form->field($model, 'payment')->radioList([
                             'courier' => 'Наличными курьеру',
                             'byYourself' => 'Самовывоз',
-                        ]); ?>
+                        ],
+                            [
+
+                                'item' => function ($index, $label, $name, $checked, $value) {
+                                    $id = 'my-' . $index;
+                                    return
+                                        Html::beginTag('div', ['class' => 'form-check'])
+                                        . Html::radio($name, true, [
+                                            'value' => $value,
+                                            'class' => 'form-check-input',
+                                        ])
+                                        . '<label class="form-check-label" for="{$id}">'
+                                        . $label
+                                        . '</label>'
+                                        . Html::endTag('div');
+
+                                },
+                            ]
+                        ); ?>
                     </div>
                     <div class="form-group form-check">
-                        <?= $form->field($model, 'isAgree')->checkbox([]); ?>
+                        <?= $form->field($model, 'isAgree')->checkbox(); ?>
 
                     </div>
 

@@ -89,6 +89,7 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+
             return $this->goBack();
         }
 
@@ -97,6 +98,13 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
+
+//    public function beforeAction($action)
+//    {
+//        //var_dump(Yii::$app->request->referrer);exit;
+//       parent::beforeAction($action);
+//    }
 
     /**
      * Signs user up.
@@ -107,7 +115,8 @@ class SiteController extends Controller
     {
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
-            Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
+            Yii::$app->session->setFlash('success',
+                'Thank you for registration. Please check your inbox for verification email.');
             return $this->goHome();
         }
         return $this->render('signup', [
@@ -120,8 +129,9 @@ class SiteController extends Controller
      * Verify email address
      *
      * @param string $token
-     * @throws BadRequestHttpException
+     *
      * @return yii\web\Response
+     * @throws BadRequestHttpException
      */
     public function actionVerifyEmail($token)
     {
@@ -153,7 +163,8 @@ class SiteController extends Controller
                 Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
                 return $this->goHome();
             } else {
-                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for the provided email address.');
+                Yii::$app->session->setFlash('error',
+                    'Sorry, we are unable to reset password for the provided email address.');
             }
         }
         return $this->render('requestPasswordResetToken', [
@@ -166,6 +177,7 @@ class SiteController extends Controller
      * Resets password.
      *
      * @param string $token
+     *
      * @return mixed
      * @throws BadRequestHttpException
      */
@@ -224,5 +236,11 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function init()
+    {
+        parent::init();
+        Yii::$app->session->open();
     }
 }

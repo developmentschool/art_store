@@ -51,6 +51,8 @@ class BasketController extends Controller
             $userData['phone'] = $userProfile->phone;
 
 
+        } else {
+            return $this->redirect('/site/login');
         }
         $products = BasketService::getProductsInBasket();
         $totalSum = BasketService::getTotalSum();
@@ -63,14 +65,24 @@ class BasketController extends Controller
         ]);
     }
 
+    public function afterAction($action, $result)
+    {
+        if ($action->id === 'checkout') {
+            Yii::$app->getUser()->setReturnUrl('/basket/checkout');
+        }
+        return parent::afterAction($action, $result);
+
+    }
+
     public function actionOrder()
     {
-        if (is_null(Yii::$app->basket->getbasket())) {
-            return $this->redirect(Url::toRoute('/product'));
-        }
         if (Yii::$app->user->isGuest) {
-            return $this->redirect('site/login');
+            return $this->redirect(Url::toRoute('site/login'));
         }
+        if (is_null(Yii::$app->basket->getbasket())) {
+           return $this->redirect(Url::toRoute('/product'));
+       }
+
         $model = new OrderForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
