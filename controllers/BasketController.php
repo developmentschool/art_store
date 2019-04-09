@@ -6,9 +6,12 @@ use app\models\OrderForm;
 use app\models\tables\Orders;
 use app\models\tables\OrdersProducts;
 use app\models\tables\Product;
+use app\models\tables\UserAddresses;
 use app\models\tables\UserProfiles;
 use app\models\tables\Users;
 use app\services\BasketService;
+use app\services\OrderService;
+use app\services\UserService;
 use Yii;
 use yii\helpers\Url;
 use yii\web\Controller;
@@ -34,23 +37,15 @@ class BasketController extends Controller
             return $this->redirect(Url::toRoute('/product'));
         }
         $user = Yii::$app->user;
-        $userData = [];
+
         /**
          * @var $userIdentity Users
          */
 
         if (!$user->isGuest) {
             $view = 'checkout';
-            $userIdentity = Users::findOne(['id' => $user->getId()]);
-            /**
-             * @var $userProfile UserProfiles
-             */
-            $userProfile = $userIdentity->getUserProfiles()->one();
-            $userData['email'] = $userIdentity->email;
-            $userData['firstName'] = $userProfile->first_name;
-            $userData['lastName'] = $userProfile->last_name;
-            $userData['phone'] = $userProfile->phone;
-
+            $id = $user->getId();
+            $userData = UserService::getUserInfo($id);
 
         } else {
             $view = 'letsLogin';
@@ -68,9 +63,6 @@ class BasketController extends Controller
 
     public function actionOrder()
     {
-        if (Yii::$app->user->isGuest) {
-            return $this->redirect(Url::toRoute('site/login'));
-        }
         if (is_null(Yii::$app->basket->getbasket())) {
             return $this->redirect(Url::toRoute('/product'));
         }
@@ -78,28 +70,17 @@ class BasketController extends Controller
         $model = new OrderForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $orderArr = [];
+
             $order = new Orders([
                 'shipment_addr' => $model->address,
                 'user_id' => Yii::$app->user->getId(),
             ]);
             $order->save();
-            $orderId = $order->id;
-            $orderArr['orderId'] = $orderId;
-            $orderArr['address'] = $model->address;
-            $orderArr['phone'] = $model->phoneNum;
-            $orderArr['payment'] = $model->payment;
-            $basket = Yii::$app->basket->getBasket();
-            $totalSum = BasketService::getTotalSum();
-            $orderArr['totalSum'] = $totalSum;
-            foreach ($basket as $id => $quantity) {
-                (new OrdersProducts([
-                    'order_id' => $orderId,
-                    'product_id' => $id,
-                    'quantity' => $quantity,
-                ]))->save();
-            }
+            $orderArr = OrderService::prepareOrderInfo($order->id, $model);
+            BasketService::saveProductsInOrder($order->id);
             Yii::$app->basket->clearBasket();
+            UserService::setUserInfo((new UserProfiles()), (new UserAddresses()), $model);
+            OrderService::sendOrderMail(Yii::$app->mailer, $orderArr);
         }
         return $this->render('pay', [
             'mark' => $this->activeMarks(),

@@ -45,13 +45,13 @@ echo $this->render('head', ['mark' => $mark]);
                 </div>
                 <div class="form-group">
 
-                    <?= $form->field($model, 'address')->textInput() ?>
+                    <?= $form->field($model, 'city')->textInput(['value' => $userData['city'][0],]) ?>
 
                 </div>
                 <div class="form-group">
 
-                    <?= $form->field($model, 'city')->textInput() ?>
 
+                    <?= $form->field($model, 'address')->textInput(['value' => $userData['address'][0],]) ?>
                 </div>
                 <div class="row">
                     <div class="col">
