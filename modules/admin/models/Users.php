@@ -5,10 +5,25 @@ namespace app\modules\admin\models;
 
 
 use app\models\SignupForm;
-use yii\validators\DefaultValueValidator;
+use app\modules\admin\traits\Status;
 
+/**
+ * Class Users
+ * @package app\modules\admin\models
+ *
+ * @method  getDefaultStatus()
+ * @method  statusRender()
+ */
 class Users extends \app\models\User
 {
+    /**
+     * Implements methods
+     * self::getStatuses()
+     * self::getDefaultStatus()
+     * self::statusRender()
+     * self::getStatusColumnForWidget()
+     */
+    use Status;
 
     /**
      * @var string
@@ -61,38 +76,5 @@ class Users extends \app\models\User
         $this->removePasswordResetToken();
         return parent::beforeSave($insert);
 
-    }
-
-    /**
-     *Returns an inverted array of constants defining user status
-     *
-     * @return array|null
-     * @throws \ReflectionException
-     */
-    public function getStatuses()
-    {
-        $arr = array_filter(
-            (new \ReflectionClass(static::class))->getConstants(),
-            function ($key) {
-                return strpos($key, 'STATUS') !== false;
-            }, ARRAY_FILTER_USE_KEY);
-
-        return array_flip(array_change_key_case($arr, CASE_LOWER));
-    }
-
-    /**
-     * Returns the default status value.
-     *
-     * @return bool|mixed
-     */
-    public function getDefaultStatus()
-    {
-        $validators = $this->getActiveValidators('status');
-        foreach ($validators as $validator) {
-            if ($validator instanceof DefaultValueValidator) {
-                return $validator->value;
-            }
-        }
-        return false;
     }
 }

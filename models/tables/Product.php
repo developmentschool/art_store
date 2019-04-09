@@ -3,32 +3,37 @@
 namespace app\models\tables;
 
 use app\components\PictureBehavior;
-use Yii;
 use yii\db\ActiveRecord;
 
 /**
- * This is the model class for table "product".
+ * This is the model class for table "{{%product}}".
  *
  * @property int $id
  * @property string $title
  * @property string $description
  * @property string $price
  * @property int $category_id
+ * @property int $status
  * @property string $created_at
  * @property string $updated_at
  *
+ * @property CategoryPicture[] $cps
+ * @property OrdersProducts[] $ordersProducts
  * @property Category $category
+ * @property ProductPicture[] $productPictures
  */
-class Product extends ActiveRecord
+class Product extends \yii\db\ActiveRecord
 {
-    public $mainPictureUrl = null;
+    const STATUS_DELETED = 0;
+    const STATUS_INACTIVE = 9;
+    const STATUS_ACTIVE = 10;
 
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'product';
+        return '{{%product}}';
     }
 
     /**
@@ -61,16 +66,12 @@ class Product extends ActiveRecord
             [['title', 'price', 'category_id'], 'required'],
             [['description'], 'string'],
             [['price'], 'number'],
-            [['category_id'], 'integer'],
+            [['category_id', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['title'], 'string', 'max' => 255],
-            [
-                ['category_id'],
-                'exist',
-                'skipOnError' => true,
-                'targetClass' => Category::className(),
-                'targetAttribute' => ['category_id' => 'id'],
-            ],
+            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
+            ['status', 'default', 'value' => self::STATUS_INACTIVE],
+            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
         ];
     }
 
@@ -85,6 +86,7 @@ class Product extends ActiveRecord
             'description' => 'Description',
             'price' => 'Price',
             'category_id' => 'Category ID',
+            'status' => 'Status',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
@@ -93,8 +95,41 @@ class Product extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getCps()
+    {
+        return $this->hasMany(CategoryPicture::className(), ['product_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrdersProducts()
+    {
+        return $this->hasMany(OrdersProducts::className(), ['product_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getCategory()
     {
         return $this->hasOne(Category::className(), ['id' => 'category_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProductPictures()
+    {
+        return $this->hasMany(ProductPicture::className(), ['product_id' => 'id']);
+    }
+
+    /**
+     * {@inheritdoc}
+     * @return \app\models\tables\query\ProductQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return (new \app\models\tables\query\ProductQuery(get_called_class()))->active();
     }
 }

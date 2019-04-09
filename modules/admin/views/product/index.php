@@ -1,22 +1,22 @@
 <?php
 
-use app\modules\admin\models\Users;
+use app\modules\admin\models\Product;
 use yii\grid\GridView;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\modules\admin\models\search\UsersSearch */
+/* @var $searchModel app\modules\admin\models\search\ProductSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Users';
+$this->title = 'Products';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="users-index">
+<div class="product-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Users', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Product', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -30,20 +30,18 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'username',
-            //'auth_key',
-            //'password_hash',
-            //'password_reset_token',
-            //'verification_token',
-            'email:email',
-            Users::getStatusColumnForWidget(),
+            'title',
+            'description:ntext',
+            'price',
+            'category_id',
+            Product::getStatusColumnForWidget(),
             //'created_at',
             //'updated_at',
             [
                 'class' => \app\widgets\ActionColumn::class,
                 'buttonOptions' => [
                     'delete' => [
-                        'data-confirm' => Yii::t('yii', 'Are you sure you want to mark this user as deleted?'),
+                        'data-confirm' => Yii::t('yii', 'Are you sure you want to mark this product as deleted?'),
                     ]
                 ],
                 'visibleButtons' => [
@@ -51,9 +49,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         return (bool)$model->status;
                     }
                 ]
+
             ],
-        ]
+        ],
     ]); ?>
 
     <?php \yii\widgets\Pjax::end() ?>
+
 </div>

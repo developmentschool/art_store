@@ -20,6 +20,7 @@ class ActionColumn extends \yii\grid\ActionColumn
         $this->initDefaultButton('delete', 'fa-trash-alt', [
             'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
             'data-method' => 'post',
+            'data-pjax' => '',
         ]);
     }
 
@@ -43,11 +44,20 @@ class ActionColumn extends \yii\grid\ActionColumn
                     default:
                         $title = ucfirst($name);
                 }
+                $specificButtonOptions = [];
+                if (isset($this->buttonOptions[$name])) {
+                    $specificButtonOptions = $this->buttonOptions[$name];
+                }
+                $commonButtonOptions = $this->buttonOptions;
+                foreach (['view', 'update', 'delete'] as $item) {
+                    if (isset($commonButtonOptions[$item])) {
+                        unset($commonButtonOptions[$item]);
+                    }
+                }
                 $options = array_merge([
                     'title' => $title,
                     'aria-label' => $title,
-                    'data-pjax' => '',
-                ], $additionalOptions, $this->buttonOptions);
+                ], $additionalOptions, $commonButtonOptions, $specificButtonOptions);
                 $icon = Html::tag('i', '', ['class' => "far $iconName"]);
                 return Html::a($icon, $url, $options);
             };
