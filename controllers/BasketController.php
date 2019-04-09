@@ -40,6 +40,7 @@ class BasketController extends Controller
          */
 
         if (!$user->isGuest) {
+            $view = 'checkout';
             $userIdentity = Users::findOne(['id' => $user->getId()]);
             /**
              * @var $userProfile UserProfiles
@@ -52,11 +53,11 @@ class BasketController extends Controller
 
 
         } else {
-            return $this->redirect('/site/login');
+            $view = 'letsLogin';
         }
         $products = BasketService::getProductsInBasket();
         $totalSum = BasketService::getTotalSum();
-        return $this->render('checkout', [
+        return $this->render($view, [
             'model' => (new OrderForm()),
             'mark' => $this->activeMarks(),
             'products' => $products,
@@ -65,23 +66,14 @@ class BasketController extends Controller
         ]);
     }
 
-    public function afterAction($action, $result)
-    {
-        if ($action->id === 'checkout') {
-            Yii::$app->getUser()->setReturnUrl('/basket/checkout');
-        }
-        return parent::afterAction($action, $result);
-
-    }
-
     public function actionOrder()
     {
         if (Yii::$app->user->isGuest) {
             return $this->redirect(Url::toRoute('site/login'));
         }
         if (is_null(Yii::$app->basket->getbasket())) {
-           return $this->redirect(Url::toRoute('/product'));
-       }
+            return $this->redirect(Url::toRoute('/product'));
+        }
 
         $model = new OrderForm();
 

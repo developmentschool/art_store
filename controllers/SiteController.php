@@ -15,6 +15,7 @@ use yii\filters\VerbFilter;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\web\Response;
+use yii\helpers\Url;
 
 class SiteController extends Controller
 {
@@ -84,7 +85,7 @@ class SiteController extends Controller
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+            return $this->goBack();
         }
 
         $model = new LoginForm();
@@ -98,14 +99,6 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
-
-
-//    public function beforeAction($action)
-//    {
-//        //var_dump(Yii::$app->request->referrer);exit;
-//       parent::beforeAction($action);
-//    }
-
     /**
      * Signs user up.
      *
@@ -238,9 +231,4 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
-    public function init()
-    {
-        parent::init();
-        Yii::$app->session->open();
-    }
 }

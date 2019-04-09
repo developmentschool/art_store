@@ -12,6 +12,14 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'layout' => 'art_store/main',
+    'on afterAction' => function (yii\base\ActionEvent $e) use ($params) {
+
+        if (in_array($e->action->controller->id, $params['controllers'])
+            && !in_array($e->action->id, $params['actions'])) {
+            Yii::$app->user->setReturnUrl(Yii::$app->request->url);
+        }
+
+    },
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
