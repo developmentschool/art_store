@@ -1,0 +1,13 @@
+fieldset {
+	margin-bottom: 1rem;
+	border-radius: .25rem;
+  border: 1px solid #ced4da;
+  padding: .5rem 1.5rem;
+}
+
+legend {
+  width: auto;
+  margin-left: -.5rem;
+  padding: 0 .5rem;
+  font-size: inherit;
+}
