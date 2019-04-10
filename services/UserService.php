@@ -26,7 +26,7 @@ class UserService
          * @var $userProfile UserProfiles
          */
         $userProfile = $userIdentity->getUserProfiles()->one();
-        $userData['id']=$userIdentity->id;
+        $userData['id'] = $userIdentity->id;
         $userData['email'] = $userIdentity->email;
         $userData['firstName'] = $userProfile->first_name;
         $userData['lastName'] = $userProfile->last_name;
@@ -39,24 +39,30 @@ class UserService
 
     public static function setUserInfo(UserProfiles $profileModel, UserAddresses $addressModel, OrderForm $model)
     {
+        $userId = \Yii::$app->user->id;
+
         if (is_null(UserProfiles::find()
             ->where(['first_name' => $model->firstName])
             ->andWhere(['last_name' => $model->lastName])
             ->andWhere(['phone' => $model->phoneNum])
             ->one())) {
-            $profileModel->first_name=$model->firstName;
-            $profileModel->last_name=$model->lastName;
-            $profileModel->phone=$model->phoneNum;
+
+            $profileModel->first_name = $model->firstName;
+            $profileModel->last_name = $model->lastName;
+            $profileModel->phone = $model->phoneNum;
+            $profileModel->user_id = $userId;
             $profileModel->save();
         }
+
         if (is_null(UserAddresses::find()
             ->where(['city' => $model->city])
             ->andWhere(['address' => $model->address])
             ->one())) {
-            $addressModel->city=$model->city;
-            $profileModel->last_name=$model->lastName;
-            $profileModel->phone=$model->phoneNum;
-            $profileModel->save();
+
+            $addressModel->city = $model->city;
+            $addressModel->address = $model->address;
+            $addressModel->user_id = $userId;
+            $addressModel->save();
         }
     }
 }

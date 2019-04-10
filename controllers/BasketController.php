@@ -52,6 +52,7 @@ class BasketController extends Controller
         }
         $products = BasketService::getProductsInBasket();
         $totalSum = BasketService::getTotalSum();
+
         return $this->render($view, [
             'model' => (new OrderForm()),
             'mark' => $this->activeMarks(),

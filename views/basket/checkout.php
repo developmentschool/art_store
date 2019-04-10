@@ -133,7 +133,7 @@ echo $this->render('head', ['mark' => $mark]);
                         ); ?>
                     </div>
                     <div class="form-group form-check">
-                        <?= $form->field($model, 'isAgree')->checkbox(); ?>
+                        <?= $form->field($model, 'isAgree')->checkbox(['value'=>1,'uncheckValue'=>0]); ?>
 
                     </div>
 
