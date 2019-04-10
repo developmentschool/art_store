@@ -3,20 +3,20 @@ $(document).ready(function () {
     $("#phoneNumber").mask("+7 (999) 999-99-99");
     let user_id = $("#basket-address").data('userid');
 
-    fetch(`${location.origin}/basket-ajax/get-user-addresses?userid=${user_id}`).then(
-        (response) => {
+    fetch(`${location.origin}/basket-ajax/get-user-addresses?userid=${user_id}`)
+        .then((response) => {
             return response.json();
-        }).then((data) => {
-            let addresses=data.address;
-            let cities=data.city;
-        $("#basket-address").autocomplete({
-            source: addresses
+        })
+        .then((data) => {
+            let addresses = data.address;
+            let cities = data.city;
+            $("#basket-address").autocomplete({
+                source: addresses
+            });
+            $("#basket-city").autocomplete({
+                source: cities
+            });
         });
-        $("#basket-city").autocomplete({
-            source: cities
-        });
-
-    });
     $.ajax({
         url: `${location.origin}/basket-ajax/getnum`,
         success: function (result) {
@@ -28,9 +28,6 @@ $(document).ready(function () {
 $(".basket-button").on("click", function (event) {
     event.preventDefault();
     let id = (event.target.tagName === "SPAN" ? event.target.parentNode.dataset.id : event.target.dataset.id);
-
-    console.log();
-    console.log(`id=${id}`);
     let quantity = $("#product-quantity").val();
     quantity = (typeof (quantity) === "undefined" ? 1 : quantity);
     $.ajax({
@@ -41,7 +38,6 @@ $(".basket-button").on("click", function (event) {
         },
         success: function (result) {
             let data = JSON.parse(result);
-            console.log(data);
             $(".count-item__count:last").html(data.basketCount);
             $("#modal").modal();
         }
@@ -54,7 +50,6 @@ $(document).on("click", (event) => {
         let quantity = parent.find("._js_input").val();
         let price = parent.find(".prod-price").html();
         let action = ($(event.target).hasClass("btn-basket-plus") ? "add" : "del");
-        console.log(action);
         parent.find(".product-sum").html(`${quantity * price}`);
         $.ajax({
             url: `${location.origin}/basket-ajax/${action}`,
