@@ -17,9 +17,11 @@ class OrderService
         $totalSum = BasketService::getTotalSum();
         $orderArr['orderId'] = $id;
         $orderArr['address'] = $model->address;
+        $orderArr['city'] = $model->city;
         $orderArr['phone'] = $model->phoneNum;
         $orderArr['payment'] = $model->payment;
         $orderArr['email'] = $model->email;
+        $orderArr['username'] = $model->firstName . ' ' . $model->lastName;
         $orderArr['totalSum'] = $totalSum;
         return $orderArr;
     }
@@ -30,7 +32,7 @@ class OrderService
         $mail = $mailer
             ->compose(
                 ['html' => 'order-html', 'text' => 'order-text',],
-                ['orderArr' => $orderInfo]
+                ['order' => $orderInfo]
             )
             ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->name . ' order'])
             ->setTo($orderInfo['email'])

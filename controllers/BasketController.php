@@ -72,15 +72,19 @@ class BasketController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
 
             $order = new Orders([
-                'shipment_addr' => $model->address,
+                'shipment_addr' => $model->city . ', ' . $model->address,
                 'user_id' => Yii::$app->user->getId(),
             ]);
-            $order->save();
-            $orderArr = OrderService::prepareOrderInfo($order->id, $model);
-            BasketService::saveProductsInOrder($order->id);
-            Yii::$app->basket->clearBasket();
-            UserService::setUserInfo((new UserProfiles()), (new UserAddresses()), $model);
-            OrderService::sendOrderMail(Yii::$app->mailer, $orderArr);
+
+           if( $order->save()){
+               $orderId = Yii::$app->db->lastInsertID;
+               $orderArr = OrderService::prepareOrderInfo($orderId, $model);
+               BasketService::saveProductsInOrder($order->id);
+               Yii::$app->basket->clearBasket();
+               UserService::setUserInfo((new UserProfiles()), (new UserAddresses()), $model);
+               OrderService::sendOrderMail(Yii::$app->mailer, $orderArr);
+           }
+
         }
         return $this->render('pay', [
             'mark' => $this->activeMarks(),

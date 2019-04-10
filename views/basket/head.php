@@ -9,7 +9,7 @@ use yii\web\View;
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-4">
-                <a href="<?=$mark['urls']['index']?>" class="order-steps-item <?=$mark['active']['index']?>">
+                <a href="" class="order-steps-item <?=$mark['active']['index']?>">
                     <h2 class="num">01</h2>
                     <div>
                         <h4 class="text-uppercase">Корзина</h4>
@@ -18,7 +18,7 @@ use yii\web\View;
                 </a>
             </div>
             <div class="col-md-4">
-                <a href="<?=$mark['urls']['checkout']?>" class="order-steps-item <?=$mark['active']['checkout']?>">
+                <a href="" class="order-steps-item <?=$mark['active']['checkout']?>">
                     <h2 class="num">02</h2>
                     <div>
                         <h4 class="text-uppercase">Оформление</h4>
@@ -27,7 +27,7 @@ use yii\web\View;
                 </a>
             </div>
             <div class="col-md-4">
-                <a href="<?=$mark['urls']['pay']?>" class="order-steps-item <?=$mark['active']['pay']?>">
+                <a href="" class="order-steps-item <?=$mark['active']['pay']?>">
                     <h2 class="num">03</h2>
                     <div>
                         <h4 class="text-uppercase">Подтверждение</h4>

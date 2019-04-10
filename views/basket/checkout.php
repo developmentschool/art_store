@@ -103,8 +103,8 @@ echo $this->render('head', ['mark' => $mark]);
 
                     <div class="form-group form-check">
                         <?= $form->field($model, 'payment')->radioList([
-                            'courier' => 'Наличными курьеру',
-                            'byYourself' => 'Самовывоз',
+                            'Наличными курьеру' => 'Наличными курьеру',
+                            'Самовывоз' => 'Самовывоз',
                         ],
                             [
 
