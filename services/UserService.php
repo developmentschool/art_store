@@ -12,7 +12,7 @@ use yii\helpers\ArrayHelper;
 
 class UserService
 {
-    public static function getUserInfo($id): array
+    public static function getUserInfo($id)
     {
         $userData = [];
         $userIdentity = Users::findOne(['id' => $id]);
@@ -25,15 +25,22 @@ class UserService
         /**
          * @var $userProfile UserProfiles
          */
-        $userProfile = $userIdentity->getUserProfiles()->one();
+        $userProfile = UserProfiles::findOne(['user_id' => $id]);
+        if (is_null($userProfile)) {
+            $userData['firstName'] = null;
+            $userData['lastName'] = null;
+            $userData['phone'] = null;
+        } else {
+            $userData['firstName'] = $userProfile->first_name;
+            $userData['lastName'] = $userProfile->last_name;
+            $userData['phone'] = $userProfile->phone;
+        }
+
         $userData['id'] = $userIdentity->id;
         $userData['email'] = $userIdentity->email;
-        $userData['firstName'] = $userProfile->first_name;
-        $userData['lastName'] = $userProfile->last_name;
-        $userData['phone'] = $userProfile->phone;
+
         $userData['city'] = ArrayHelper::getColumn($addressesInfo, 'city');
         $userData['address'] = ArrayHelper::getColumn($addressesInfo, 'address');
-
         return $userData;
     }
 
