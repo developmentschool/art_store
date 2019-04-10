@@ -56,7 +56,8 @@ echo $this->render('head', ['mark' => $mark]);
 
                     <?= $form->field($model, 'address')->textInput([
                         'value' => $userData['address'][0],
-                        'id' => 'basket-city',
+                        'id' => 'basket-address',
+                        'data-userId'=>$userData['id'],
                     ]) ?>
                 </div>
                 <div class="row">

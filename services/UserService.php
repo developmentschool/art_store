@@ -26,6 +26,7 @@ class UserService
          * @var $userProfile UserProfiles
          */
         $userProfile = $userIdentity->getUserProfiles()->one();
+        $userData['id']=$userIdentity->id;
         $userData['email'] = $userIdentity->email;
         $userData['firstName'] = $userProfile->first_name;
         $userData['lastName'] = $userProfile->last_name;

@@ -44,19 +44,15 @@ class BasketAjaxController extends Controller
         return false;
     }
 
-//    public function actionGetUserAddresses()
-//    {
-//        /**
-//         * @var $user User
-//         */
-//        $user=Yii::$app->user;
-//        $id = $user->getId();
-////        $userData = UserService::getUserInfo($id);
-//        $userData = [
-//            'fuck' => $id,
+    public function actionGetUserAddresses()
+    {
+        $get = Yii::$app->request->get();
+        $userData = UserService::getUserInfo($get['userid']);
+//        $userData=[
+//          'fuck'=>$id
 //        ];
-//        return json_encode($userData);
-//    }
+        return json_encode($userData);
+    }
 
 
     private function prepareResponse()
