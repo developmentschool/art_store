@@ -4,6 +4,7 @@ $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 $cloudinary = require __DIR__ . '/cloudinary.php';
 $mail = require __DIR__ . '/mail.php';
+$logging = require __DIR__ . '/logging.php';
 
 $config = [
     'id' => 'basic',
@@ -72,12 +73,7 @@ $config = [
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                ],
-            ],
+            'targets' => $logging,
         ],
         'db' => $db,
 
