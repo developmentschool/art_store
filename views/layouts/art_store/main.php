@@ -142,8 +142,9 @@ FontAwesomeAsset::register($this);
             'headerOptions' => ['id' => 'modalHeader'],
             'id' => 'modal',
             'size' => 'modal-sm',
+            'footer' =>  '<a class="btn btn-primary btn-block" href="/basket" role="button">Перейти в корзину</a>',
         ]);
-        echo '<p>Товар в корзине!!!</p>';
+        echo '<h4 class="center-block">Товар в корзине!!!</h4>';
         \yii\bootstrap4\Modal::end();
         ?>
 

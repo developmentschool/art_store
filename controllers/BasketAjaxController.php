@@ -4,7 +4,9 @@
 namespace app\controllers;
 
 
+use app\models\User;
 use app\services\BasketService;
+use app\services\UserService;
 use Yii;
 use yii\web\Controller;
 
@@ -25,7 +27,7 @@ class BasketAjaxController extends Controller
     public function actionGetnum()
     {
         if (Yii::$app->request->isAjax) {
-           return $this->prepareResponse();
+            return $this->prepareResponse();
         }
         return false;
     }
@@ -42,6 +44,17 @@ class BasketAjaxController extends Controller
         return false;
     }
 
+    public function actionGetUserAddresses()
+    {
+        $get = Yii::$app->request->get();
+        $userData = UserService::getUserInfo($get['userid']);
+//        $userData=[
+//          'fuck'=>$id
+//        ];
+        return json_encode($userData);
+    }
+
+
     private function prepareResponse()
     {
         $response = [];
@@ -49,4 +62,5 @@ class BasketAjaxController extends Controller
         $response['basketCount'] = BasketService::getProductNum();
         return json_encode($response);
     }
+
 }

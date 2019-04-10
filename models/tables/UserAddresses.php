@@ -6,31 +6,27 @@ use Yii;
 use yii\db\ActiveRecord;
 
 /**
- * This is the model class for table "product_picture".
+ * This is the model class for table "user_addresses".
  *
  * @property int $id
- * @property int $product_id
- * @property int $picture_id
- * @property int $is_main
+ * @property int $user_id
+ * @property string $city
+ * @property string $address
  * @property string $created_at
  * @property string $updated_at
  *
- * @property Picture $picture
- * @property Product $product
+ * @property Users $user
  */
-class ProductPicture extends ActiveRecord
+class UserAddresses extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'product_picture';
+        return 'user_addresses';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function behaviors()
     {
         return [
@@ -51,22 +47,16 @@ class ProductPicture extends ActiveRecord
     public function rules()
     {
         return [
-            [['product_id', 'picture_id', 'is_main', ], 'required'],
-            [['product_id', 'picture_id', 'is_main'], 'integer'],
+            [['user_id',], 'required'],
+            [['user_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
+            [['city', 'address'], 'string', 'max' => 255],
             [
-                ['picture_id'],
+                ['user_id'],
                 'exist',
                 'skipOnError' => true,
-                'targetClass' => Picture::className(),
-                'targetAttribute' => ['picture_id' => 'id'],
-            ],
-            [
-                ['product_id'],
-                'exist',
-                'skipOnError' => true,
-                'targetClass' => Product::className(),
-                'targetAttribute' => ['product_id' => 'id'],
+                'targetClass' => Users::className(),
+                'targetAttribute' => ['user_id' => 'id'],
             ],
         ];
     }
@@ -78,9 +68,9 @@ class ProductPicture extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'product_id' => 'Product ID',
-            'picture_id' => 'Picture ID',
-            'is_main' => 'Is Main',
+            'user_id' => 'User ID',
+            'city' => 'City',
+            'address' => 'Address',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
@@ -89,17 +79,8 @@ class ProductPicture extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPicture()
+    public function getUser()
     {
-        return $this->hasOne(Picture::className(), ['id' => 'picture_id']);
-    }
-
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getProduct()
-    {
-        return $this->hasOne(Product::className(), ['id' => 'product_id']);
+        return $this->hasOne(Users::className(), ['id' => 'user_id']);
     }
 }

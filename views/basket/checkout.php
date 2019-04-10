@@ -4,7 +4,7 @@
 use yii\helpers\Url;
 use yii\web\View;
 use yii\widgets\Pjax;
-use yii\widgets\ActiveForm;
+use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
 
 ?>
@@ -14,6 +14,7 @@ use yii\helpers\Html;
 <?php
 echo $this->render('head', ['mark' => $mark]);
 ?>
+
 
     <div class="container-fluid my-5">
         <?php $form = ActiveForm::begin([
@@ -44,25 +45,39 @@ echo $this->render('head', ['mark' => $mark]);
                 </div>
                 <div class="form-group">
 
-                    <?= $form->field($model, 'address')->textInput() ?>
+                    <?= $form->field($model, 'city')->textInput([
+                        'value' => $userData['city'][0],
+                        'id' => 'basket-city',
+                    ]) ?>
 
                 </div>
                 <div class="form-group">
 
-                    <?= $form->field($model, 'city')->textInput() ?>
 
+                    <?= $form->field($model, 'address')->textInput([
+                        'value' => $userData['address'][0],
+                        'id' => 'basket-address',
+                        'data-userId'=>$userData['id'],
+                    ]) ?>
                 </div>
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
 
-                            <?= $form->field($model, 'phoneNum')->textInput(['value' => $userData['phone']]) ?>
+                            <?= $form->field($model, 'phoneNum')->textInput([
+                                'value' => $userData['phone'],
+                                'placeholder' => '+7(999)999-99-99',
+                                'id' => 'phoneNumber',
+                            ]) ?>
 
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
-                            <?= $form->field($model, 'email')->textInput(['value' => $userData['email']]) ?>
+                            <?= $form->field($model, 'email')->textInput([
+                                'value' => $userData['email'],
+                                'placeholder' => 'name@domain.com',
+                            ]) ?>
                         </div>
                     </div>
                 </div>
@@ -95,12 +110,30 @@ echo $this->render('head', ['mark' => $mark]);
 
                     <div class="form-group form-check">
                         <?= $form->field($model, 'payment')->radioList([
-                            'courier' => 'Наличными курьеру',
-                            'byYourself' => 'Самовывоз',
-                        ]); ?>
+                            'Наличными курьеру' => 'Наличными курьеру',
+                            'Самовывоз' => 'Самовывоз',
+                        ],
+                            [
+
+                                'item' => function ($index, $label, $name, $checked, $value) {
+                                    $id = 'my-' . $index;
+                                    return
+                                        Html::beginTag('div', ['class' => 'form-check'])
+                                        . Html::radio($name, true, [
+                                            'value' => $value,
+                                            'class' => 'form-check-input',
+                                        ])
+                                        . '<label class="form-check-label" for="{$id}">'
+                                        . $label
+                                        . '</label>'
+                                        . Html::endTag('div');
+
+                                },
+                            ]
+                        ); ?>
                     </div>
                     <div class="form-group form-check">
-                        <?= $form->field($model, 'isAgree')->checkbox([]); ?>
+                        <?= $form->field($model, 'isAgree')->checkbox(['value'=>1,'uncheckValue'=>0]); ?>
 
                     </div>
 
