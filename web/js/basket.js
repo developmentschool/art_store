@@ -1,13 +1,17 @@
 "use strict";
 $(document).ready(function () {
     $("#phoneNumber").mask("+7 (999) 999-99-99");
-
+    // let cities;
+    // fetch(`${location.origin}/basket-ajax/get-user-addresses`).then(
+    //     (response) => {
+    //         return response.json();
+    //     }).then((data)=>{
+    //     console.log(data);
+    // });
     $.ajax({
         url: `${location.origin}/basket-ajax/getnum`,
         success: function (result) {
             let data = JSON.parse(result);
-            console.log(data);
-            console.log(location.origin);
             $(".count-item__count:last").html(data.basketCount);
         }
     });
