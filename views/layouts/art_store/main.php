@@ -85,13 +85,25 @@ FontAwesomeAsset::register($this);
         <header>
             <div class="container-fluid py-4">
                 <div class="row justify-content-between align-items-center">
+
                     <div class="col-auto">
-
                         <a href="/" class="logo"><img src="<?= Yii::$app->cloudinary->getImageURL('logo.png') ?>"
-                                                      alt="Art-Store-Studio"></a>
-
+                                                      alt="Art-Store-Studio">
+                        </a>
                     </div>
+                    <ul class="list-group list-group-horizontal">
+                        <li class="list-group-item d-flex flex-column justify-content-center">
+                            <span>Art-Store Studio<br>С нами проявится ваш талант</span>
+                        </li>
+                        <li class="list-group-item d-flex flex-column justify-content-center">
+                            <span>Тел: +7777-777-77-77</span>
+                        </li>
+                        <li class="list-group-item d-flex flex-column justify-content-center">
+                            <span>Email: mail@mail.com</span>
+                        </li>
+                    </ul>
                 </div>
+
             </div>
             <div class="wide-nav">
                 <div class="container-fluid">

@@ -24,6 +24,7 @@ class AppAsset extends AssetBundle
         // 'css/site.css',
         // 'vendor/fontawesome-free-5.7.2-web/css/all.css',
         'vendor/jquery-ui/css/jquery-ui.min.css',
+
         'css/style.css',
         'css/sidebar.css',
         'css/product.css',

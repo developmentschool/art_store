@@ -1,6 +1,21 @@
 "use strict";
 $(document).ready(function () {
     $("#phoneNumber").mask("+7 (999) 999-99-99");
+    let personalInfoBtn = $("#personal-info-btn-edit");
+    personalInfoBtn.on('click', () => {
+
+        $("#personal-info :input").attr("readonly", (index, attr) => {
+            return attr ? false : true;
+        });
+        $("#update-personal-info-btn").attr("disabled", (index, attr) => {
+            return attr ? false : true;
+        });
+        let btnName = () => {
+            return personalInfoBtn.html() === 'Редактировать' ? 'Блокировать' : 'Редактировать';
+        };
+        personalInfoBtn.html(btnName);
+    });
+
     let user_id = $("#basket-address").data('userid');
 
     fetch(`${location.origin}/basket-ajax/get-user-addresses?userid=${user_id}`)

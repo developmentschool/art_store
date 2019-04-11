@@ -23,23 +23,18 @@ echo $this->render('head', ['mark' => $mark]);
             'id' => 'order-form',
         ]); ?>
 
-        <!--        <form action="--><? //= ?><!--" name="order" method="post">-->
         <div class="row">
             <div class="col-md-6 pt-3" style="border: 5px solid transparent;">
                 <h2 class="h3 pb-3">Детали заказа</h2>
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-
                             <?= $form->field($model, 'firstName')->textInput(['value' => $userData['firstName']]) ?>
-                            <!--                                <input type="text" class="form-control" id="exampleInputFirstName1">-->
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
-
                             <?= $form->field($model, 'lastName')->textInput(['value' => $userData['lastName']]) ?>
-                            <!--                                <input type="text" class="form-control" id="exampleInputLastName1">-->
                         </div>
                     </div>
                 </div>
@@ -134,17 +129,12 @@ echo $this->render('head', ['mark' => $mark]);
                     </div>
                     <div class="form-group form-check">
                         <?= $form->field($model, 'isAgree')->checkbox(['value'=>1,'uncheckValue'=>0]); ?>
-
                     </div>
-
                 </div>
                 <a class="btn btn-primary basket-next" href="<?= Url::toRoute('/basket') ?>" role="button">Назад</a>
                 <?= Html::submitButton('Оформить', ['class' => 'btn btn-primary']) ?>
-
             </div>
-
         </div>
-        <!--        </form>-->
         <?php ActiveForm::end(); ?>
     </div>
 <?php Pjax::end() ?>
