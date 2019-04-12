@@ -50,7 +50,7 @@ class OrdersProducts extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['order_id', 'product_id', 'created_at'], 'required'],
+            [['order_id', 'product_id',], 'required'],
             [['order_id', 'product_id', 'quantity'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['order_id'], 'exist', 'skipOnError' => true, 'targetClass' => Orders::className(), 'targetAttribute' => ['order_id' => 'id']],

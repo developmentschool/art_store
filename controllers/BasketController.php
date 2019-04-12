@@ -6,9 +6,12 @@ use app\models\OrderForm;
 use app\models\tables\Orders;
 use app\models\tables\OrdersProducts;
 use app\models\tables\Product;
+use app\models\tables\UserAddresses;
 use app\models\tables\UserProfiles;
 use app\models\tables\Users;
 use app\services\BasketService;
+use app\services\OrderService;
+use app\services\UserService;
 use Yii;
 use yii\helpers\Url;
 use yii\web\Controller;
@@ -34,27 +37,23 @@ class BasketController extends Controller
             return $this->redirect(Url::toRoute('/product'));
         }
         $user = Yii::$app->user;
-        $userData = [];
+
         /**
          * @var $userIdentity Users
          */
 
         if (!$user->isGuest) {
-            $userIdentity = Users::findOne(['id' => $user->getId()]);
-            /**
-             * @var $userProfile UserProfiles
-             */
-            $userProfile = $userIdentity->getUserProfiles()->one();
-            $userData['email'] = $userIdentity->email;
-            $userData['firstName'] = $userProfile->first_name;
-            $userData['lastName'] = $userProfile->last_name;
-            $userData['phone'] = $userProfile->phone;
+            $view = 'checkout';
+            $id = $user->getId();
+            $userData = UserService::getUserInfo($id);
 
-
+        } else {
+            $view = 'letsLogin';
         }
         $products = BasketService::getProductsInBasket();
         $totalSum = BasketService::getTotalSum();
-        return $this->render('checkout', [
+
+        return $this->render($view, [
             'model' => (new OrderForm()),
             'mark' => $this->activeMarks(),
             'products' => $products,
@@ -68,34 +67,25 @@ class BasketController extends Controller
         if (is_null(Yii::$app->basket->getbasket())) {
             return $this->redirect(Url::toRoute('/product'));
         }
-        if (Yii::$app->user->isGuest) {
-            return $this->redirect('site/login');
-        }
+
         $model = new OrderForm();
 
-        if ($model->load(Yii::$app->request->post())) {
-            $orderArr = [];
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+
             $order = new Orders([
-                'shipment_addr' => $model->address,
+                'shipment_addr' => $model->city . ', ' . $model->address,
                 'user_id' => Yii::$app->user->getId(),
             ]);
-            $order->save();
-            $orderId = $order->id;
-            $orderArr['orderId'] = $orderId;
-            $orderArr['address'] = $model->address;
-            $orderArr['phone'] = $model->phoneNum;
-            $orderArr['payment'] = $model->payment;
-            $basket = Yii::$app->basket->getBasket();
-            $totalSum = BasketService::getTotalSum();
-            $orderArr['totalSum'] = $totalSum;
-            foreach ($basket as $id => $quantity) {
-                (new OrdersProducts([
-                    'order_id' => $orderId,
-                    'product_id' => $id,
-                    'quantity' => $quantity,
-                ]))->save();
-            }
-            Yii::$app->basket->clearBasket();
+
+           if( $order->save()){
+               $orderId = Yii::$app->db->lastInsertID;
+               $orderArr = OrderService::prepareOrderInfo($orderId, $model);
+               BasketService::saveProductsInOrder($order->id);
+               Yii::$app->basket->clearBasket();
+               UserService::setUserInfo((new UserProfiles()), (new UserAddresses()), $model);
+               OrderService::sendOrderMail(Yii::$app->mailer, $orderArr);
+           }
+
         }
         return $this->render('pay', [
             'mark' => $this->activeMarks(),

@@ -4,6 +4,7 @@
 namespace app\services;
 
 
+use app\models\tables\OrdersProducts;
 use app\models\tables\Product;
 use Yii;
 
@@ -16,7 +17,7 @@ class BasketService
         if (!is_null($basket)) {
             foreach ($basket as $id => $quantity) {
                 $price = (Product::findOne(['id' => $id]))->price;
-                $totalSum += ($price*$quantity);
+                $totalSum += ($price * $quantity);
             }
         }
         return $totalSum;
@@ -46,6 +47,18 @@ class BasketService
         $basket = Yii::$app->basket->getBasket();
 
         return is_null($basket) ? 0 : count($basket);
+    }
+
+    public static function saveProductsInOrder($order_id)
+    {
+        $basket = Yii::$app->basket->getBasket();
+        foreach ($basket as $id => $quantity) {
+            (new OrdersProducts([
+                'order_id' => $order_id,
+                'product_id' => $id,
+                'quantity' => $quantity,
+            ]))->save();
+        }
     }
 
 }

@@ -24,7 +24,13 @@ class OrderForm extends Model
         return [
 
             ['email', 'trim'],
-            [['email', 'firstName', 'lastName', 'city', 'phoneNum','isAgree','payment'], 'required'],
+            [['email', 'firstName', 'lastName', 'city', 'phoneNum', 'payment', 'address'], 'required'],
+            [
+                'isAgree',
+                'compare',
+                'compareValue' => 1,
+                'message' => 'Необходимо прочитать условия покупки и согласиться',
+            ],
             ['email', 'email'],
             [['email', 'firstName', 'lastName', 'city', 'address'], 'string', 'max' => 255],
         ];
@@ -40,8 +46,8 @@ class OrderForm extends Model
             'email' => 'Email',
             'phoneNum' => 'Номер телефона',
             'comment' => 'Комментарий',
-            'isAgree'=>'Я прочитал и согласен с условиями покупки',
-            'payment'=>'Оплата',
+            'isAgree' => 'Я прочитал и согласен с условиями покупки',
+            'payment' => 'Оплата',
         ];
     }
 }
