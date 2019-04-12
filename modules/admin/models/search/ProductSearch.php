@@ -11,6 +11,9 @@ use app\modules\admin\models\Product;
  */
 class ProductSearch extends Product
 {
+    public $category;
+
+
     /**
      * {@inheritdoc}
      */
@@ -20,6 +23,7 @@ class ProductSearch extends Product
             [['id', 'category_id', 'status'], 'integer'],
             [['title', 'description', 'created_at', 'updated_at'], 'safe'],
             [['price'], 'number'],
+            [['category'], 'string']
         ];
     }
 
@@ -59,16 +63,19 @@ class ProductSearch extends Product
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'price' => $this->price,
-            'category_id' => $this->category_id,
-            'status' => $this->status,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'product.id' => $this->id,
+            'product.price' => $this->price,
+            'product.category_id' => $this->category_id,
+            'product.status' => $this->status,
+            'product.created_at' => $this->created_at,
+            'product.updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'description', $this->description]);
+        $query->joinWith('category');
+        $this->category && $query->where(['like', 'category.title', $this->category]);
+
+        $query->andFilterWhere(['like', 'product.title', $this->title])
+            ->andFilterWhere(['like', 'product.description', $this->description]);
 
         return $dataProvider;
     }

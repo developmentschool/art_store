@@ -2,6 +2,10 @@
 
 namespace app\modules\admin\controllers;
 
+use app\components\imageControl\actions\ImageAddAction;
+use app\components\imageControl\actions\ImageDeleteAction;
+use app\components\imageControl\actions\ImageRenderAction;
+use app\models\tables\Picture;
 use app\modules\admin\models\Product;
 use app\modules\admin\models\search\ProductSearch;
 use Yii;
@@ -25,6 +29,27 @@ class ProductController extends Controller
                 'actions' => [
                     'delete' => ['POST'],
                 ],
+            ],
+        ];
+    }
+
+    public function actions()
+    {
+        return [
+            'image-delete' => [
+                'class' => ImageDeleteAction::class,
+                'ownerClass' => Product::class,
+                'imageClass' => Picture::class
+            ],
+            'image-render' => [
+                'class' => ImageRenderAction::class,
+                'ownerClass' => Product::class,
+                'imageClass' => Picture::class
+            ],
+            'image-add' => [
+                'class' => ImageAddAction::class,
+                'ownerClass' => Product::class,
+                'imageClass' => Picture::class
             ],
         ];
     }
@@ -54,6 +79,7 @@ class ProductController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'images' => $this->runAction('image-render', ['id' => $id, 'view' => 'imagesView'])
         ]);
     }
 
@@ -72,6 +98,7 @@ class ProductController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'images' => null,
         ]);
     }
 
@@ -92,6 +119,8 @@ class ProductController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'images' => $this->runAction('image-render', ['id' => $model->id, 'view' => 'imagesUpdate']),
+
         ]);
     }
 

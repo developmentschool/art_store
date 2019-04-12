@@ -48,6 +48,15 @@ class CategoryService
             }
         }
         return $array;
+    }
 
+    public static function getAllCategoryArray()
+    {
+        return ArrayHelper::getColumn(Category::find()->asArray()->all(), 'title');
+    }
+
+    public static function getAllCategoryDrop()
+    {
+        return ArrayHelper::map(Category::find()->asArray()->all(), 'id', 'title');
     }
 }

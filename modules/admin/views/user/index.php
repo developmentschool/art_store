@@ -31,14 +31,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'username',
-            //'auth_key',
-            //'password_hash',
-            //'password_reset_token',
-            //'verification_token',
             'email:email',
             Users::getStatusColumnForWidget(),
-            //'created_at',
-            //'updated_at',
             [
                 'class' => \app\widgets\ActionColumn::class,
                 'buttonOptions' => [
@@ -52,6 +46,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     }
                 ]
             ],
+        ],
+        'pager' => [
+            'pageCssClass' => 'page-link',
+            'prevPageCssClass' => 'page-link',
+            'nextPageCssClass' => 'page-link',
+            'options' => [
+                'class' => 'pagination col-lg-12'
+            ]
         ]
     ]); ?>
 

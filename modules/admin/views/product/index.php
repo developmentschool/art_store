@@ -10,6 +10,16 @@ use yii\helpers\Html;
 
 $this->title = 'Products';
 $this->params['breadcrumbs'][] = $this->title;
+$dataProvider->setSort([
+    'attributes' => [
+        'id',
+        'title',
+        'description',
+        'price',
+        'category.title',
+        'status'
+    ]
+])
 ?>
 <div class="product-index">
 
@@ -33,10 +43,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'description:ntext',
             'price',
-            'category_id',
+            [
+                'attribute' => 'category.title',
+                'filter' => Html::input('text', 'ProductSearch[category]', '', ['class' => 'form-control'])
+            ],
             Product::getStatusColumnForWidget(),
-            //'created_at',
-            //'updated_at',
             [
                 'class' => \app\widgets\ActionColumn::class,
                 'buttonOptions' => [
@@ -52,6 +63,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ],
         ],
+        'pager' => [
+            'pageCssClass' => 'page-link',
+            'prevPageCssClass' => 'page-link',
+            'nextPageCssClass' => 'page-link',
+            'options' => [
+                'class' => 'pagination col-lg-12'
+            ]
+        ]
     ]); ?>
 
     <?php \yii\widgets\Pjax::end() ?>

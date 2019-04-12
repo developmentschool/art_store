@@ -1,11 +1,13 @@
 <?php
 
+use app\services\CategoryService;
+use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\Product */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $images string */
 ?>
 
 <div class="product-form">
@@ -18,7 +20,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'category_id')->textInput() ?>
+    <?= $form->field($model, 'category_id')->dropDownList(CategoryService::getAllCategoryDrop()) ?>
 
     <?= $form->field($model, 'status')->dropDownList($model->getStatuses(), [
         'options' => [
@@ -33,5 +35,10 @@ use yii\widgets\ActiveForm;
     </div>
 
     <?php ActiveForm::end(); ?>
+    <?php if ($images): ?>
+        <h3>Pictures</h3>
 
+        <?= $images ?>
+
+    <?php endif; ?>
 </div>

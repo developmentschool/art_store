@@ -36,4 +36,19 @@ class PictureBehavior extends Behavior
         ];
     }
 
+    public function getImageLinks(): ?array
+    {
+        $links = [];
+        foreach ($this->owner->images as $image) {
+            $url = \Yii::$app->cloudinary->getImageUrl($image->title);
+            if ($url) {
+                if ($image->getProductPictures()->where(['product_id' => $this->owner->id])->one()->is_main) {
+                    $links['main'] = $url;
+                } else {
+                    $links[] = $url;
+                }
+            }
+        }
+        return $links;
+    }
 }

@@ -108,6 +108,10 @@ $config = [
             'class' => 'yii\rbac\DbManager',
             //'defaultRoles' => ['guest'],
         ],
+        'assetManager' => [
+            'linkAssets' => true,
+            'appendTimestamp' => true,
+        ],
     ],
     'params' => $params,
 ];

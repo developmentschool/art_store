@@ -24,6 +24,25 @@ class Product extends \app\models\tables\Product
      */
     use Status;
 
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'title' => 'Title',
+            'description' => 'Description',
+            'price' => 'Price',
+            'category_id' => 'Category',
+            'category.title' => 'Category',
+            'status' => 'Status',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
+        ];
+    }
+
     /**
      * {@inheritdoc}
      * @return \app\models\tables\query\ProductQuery the active query used by this AR class.

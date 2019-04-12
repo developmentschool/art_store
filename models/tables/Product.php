@@ -2,6 +2,7 @@
 
 namespace app\models\tables;
 
+use app\components\imageControl\MainImageBehavior;
 use app\components\PictureBehavior;
 use yii\db\ActiveRecord;
 
@@ -54,6 +55,10 @@ class Product extends \yii\db\ActiveRecord
                 'class' => PictureBehavior::className(),
                 'connectedClassName' => ProductPicture::className(),
             ],
+            'mainImage' => [
+                'class' => MainImageBehavior::class,
+                'relationship' => 'pictures'
+            ]
         ];
     }
 
@@ -86,6 +91,7 @@ class Product extends \yii\db\ActiveRecord
             'description' => 'Description',
             'price' => 'Price',
             'category_id' => 'Category ID',
+            'category.title' => 'Category',
             'status' => 'Status',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
@@ -131,5 +137,14 @@ class Product extends \yii\db\ActiveRecord
     public static function find()
     {
         return (new \app\models\tables\query\ProductQuery(get_called_class()))->active();
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPictures()
+    {
+        return $this->hasMany(Picture::class, ['id' => 'picture_id'])
+            ->via('productPictures');
     }
 }
