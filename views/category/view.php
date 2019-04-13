@@ -28,9 +28,7 @@ echo $this->render('categoryView', ['categoryDataProvider' => $categoryDataProvi
 
 echo \yii\widgets\ListView::widget([
     'dataProvider' => $productDataProvider,
-    'options' => [
-        'class' => 'row'
-    ],
+    'layout' => "{summary}\n<div class=row>{items}</div>\n{pager}",
     'itemOptions' => [
         'class' => 'col-sm-6 col-lg-3'
     ],
