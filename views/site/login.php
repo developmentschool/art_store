@@ -8,7 +8,7 @@
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
 
-$this->title = 'Login';
+$this->title = 'Авторизация';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
@@ -33,15 +33,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="form-group">
                 <div class="col-lg-offset-1 col-lg-11">
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-                    <?= Html::a('Register', ['signup'], ['class' => 'btn btn-warning']) ?>
+                    <?= Html::submitButton('Вход', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                    <?= Html::a('Регистрация', ['signup'], ['class' => 'btn btn-warning']) ?>
                 </div>
             </div>
 
             <?php ActiveForm::end(); ?>
 
             <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::a('Reset password', ['request-password-reset']) ?>
+                <?= Html::a('Восстановить пароль', ['request-password-reset']) ?>
             </div>
 
         </div>
