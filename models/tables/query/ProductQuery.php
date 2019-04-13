@@ -14,7 +14,7 @@ class ProductQuery extends \yii\db\ActiveQuery
 
     public function active()
     {
-        return $this->andWhere(['status' => Product::STATUS_ACTIVE]);
+        return $this->andWhere([Product::tableName() . '.status' => Product::STATUS_ACTIVE]);
     }
 
     /**

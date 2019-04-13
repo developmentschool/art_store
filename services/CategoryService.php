@@ -50,13 +50,16 @@ class CategoryService
         return $array;
     }
 
-    public static function getAllCategoryArray()
+    /**
+     * @param array $exception
+     * @return array
+     */
+    public static function getAllCategoryDrop($exception = [])
     {
-        return ArrayHelper::getColumn(Category::find()->asArray()->all(), 'title');
-    }
-
-    public static function getAllCategoryDrop()
-    {
-        return ArrayHelper::map(Category::find()->asArray()->all(), 'id', 'title');
+        $query = Category::find();
+        if ($column = array_key_first($exception)) {
+            $query->where(['not in', $column, $exception[$column]]);
+        }
+        return ArrayHelper::map($query->asArray()->all(), 'id', 'title');
     }
 }

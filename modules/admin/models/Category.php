@@ -6,15 +6,9 @@ namespace app\modules\admin\models;
 
 use app\modules\admin\traits\Status;
 
-/**
- * Class Product
- * @package app\modules\admin\models
- *
- * @method  getDefaultStatus()
- * @method  statusRender()
- */
-class Product extends \app\models\tables\Product
+class Category extends \app\models\tables\Category
 {
+
     /**
      * Implements methods
      * self::getStatuses()
@@ -33,10 +27,8 @@ class Product extends \app\models\tables\Product
         return [
             'id' => 'ID',
             'title' => 'Title',
-            'description' => 'Description',
-            'price' => 'Price',
-            'category_id' => 'Category',
-            'category.title' => 'Category',
+            'parent_id' => 'Parent category',
+            'parent.title' => 'Parent category',
             'status' => 'Status',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

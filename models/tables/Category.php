@@ -2,6 +2,7 @@
 
 namespace app\models\tables;
 
+use app\components\imageControl\MainImageBehavior;
 use app\components\PictureBehavior;
 use yii\db\ActiveRecord;
 
@@ -11,13 +12,21 @@ use yii\db\ActiveRecord;
  * @property int $id
  * @property string $title
  * @property int $parent_id
+ * @property int $status
  * @property string $created_at
  * @property string $updated_at
  *
+ * @property Category $parent
+ * @property Category[] $categories
  * @property Product[] $products
+ * @property Picture[] $pictures
  */
 class Category extends ActiveRecord
 {
+    const STATUS_DELETED = 0;
+    const STATUS_INACTIVE = 9;
+    const STATUS_ACTIVE = 10;
+
     /**
      * {@inheritdoc}
      */
@@ -44,6 +53,10 @@ class Category extends ActiveRecord
                 'class' => PictureBehavior::className(),
                 'connectedClassName' => CategoryPicture::className(),
             ],
+            'mainImage' => [
+                'class' => MainImageBehavior::class,
+                'relationship' => 'pictures'
+            ]
         ];
     }
 
@@ -54,7 +67,7 @@ class Category extends ActiveRecord
     {
         return [
             [['title'], 'required'],
-            [['parent_id'], 'integer'],
+            [['parent_id', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['title'], 'string', 'max' => 255],
         ];
@@ -69,6 +82,7 @@ class Category extends ActiveRecord
             'id' => 'ID',
             'title' => 'Title',
             'parent_id' => 'Parent ID',
+            'status' => 'Status',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
@@ -87,7 +101,7 @@ class Category extends ActiveRecord
      */
     public function getParent()
     {
-        return $this->hasOne(Category::className(), ['id' => 'parent_id']);
+        return $this->hasOne(static::className(), ['id' => 'parent_id']);
     }
 
     /**
@@ -95,6 +109,36 @@ class Category extends ActiveRecord
      */
     public function getCategories()
     {
-        return $this->hasMany(Category::className(), ['parent_id' => 'id']);
+        return $this->hasMany(static::className(), ['parent_id' => 'id']);
+    }
+
+    /**
+     * {@inheritdoc}
+     * @return \app\models\tables\query\CategoryQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        $query = new \app\models\tables\query\CategoryQuery(get_called_class());
+        if (!\Yii::$app->getModule('admin', false)) {
+            $query->active();
+        }
+        return $query;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategoryPictures()
+    {
+        return $this->hasMany(CategoryPicture::class, ['product_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPictures()
+    {
+        return $this->hasMany(Picture::class, ['id' => 'picture_id'])
+            ->via('categoryPictures');
     }
 }

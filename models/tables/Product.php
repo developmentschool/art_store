@@ -136,7 +136,11 @@ class Product extends \yii\db\ActiveRecord
      */
     public static function find()
     {
-        return (new \app\models\tables\query\ProductQuery(get_called_class()))->active();
+        $query = new \app\models\tables\query\ProductQuery(get_called_class());
+        if (!\Yii::$app->getModule('admin', false)) {
+            $query->active();
+        }
+        return $query;
     }
 
     /**
