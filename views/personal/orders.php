@@ -1,30 +1,11 @@
 <?php
 /* @var $this \yii\web\View */
 
-use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
-use yii\helpers\Url; ?>
+
+?>
 <div class="row flex-nowrap">
-    <!--<h2 class="h3 pb-3">Ваши заказы</h2>-->
-    <!--<table class="table table-bordered checkout-table">-->
-    <!--    <tr>-->
-    <!--        <th>Товар</th>-->
-    <!--        <th>Количество</th>-->
-    <!--        <th>Сумма</th>-->
-    <!--    </tr>-->
-    <!--    --><?php //foreach ($products as $product): ?>
-    <!--        <tr>-->
-    <!--            <td>--><? //= $product['product']->title ?><!--</td>-->
-    <!--            <td>--><? //= $product['quantity'] ?><!--</td>-->
-    <!--            <td class="price">--><? //= $product['product']->price * $product['quantity'] ?><!-- РУБ</td>-->
-    <!--        </tr>-->
-    <!--    --><?php //endforeach; ?>
-    <!--    <tr>-->
-    <!--        <td>Общая сумма</td>-->
-    <!--        <td>&nbsp;</td>-->
-    <!--        <td class="price">--><? //= $totalSum ?><!-- РУБ</td>-->
-    <!--    </tr>-->
-    <!--</table>-->
+
     <div class="col-auto">
         <div class="sidebar">
             <?= Html::a('Обо мне', ['/personal/index'], ['class' => 'btn btn-secondary btn-lg btn-block']) ?>
@@ -33,56 +14,51 @@ use yii\helpers\Url; ?>
         </div>
     </div>
     <div class="col-auto flex-fill ">
-        <div class="card card-body">
-            <div>
-                <a class="btn btn-secondary btn-block" data-toggle="collapse" href="#collapse3" role="button"
-                   aria-expanded="false" aria-controls="collapseExample">
-                    Заказ № 1 от 24.01.2019
-                </a>
-            </div>
-            <div class="collapse" id="collapse3">
-                <table class="table table-striped">
-                    <tr>
-                        <th>#</th>
-                        <th>Продукт</th>
-                        <th>Цена</th>
-                        <th class="text-center">Количество</th>
-                        <th>Сумма</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>1/48 MESSERSCHMITT Me 410B-2/U2/R4 HEAVY FIGHTER</td>
-                        <td class="price">1000 РУБ</td>
-                        <td class="text-center">10</td>
-                        <td class="price">1000 РУБ</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>1/48 MESSERSCHMITT Me 410B-2/U2/R4 HEAVY FIGHTER</td>
-                        <td class="price">1000 РУБ</td>
-                        <td class="text-center">10</td>
-                        <td class="price">1000 РУБ</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>1/48 MESSERSCHMITT Me 410B-2/U2/R4 HEAVY FIGHTER</td>
-                        <td class="price">1000 РУБ</td>
-                        <td class="text-center">10</td>
-                        <td class="price">1000 РУБ</td>
-                    </tr>
-                    <tr>
-                        <td>Общая сумма</td>
-                        <td>&nbsp;</td>
-                        <td class="price">10000 РУБ</td>
-                    </tr>
-                </table>
+        <?php foreach ($orders as $order): ?>
+            <div class="card card-body">
+                <div>
+                    <a class="btn btn-secondary btn-block" data-toggle="collapse" href="#collapse<?= $order['id'] ?>"
+                       role="button"
+                       aria-expanded="false" aria-controls="collapseExample">
+                        Заказ № <?= $order['id'] ?> от <?= $order['created_at'] ?> на сумму <?= $order['total'] ?> /
+                        статус заказа: <?= $order['status'] ?>
+                    </a>
+                </div>
+                <div class="collapse" id="collapse<?= $order['id'] ?>">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Артикул</th>
+                            <th>Продукт</th>
+                            <th>Цена</th>
+                            <th class="text-center">Количество</th>
+                            <th>Сумма</th>
+                        </tr>
+                        <?php foreach ($order['products'] as $product): ?>
+                            <tr>
+                                <td><?= $product['id'] ?></td>
+                                <td><?= $product['title'] ?></td>
+                                <td class="price"><?= $product['price'] ?> РУБ</td>
+                                <td class="text-center"><?= $product['quantity'] ?></td>
+                                <td class="price"><?= $product['subtotal'] ?> РУБ</td>
+                            </tr>
+                        <?php endforeach; ?>
 
-                <?= Html::submitButton('Обновить данные',
-                    ['class' => 'btn btn-primary', 'id' => 'update-addresses-btn', 'disabled' => true]) ?>
-                <?= Html::button('Редактировать', ['class' => 'btn btn-secondary', 'id' => 'addresses-btn-edit']) ?>
 
+                        <tr>
+                            <td>Общая сумма</td>
+                            <td>&nbsp;</td>
+                            <td class="price"><?= $order['total'] ?> РУБ</td>
+                        </tr>
+                    </table>
+
+                    <?php if ($order['status'] == 'В работе'): ?>
+                        <?= Html::a('Отменить заказ', ["personal/cancel-order/{$order['id']}"],
+                            ['class' => 'btn btn-primary  btn-block']) ?>
+                    <?php endif; ?>
+
+                </div>
             </div>
-        </div>
+        <?php endforeach; ?>
     </div>
 </div>
 <!--<div class="row flex-nowrap">-->

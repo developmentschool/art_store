@@ -13,12 +13,16 @@ use yii\db\ActiveRecord;
  * @property string $shipment_addr
  * @property string $created_at
  * @property string $updated_at
- *
+ * @property integer $status
  * @property Users $user
  * @property OrdersProducts[] $ordersProducts
  */
 class Orders extends \yii\db\ActiveRecord
 {
+    const STATUS_ACTIVE = 1;
+    const STATUS_DONE = 2;
+    const STATUS_CANCELED = 3;
+
     /**
      * {@inheritdoc}
      */
@@ -51,10 +55,18 @@ class Orders extends \yii\db\ActiveRecord
     {
         return [
             [['user_id',], 'required'],
-            [['user_id'], 'integer'],
+            [['user_id', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
+            [['status'], 'default', 'value' => self::STATUS_ACTIVE, 'on' => 'insert'],
+            [['status'], 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DONE, self::STATUS_CANCELED]],
             [['shipment_addr'], 'string', 'max' => 255],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [
+                ['user_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Users::className(),
+                'targetAttribute' => ['user_id' => 'id'],
+            ],
         ];
     }
 
