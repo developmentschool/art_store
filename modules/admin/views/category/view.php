@@ -2,17 +2,18 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use \app\modules\admin\models\Product;
+use app\modules\admin\models\Category;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\admin\models\Users */
+/* @var $model app\modules\admin\models\Category */
+/* @var $images string */
 
-$this->title = $model->username;
-$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
+$this->title = $model->title;
+$this->params['breadcrumbs'][] = ['label' => 'Categories', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="users-view">
+<div class="category-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -31,16 +32,21 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'username',
-            'auth_key',
-            //'password_hash',
-            'password_reset_token',
-            'verification_token',
-            'email:email',
-            Product::getStatusColumnForWidget(),
+            'title',
+            [
+                'attribute' => 'parent.title',
+                'value' => function ($model) {
+                    return $model->parent ? $model->parent->title : '---';
+                },
+            ],
+            Category::getStatusColumnForWidget(),
             'created_at',
             'updated_at',
         ],
     ]) ?>
+
+    <h3>Pictures</h3>
+
+    <?= $images ?>
 
 </div>

@@ -1,22 +1,32 @@
 <?php
 
-use app\modules\admin\models\Users;
+use app\modules\admin\models\Product;
 use yii\grid\GridView;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\modules\admin\models\search\UsersSearch */
+/* @var $searchModel app\modules\admin\models\search\ProductSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Users';
+$this->title = 'Products';
 $this->params['breadcrumbs'][] = $this->title;
+$dataProvider->setSort([
+    'attributes' => [
+        'id',
+        'title',
+        'description',
+        'price',
+        'category.title',
+        'status'
+    ]
+])
 ?>
-<div class="users-index">
+<div class="product-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Users', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Product', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -30,14 +40,19 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'username',
-            'email:email',
-            Users::getStatusColumnForWidget(),
+            'title',
+            'description:ntext',
+            'price',
+            [
+                'attribute' => 'category.title',
+                'filter' => Html::input('text', 'ProductSearch[category]', '', ['class' => 'form-control'])
+            ],
+            Product::getStatusColumnForWidget(),
             [
                 'class' => \app\widgets\ActionColumn::class,
                 'buttonOptions' => [
                     'delete' => [
-                        'data-confirm' => Yii::t('yii', 'Are you sure you want to mark this user as deleted?'),
+                        'data-confirm' => Yii::t('yii', 'Are you sure you want to mark this product as deleted?'),
                     ]
                 ],
                 'visibleButtons' => [
@@ -45,6 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         return (bool)$model->status;
                     }
                 ]
+
             ],
         ],
         'pager' => [
@@ -58,4 +74,5 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
     <?php \yii\widgets\Pjax::end() ?>
+
 </div>

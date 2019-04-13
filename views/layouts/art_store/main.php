@@ -84,10 +84,30 @@ FontAwesomeAsset::register($this);
             <div class="container-fluid py-4">
                 <div class="row justify-content-between align-items-center">
 
+                    <div class="col-auto d-flex align-items-center">
+
+                        <a href="/" class="logo mr-5"><img src="<?= Yii::$app->cloudinary->getImageURL('logo.png') ?>" alt="Art-Store-Studio"></a>
+
+                        <ul class="nav header-nav">
+                            <li><a class="nav-link" href="#">Главная</a></li>
+                            <li><a class="nav-link" href="#">Каталог</a></li>
+                            <li><a class="nav-link" href="#">Личный кабинет</a></li>
+                            <li><a class="nav-link" href="#">Контакты</a></li>
+                        </ul>
+
+                    </div>
+
                     <div class="col-auto">
-                        <a href="/" class="logo"><img src="<?= Yii::$app->cloudinary->getImageURL('logo.png') ?>"
-                                                      alt="Art-Store-Studio">
-                        </a>
+                        <ul class="list-group list-group-horizontal">
+                            <li class="list-group-item d-flex flex-column justify-content-center">
+                                <span>Art-Store Studio<br>С нами проявится ваш талант</span>
+                            </li>
+                            <li class="list-group-item d-flex flex-column justify-content-center">
+                                <span>Тел: +7777-777-77-77</span>
+                                <span>Email: mail@mail.com</span>
+                          </li>
+                        </ul>
+
                     </div>
                     <ul class="list-group list-group-horizontal">
                         <li class="list-group-item d-flex flex-column justify-content-center">
@@ -142,6 +162,10 @@ FontAwesomeAsset::register($this);
             ]) ?>
         </div>
 
+        <?php
+            if (Yii::$app->controller->action->id == 'index') echo $this->render('carusel');
+        ?>
+        
         <div class="container-fluid py-5">
             <?= \app\widgets\Alert::widget() ?>
             <?= $content ?>

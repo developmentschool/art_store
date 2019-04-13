@@ -344,7 +344,7 @@ $.Widget.prototype = {
 			this._setOptionDisabled( this.options.disabled );
 		}
 
-		this._trigger( "create", null, this._getCreateEventData() );
+		this._trigger( "modules.admin.views.category.create", null, this._getCreateEventData() );
 		this._init();
 	},
 
