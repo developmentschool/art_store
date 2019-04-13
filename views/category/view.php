@@ -42,13 +42,18 @@ echo \yii\widgets\ListView::widget([
         return $widget->getView()->render('productItem', ['model' => $model]);
     },
     'pager' => [
-        'pageCssClass' => 'page-link',
-        'prevPageCssClass' => 'page-link',
-        'nextPageCssClass' => 'page-link',
+        'firstPageLabel' => 'Начало',
+        'lastPageLabel' => 'Конец',
+        'prevPageLabel' => '«',
+        'nextPageLabel' => '»',
+        'linkContainerOptions' => ['class' => 'page-item'],
+        'linkOptions' => ['class' => 'page-link'],
+        'disabledListItemSubTagOptions' => ['tag' => 'a', 'class' => 'page-link'],
+        'maxButtonCount' => 3,
         'options' => [
             'class' => 'pagination justify-content-center'
         ]
-    ]
+    ],
 ]);
 
 
