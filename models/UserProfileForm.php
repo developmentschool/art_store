@@ -4,14 +4,33 @@
 namespace app\models;
 
 
-class UserProfileForm extends OrderForm
+use yii\base\Model;
+
+class UserProfileForm extends Model
 {
     public $birthday;
+    public $userId;
+    public $firstName;
+    public $lastName;
+    public $phoneNum;
 
     public function attributeLabels()
     {
-        $attributes = parent::attributeLabels();
-        $attributes['birthday'] = 'День Рождения';
-        return $attributes;
+        return [
+            'birthday' => 'День Рождения',
+            'userId' => 'ID',
+            'firstName' => 'Имя',
+            'lastName' => 'Фамилия',
+            'phoneNum' => 'Телефон',
+        ];
+    }
+
+    public function rules()
+    {
+        return [
+            [['birthday', 'firstName', 'lastName', 'phoneNum'], 'string'],
+            [['userId', 'birthday'], 'safe'],
+            [['birthday'], 'date'],
+        ];
     }
 }

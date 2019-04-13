@@ -41,7 +41,7 @@ class BasketComponent extends Component implements IBasket
         $session->set('basket', $basket);
     }
 
-    public function clearBasket(): void
+    public function clearBasket()
     {
         $session = Yii::$app->session;
         $session->open();
@@ -54,7 +54,6 @@ class BasketComponent extends Component implements IBasket
         $session->open();
         return isset($session['basket']) ? $session['basket'] : null;
     }
-
 
 
 }

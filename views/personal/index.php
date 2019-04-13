@@ -35,6 +35,9 @@ use yii\web\View;
                     'method' => 'post',
                     'id' => 'personal-info',
                 ]); ?>
+                <?= $form->field($model, 'userId')->hiddenInput([
+                    'value' => $userData['id'],
+                ])->label(false) ?>
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
@@ -60,7 +63,7 @@ use yii\web\View;
                                 'language' => 'ru',
                                 'dateFormat' => 'dd.MM.yyyy',
                                 'options' => [
-                                    'placeholder' => '01.01.2020',
+                                    'placeholder' => $userData['birthday'],
                                     'class' => 'form-control',
                                     'autocomplete' => 'off',
                                     'readonly' => true,
@@ -89,8 +92,8 @@ use yii\web\View;
                     </div>
                 </div>
                 <?= Html::submitButton('Обновить данные',
-                    ['class' => 'btn btn-primary', 'id' => 'update-personal-info-btn', 'disabled' => true]) ?>
-                <?= Html::button('Редактировать', ['class' => 'btn btn-secondary', 'id' => 'personal-info-btn-edit']) ?>
+                    ['class' => 'btn btn-primary', 'disabled' => true]) ?>
+                <?= Html::button('Редактировать', ['class' => 'btn btn-secondary personal-info-btn-edit',]) ?>
                 <?php ActiveForm::end(); ?>
             </div>
         </div>
@@ -102,36 +105,78 @@ use yii\web\View;
                 </a>
             </div>
             <div class="collapse" id="collapse2">
-                <?php $form = ActiveForm::begin([
-                    'action' => Url::toRoute('/personal/address'),
-                    'method' => 'post',
-                    'id' => 'personal-address',
-                ]); ?>
                 <?php foreach ($addresses as $address): ?>
-                    <div class="row">
+
+                    <?php $form = ActiveForm::begin([
+                        'action' => Url::toRoute('/personal/address'),
+                        'method' => 'post',
+                    ]); ?>
+                    <div class="row input-group">
+                        <?= $form->field($addressModel, 'userId')->hiddenInput([
+                            'value' => $userData['id'],
+                        ])->label(false) ?>
+                        <?= $form->field($addressModel, 'id')->hiddenInput([
+                            'value' => $address['id'],
+                        ])->label(false) ?>
                         <div class="col">
                             <div class="form-group">
-                                <?= $form->field($model, 'city')->textInput([
-                                    'value' => $userData['city'],
+                                <?= $form->field($addressModel, 'city')->textInput([
+                                    'value' => $address['city'],
                                     'readonly' => true,
                                 ]) ?>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <?= $form->field($model, 'address')->textInput([
-                                    'value' => $userData['address'],
+                                <?= $form->field($addressModel, 'address')->textInput([
+                                    'value' => $address['address'],
                                     'readonly' => true,
                                 ]) ?>
                             </div>
                         </div>
                     </div>
+
+                    <?= Html::submitButton('Обновить данные',
+                    ['class' => 'btn btn-primary btn-sm', 'disabled' => true]) ?>
+                    <?= Html::button('Редактировать',
+                    ['class' => 'btn btn-secondary btn-sm personal-info-btn-edit',]) ?>
+                    <?= Html::a('Удалить адрес', ["/personal/delete-address/{$address['id']}"],
+                    [
+                        'class' => 'btn btn-danger btn-sm disabled',
+                    ]) ?>
+
+                    <?php ActiveForm::end(); ?>
                     <hr>
+
                 <?php endforeach; ?>
-                <?= Html::submitButton('Обновить данные',
-                    ['class' => 'btn btn-primary', 'id' => 'update-addresses-btn', 'disabled' => true]) ?>
-                <?= Html::button('Редактировать', ['class' => 'btn btn-secondary', 'id' => 'addresses-btn-edit']) ?>
+                <h4>Добавить новый адрес</h4>
+                <?php $form = ActiveForm::begin([
+                    'action' => Url::toRoute('/personal/address'),
+                    'method' => 'post',
+                ]); ?>
+                <div class="row input-group">
+                    <?= $form->field($addressModel, 'userId')->hiddenInput([
+                        'value' => $userData['id'],
+                    ])->label(false) ?>
+                    <?= $form->field($addressModel, 'id')->hiddenInput([
+                        'value' => null,
+                    ])->label(false) ?>
+                    <div class="col">
+                        <div class="form-group">
+                            <?= $form->field($addressModel, 'city')->textInput() ?>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <?= $form->field($addressModel, 'address')->textInput() ?>
+                        </div>
+                    </div>
+
+                </div>
+                <?= Html::submitButton('Добавить адрес',
+                    ['class' => 'btn btn-primary btn-sm',]) ?>
                 <?php ActiveForm::end(); ?>
+                <hr>
             </div>
         </div>
         <div class="card card-body">
@@ -146,95 +191,40 @@ use yii\web\View;
                     'action' => Url::toRoute('/personal/password-change'),
                     'method' => 'post',
                     'id' => 'personal-password',
+                    'enableAjaxValidation' => true,
+                    'validateOnSubmit' => true,
+                    'validateOnType' => false,
+                    'validateOnChange' => false,
+                    'validateOnBlur' => false,
                 ]); ?>
 
-                                <div class="form-group">
-                                    <?= $form->field($model, 'firstName')->textInput([
-                                        'value' => $userData['firstName'],
-                                        'readonly' => true,
-                                    ]) ?>
-                                </div>
-                                <div class="form-group">
-                                    <?= $form->field($model, 'firstName')->textInput([
-                                        'value' => $userData['firstName'],
-                                        'readonly' => true,
-                                    ]) ?>
-                                </div>
-                                <div class="form-group">
-                                    <?= $form->field($model, 'firstName')->textInput([
-                                        'value' => $userData['firstName'],
-                                        'readonly' => true,
-                                    ]) ?>
-                                </div>
+                <div class="form-group">
+                    <?php
+                    /**
+                     * @var $passwordModel \app\models\PasswordChangeForm
+                     */
+                    ?>
+                    <?= $form->field($passwordModel, 'currentPass')->passwordInput([
+                        'readonly' => true,
+                    ]) ?>
+                </div>
+                <div class="form-group">
+                    <?= $form->field($passwordModel, 'newPass')->passwordInput([
+                        'readonly' => true,
+                    ]) ?>
+                </div>
+                <div class="form-group">
+                    <?= $form->field($passwordModel, 'newPassRepeat')->passwordInput([
+                        'readonly' => true,
+                    ]) ?>
+                </div>
 
                 <?= Html::submitButton('Обновить данные',
-                    ['class' => 'btn btn-primary', 'id' => 'update-addresses-btn', 'disabled' => true]) ?>
-                <?= Html::button('Редактировать', ['class' => 'btn btn-secondary', 'id' => 'addresses-btn-edit']) ?>
+                    ['class' => 'btn btn-primary', 'disabled' => true]) ?>
+                <?= Html::button('Редактировать', ['class' => 'btn btn-secondary personal-info-btn-edit']) ?>
                 <?php ActiveForm::end(); ?>
             </div>
         </div>
     </div>
-    <!--    <div class="col-auto flex-fill " id="dfnm">-->
-    <!---->
-    <!--        <h2 class="h3 pb-3">Персональная информация</h2>-->
-    <!--        <form action="#">-->
-    <!--            <div class="row">-->
-    <!--                <div class="col">-->
-    <!--                    <div class="form-group">-->
-    <!--                        <label class="label" for="exampleInputFirstName1">Имя<span class="text-danger">*</span></label>-->
-    <!--                        <input type="text" class="form-control" id="exampleInputFirstName1">-->
-    <!--                    </div>-->
-    <!--                </div>-->
-    <!--                <div class="col">-->
-    <!--                    <div class="form-group">-->
-    <!--                        <label class="label" for="exampleInputLastName1">Фамилия<span-->
-    <!--                                    class="text-danger">*</span></label>-->
-    <!--                        <input type="text" class="form-control" id="exampleInputLastName1">-->
-    <!--                    </div>-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--            <div class="row">-->
-    <!--                <div class="col">-->
-    <!--                    <div class="form-group">-->
-    <!--                        <label class="label" for="exampleInputFirstName1">First Name <span class="text-danger">*</span></label>-->
-    <!--                        <input type="text" class="form-control" id="exampleInputFirstName1">-->
-    <!--                    </div>-->
-    <!--                </div>-->
-    <!--                <div class="col">-->
-    <!--                    <div class="form-group">-->
-    <!--                        <label class="label" for="exampleInputLastName1">Last Name <span-->
-    <!--                                    class="text-danger">*</span></label>-->
-    <!--                        <input type="text" class="form-control" id="exampleInputLastName1">-->
-    <!--                    </div>-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--            --><? //= Html::submitButton('Обновить данные',['class'=>'btn btn-primary'])?>
-    <!--        </form>-->
-    <!--        <h2 class="h3 pb-3">Адреса доставки</h2>-->
-    <!--        <form action="#">-->
-    <!--            <div class="form-group">-->
-    <!--                <label class="label" for="exampleInputEmail1">Email Address</label>-->
-    <!--                <input type="email" class="form-control" id="exampleInputEmail1">-->
-    <!--            </div>-->
-    <!--            <fieldset>-->
-    <!--                <legend>Password change</legend>-->
-    <!--                <div class="form-group">-->
-    <!--                    <label class="label" for="exampleInputPassword1">Current password (leave blank to leave-->
-    <!--                        unchanged)</label>-->
-    <!--                    <input type="text" class="form-control" id="exampleInputPassword1">-->
-    <!--                </div>-->
-    <!--                <div class="form-group">-->
-    <!--                    <label class="label" for="exampleInputPassword2">New password (leave blank to leave-->
-    <!--                        unchanged)</label>-->
-    <!--                    <input type="text" class="form-control" id="exampleInputPassword2">-->
-    <!--                </div>-->
-    <!--                <div class="form-group">-->
-    <!--                    <label class="label" for="exampleInputLastName3">Confirm new password</label>-->
-    <!--                    <input type="text" class="form-control" id="exampleInputLastName3">-->
-    <!--                </div>-->
-    <!--            </fieldset>-->
-    <!--            <button type="submit" class="btn btn-primary">Submit</button>-->
-    <!--        </form>-->
-    <!--    </div>-->
 </div>
 

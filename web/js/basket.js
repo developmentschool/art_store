@@ -1,19 +1,27 @@
 "use strict";
 $(document).ready(function () {
     $("#phoneNumber").mask("+7 (999) 999-99-99");
-    let personalInfoBtn = $("#personal-info-btn-edit");
-    personalInfoBtn.on('click', () => {
+    let personalInfoBtn = $(".personal-info-btn-edit");
+    personalInfoBtn.on('click', (event) => {
+        let target = $(event.target);
+        let id = target.parent().attr("id");
+        console.log(target.parent());
 
-        $("#personal-info :input").attr("readonly", (index, attr) => {
+        $(`#${id} :input`).attr("readonly", (index, attr) => {
             return attr ? false : true;
         });
-        $("#update-personal-info-btn").attr("disabled", (index, attr) => {
+
+        target.prev().attr("disabled", (index, attr) => {
             return attr ? false : true;
         });
+
+        target.next().hasClass('disabled') ? target.next().removeClass('disabled') : target.next().addClass('disabled');
+
         let btnName = () => {
-            return personalInfoBtn.html() === 'Редактировать' ? 'Блокировать' : 'Редактировать';
+            return target.html() === 'Редактировать' ? 'Блокировать' : 'Редактировать';
         };
-        personalInfoBtn.html(btnName);
+        target.html(btnName);
+        $("#phoneNumber").mask("+7 (999) 999-99-99");
     });
 
     let user_id = $("#basket-address").data('userid');

@@ -30,10 +30,14 @@ class UserService
             $userData['firstName'] = null;
             $userData['lastName'] = null;
             $userData['phone'] = null;
+            $userData['birthday'] = null;
+            $userData['id'] = null;
         } else {
             $userData['firstName'] = $userProfile->first_name;
             $userData['lastName'] = $userProfile->last_name;
             $userData['phone'] = $userProfile->phone;
+            $userData['birthday'] = $userProfile->birthday;
+            $userData['id'] = $id;
         }
 
         $userData['id'] = $userIdentity->id;
