@@ -2,7 +2,7 @@
 
 namespace app\models\tables;
 
-use Yii;
+use app\components\imageControl\FileBehavior;
 use yii\db\ActiveRecord;
 
 /**
@@ -34,6 +34,7 @@ class Picture extends ActiveRecord
             [['created_at', 'updated_at'], 'safe'],
             [['title'], 'string', 'max' => 255,],
             [['ext'], 'string', 'max' => 12],
+            ['file', 'file', 'extensions' => ['jpg', 'jpeg', 'pjpeg', 'png', 'gif'], 'skipOnEmpty' => !$this->isNewRecord],
         ];
     }
 
@@ -51,6 +52,10 @@ class Picture extends ActiveRecord
                 ],
                 'value' => date('Y-m-d H:i:s'),
             ],
+            'file' => [
+                'class' => FileBehavior::class,
+                'storage' => \Yii::$app->cloudinary,
+            ]
         ];
     }
 
@@ -67,5 +72,39 @@ class Picture extends ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategoryPictures()
+    {
+        return $this->hasMany(CategoryPicture::className(), ['picture_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProductPictures()
+    {
+        return $this->hasMany(ProductPicture::className(), ['picture_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategory()
+    {
+        return $this->hasMany(Category::class, ['id' => 'product_id'])
+            ->via('categoryPictures');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProduct()
+    {
+        return $this->hasMany(Product::class, ['id' => 'product_id'])
+            ->via('productPictures');
     }
 }
