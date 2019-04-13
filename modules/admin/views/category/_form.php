@@ -17,7 +17,10 @@ use yii\helpers\Html;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'parent_id')->dropDownList(ArrayHelper::merge(['' => '---'], CategoryService::getAllCategoryDrop(['id' => [$model->id]]))) ?>
+    <?= $form->field($model, 'parent_id')->dropDownList(ArrayHelper::merge(
+        ['' => '---'],
+        CategoryService::getAllCategoryDrop($model->isNewRecord ? [] : ['id' => [$model->id]])
+    )) ?>
 
     <?= $form->field($model, 'status')->dropDownList($model->getStatuses(), [
         'options' => [
