@@ -138,7 +138,9 @@ class CategoryController extends Controller
         $model->status = Category::STATUS_DELETED;
         $model->save();
 
-        return $this->actionIndex();
+        Yii::$app->user->setReturnUrl(Yii::$app->request->referrer);
+        //return $this->actionIndex();
+        return $this->goBack();
     }
 
     /**

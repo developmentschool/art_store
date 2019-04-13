@@ -27,7 +27,11 @@ $dataProvider->setSort([
         <?= Html::a('Create Category', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-<!--    --><?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <!--    --><?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <?php \yii\widgets\Pjax::begin([
+        'enablePushState' => true,
+    ]) ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -74,5 +78,6 @@ $dataProvider->setSort([
         ]
     ]); ?>
 
+    <?php \yii\widgets\Pjax::end() ?>
 
 </div>

@@ -137,7 +137,8 @@ class ProductController extends Controller
         $model->status = Product::STATUS_DELETED;
         $model->save();
 
-        return $this->actionIndex();
+        //return $this->actionIndex();
+        return $this->redirect(['index']);
     }
 
     /**

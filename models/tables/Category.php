@@ -70,6 +70,7 @@ class Category extends ActiveRecord
             [['parent_id', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['title'], 'string', 'max' => 255],
+            ['status', 'default', 'value' => self::STATUS_INACTIVE],
         ];
     }
 
