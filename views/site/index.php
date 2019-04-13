@@ -18,7 +18,7 @@
 <div class="section-elements">
     <h5 class="heading-title">
         <hr>
-        <span>Top News</span>
+        <span>Самые новые</span>
     </h5>
     <div class="row">
         <?php
@@ -32,7 +32,7 @@
 <div class="section-elements">
     <h5 class="heading-title">
         <hr>
-        <span>Top News "Other brands"</span>
+        <span>Последние поступления</span>
     </h5>
     <div class="row">
         <?php

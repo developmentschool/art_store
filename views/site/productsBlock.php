@@ -25,7 +25,7 @@
                             <i class="far fa-heart"></i>
                             <span>Хочу</span>
                         </a>
-                        <a href="#" class="card-link basket-button" data-id="<?= $product->id ?>">
+                        <a href="#" class="card-link cart-button" data-id="<?= $product->id ?>">
                             <i class="fas fa-shopping-basket"></i>
                             <span>В корзину</span>
                         </a>

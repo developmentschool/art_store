@@ -5,7 +5,7 @@ return [
     'logisticManagerEmail'=>'nboldar1@gmail.com',
     'user.passwordResetTokenExpire' => 3600,
     'controllers'=>[
-        'basket',
+        'cart',
         'category',
         'picture',
         'product',

@@ -21,7 +21,6 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-       // '@bower-asset/jquery-ui/themes/base/autocomplete.css',
         'css/style.css',
         'css/sidebar.css',
         'css/product.css',
@@ -29,10 +28,9 @@ class AppAsset extends AssetBundle
         'css/order.css',
     ];
     public $js = [
-       // '@bower-asset/jquery-ui/ui/widgets/autocomplete.js',
         'vendor/maskedinput/jquery.maskedinput.js',
         'js/script.js',
-        'js/basket.js',
+        'js/cart.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

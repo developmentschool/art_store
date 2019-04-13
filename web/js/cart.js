@@ -25,20 +25,20 @@ $(document).ready(function () {
     });
 
     $.ajax({
-        url: `${location.origin}/basket-ajax/getnum`,
+        url: `${location.origin}/cart-ajax/getnum`,
         success: function (result) {
             let data = JSON.parse(result);
             $(".count-item__count:last").html(data.basketCount);
         }
     });
 });
-$(".basket-button").on("click", function (event) {
+$(".cart-button").on("click", function (event) {
     event.preventDefault();
     let id = (event.target.tagName === "SPAN" ? event.target.parentNode.dataset.id : event.target.dataset.id);
     let quantity = $("#product-quantity").val();
     quantity = (typeof (quantity) === "undefined" ? 1 : quantity);
     $.ajax({
-        url: `${location.origin}/basket-ajax/add`,
+        url: `${location.origin}/cart-ajax/add`,
         data: {
             id: id,
             quantity: quantity,
@@ -51,15 +51,15 @@ $(".basket-button").on("click", function (event) {
     });
 });
 $(document).on("click", (event) => {
-    if ($(event.target).hasClass("btn-basket-plus") || $(event.target).hasClass("btn-basket-minus")) {
+    if ($(event.target).hasClass("btn-cart-plus") || $(event.target).hasClass("btn-cart-minus")) {
         let parent = $(event.target).parent().parent().parent();
         let id = parent.data("id");
         let quantity = parent.find("._js_input").val();
         let price = parent.find(".prod-price").html();
-        let action = ($(event.target).hasClass("btn-basket-plus") ? "add" : "del");
+        let action = ($(event.target).hasClass("btn-cart-plus") ? "add" : "del");
         parent.find(".product-sum").html(`${quantity * price}`);
         $.ajax({
-            url: `${location.origin}/basket-ajax/${action}`,
+            url: `${location.origin}/cart-ajax/${action}`,
             data: {
                 id: id,
                 quantity: 1,

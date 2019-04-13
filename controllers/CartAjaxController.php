@@ -10,7 +10,7 @@ use app\services\UserService;
 use Yii;
 use yii\web\Controller;
 
-class BasketAjaxController extends Controller
+class CartAjaxController extends Controller
 {
     public function actionAdd()
     {

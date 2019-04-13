@@ -36,6 +36,14 @@ class LoginForm extends Model
             [['captcha'], 'captcha'],
         ];
     }
+    public function attributeLabels()
+    {
+        return [
+            'username'=>'Логин',
+            'password'=>'Пароль',
+            'rememberMe'=>'Запомнить меня'
+        ];
+    }
 
     /**
      * Validates the password.

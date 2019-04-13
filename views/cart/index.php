@@ -8,7 +8,7 @@ use yii\helpers\Url;
 
 
 <?php Pjax::begin([
-    'linkSelector' => '.basket-next',
+    'linkSelector' => '.cart-next',
 ]) ?>
 <?php
 echo $this->render('head', ['mark' => $mark]);
@@ -32,16 +32,16 @@ echo $this->render('head', ['mark' => $mark]);
                     <td><span class="prod-price"><?= $product['product']->price ?></span> РУБ</td>
                     <td>
                         <div class="input-quantity _js_quantity">
-                            <button class="btn btn-outline-secondary _js_minus btn-basket-minus" type="button">-</button>
+                            <button class="btn btn-outline-secondary _js_minus btn-cart-minus" type="button">-</button>
                             <input type="text" class="form-control _js_input"
                                    value="<?= $product['quantity'] ?>">
-                            <button class="btn btn-outline-secondary _js_plus btn-basket-plus" type="button">+</button>
+                            <button class="btn btn-outline-secondary _js_plus btn-cart-plus" type="button">+</button>
                         </div>
                     </td>
                     <td><span class="product-sum"><?= $product['product']->price * $product['quantity'] ?></span> РУБ
                     </td>
                     <td><span class="delete-order"><a href="
-                    <?= \yii\helpers\Url::toRoute(['basket/delete-item', 'id' => $product['product']->id]) ?>
+                    <?= \yii\helpers\Url::toRoute(['cart/delete-item', 'id' => $product['product']->id]) ?>
 ">X</a></span></td>
                 </tr>
             <?php endforeach; ?>
@@ -76,9 +76,9 @@ echo $this->render('head', ['mark' => $mark]);
                     </table>
                     <a class="btn btn-primary" href="<?= Url::toRoute('/product') ?>" role="button">Продолжить
                         покупки</a>
-                    <a class="btn btn-primary basket-next" href="<?= Url::toRoute('/basket/checkout') ?>" role="button">Оформить
+                    <a class="btn btn-primary basket-next" href="<?= Url::toRoute('/cart/checkout') ?>" role="button">Оформить
                         заказ</a>
-                    <a class="btn btn-primary" href="<?= Url::toRoute('/basket/delete') ?>" role="button">Удалить
+                    <a class="btn btn-primary" href="<?= Url::toRoute('/cart/delete') ?>" role="button">Удалить
                         корзину</a>
                 </form>
             </div>

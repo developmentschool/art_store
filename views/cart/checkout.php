@@ -9,7 +9,7 @@ use yii\helpers\Html;
 
 ?>
 <?php Pjax::begin([
-    'linkSelector' => '.basket-next',
+    'linkSelector' => '.cart-next',
 ]) ?>
 <?php
 echo $this->render('head', ['mark' => $mark]);
@@ -18,7 +18,7 @@ echo $this->render('head', ['mark' => $mark]);
 
     <div class="container-fluid my-5">
         <?php $form = ActiveForm::begin([
-            'action' => Url::toRoute('/basket/order'),
+            'action' => Url::toRoute('/cart/order'),
             'method' => 'post',
             'id' => 'order-form',
         ]); ?>
@@ -146,7 +146,7 @@ echo $this->render('head', ['mark' => $mark]);
                         <?= $form->field($model, 'isAgree')->checkbox(['value' => 1, 'uncheckValue' => 0]); ?>
                     </div>
                 </div>
-                <a class="btn btn-primary basket-next" href="<?= Url::toRoute('/basket') ?>" role="button">Назад</a>
+                <a class="btn btn-primary basket-next" href="<?= Url::toRoute('/cart') ?>" role="button">Назад</a>
                 <?= Html::submitButton('Оформить', ['class' => 'btn btn-primary']) ?>
             </div>
         </div>

@@ -21,8 +21,6 @@ FontAwesomeAsset::register($this);
         <meta charset="<?= Yii::$app->charset ?>">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!--        <link rel="shortcut icon" href="-->
-        <?php //Yii::$app->cloudinary->getImageUrl('favicon.ico') ?><!--" type="image/png">-->
         <?php $this->registerCsrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
@@ -37,7 +35,7 @@ FontAwesomeAsset::register($this);
                 <div class="row justify-content-between align-items-center">
                     <div class="col-auto">
                         <form action="#" class="header-search">
-                            <input type="text" placeholder="Search">
+                            <input type="text" placeholder="Поиск">
                         </form>
                     </div>
                     <div class="col-auto d-flex">
@@ -50,7 +48,7 @@ FontAwesomeAsset::register($this);
                                 </a>
                             </li>
                             <li>
-                                <a href=" <?=Url::toRoute('/basket')?>" class="count-item">
+                                <a href=" <?=Url::toRoute('/cart')?>" class="count-item">
                                     <i class="fas fa-shopping-cart"></i>
                                     <div class="count-item__count">0</div>
                                 </a>
@@ -59,10 +57,10 @@ FontAwesomeAsset::register($this);
                                 <div class="header-account">
                                     <?php
                                     if (Yii::$app->user->isGuest) {
-                                        echo Html::a('Login or Register', ['site/login'], ['class' => 'link']);
+                                        echo Html::a('Вход или Регистрация', ['site/login'], ['class' => 'link']);
                                     } else {
                                         echo Html::a(
-                                            'Logout',
+                                            'Выйти',
                                             ['site/logout'],
                                             [
                                                 'class' => 'link',
@@ -154,7 +152,7 @@ FontAwesomeAsset::register($this);
             'headerOptions' => ['id' => 'modalHeader'],
             'id' => 'modal',
             'size' => 'modal-sm',
-            'footer' =>  '<a class="btn btn-primary btn-block" href="/basket" role="button">Перейти в корзину</a>',
+            'footer' =>  '<a class="btn btn-primary btn-block" href="/cart" role="button">Перейти в корзину</a>',
         ]);
         echo '<h4 class="center-block">Товар в корзине!!!</h4>';
         \yii\bootstrap4\Modal::end();

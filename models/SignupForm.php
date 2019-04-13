@@ -24,17 +24,37 @@ class SignupForm extends Model
         return [
             ['username', 'trim'],
             ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\app\models\User', 'message' => 'This username has already been taken.'],
+            [
+                'username',
+                'unique',
+                'targetClass' => '\app\models\User',
+                'message' => 'This username has already been taken.',
+            ],
             ['username', 'string', 'min' => 2, 'max' => 255],
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\app\models\User', 'message' => 'This email address has already been taken.'],
+            [
+                'email',
+                'unique',
+                'targetClass' => '\app\models\User',
+                'message' => 'This email address has already been taken.',
+            ],
             [['password', 'password_repeat'], 'required'],
             [['password', 'password_repeat'], 'string', 'min' => 6],
             [['password_repeat'], 'compare', 'compareAttribute' => 'password'],
             [['captcha'], 'captcha'],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'username' => 'Логин',
+            'email' => 'Email',
+            'password' => 'Пароль',
+            'password_repeat' => 'Повторить пароль',
         ];
     }
 
@@ -60,7 +80,9 @@ class SignupForm extends Model
 
     /**
      * Sends confirmation email to user
+     *
      * @param User $user user model to with email should be send
+     *
      * @return bool whether the email was sent
      */
     protected function sendEmail($user)
@@ -75,7 +97,7 @@ class SignupForm extends Model
             )
             ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->name . ' robot'])
             ->setTo($this->email)
-            ->setSubject('Account registration at ' . Yii::$app->name);
+            ->setSubject('Регистрация на сайте ' . Yii::$app->name);
 
         for ($i = 0, $res = false; !$res && $i < 5; $i++) {
 
