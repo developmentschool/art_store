@@ -24,22 +24,6 @@ $(document).ready(function () {
         $("#phoneNumber").mask("+7 (999) 999-99-99");
     });
 
-    let user_id = $("#basket-address").data('userid');
-
-    fetch(`${location.origin}/basket-ajax/get-user-addresses?userid=${user_id}`)
-        .then((response) => {
-            return response.json();
-        })
-        .then((data) => {
-            let addresses = data.address;
-            let cities = data.city;
-            $("#basket-address").autocomplete({
-                source: addresses
-            });
-            $("#basket-city").autocomplete({
-                source: cities
-            });
-        });
     $.ajax({
         url: `${location.origin}/basket-ajax/getnum`,
         success: function (result) {

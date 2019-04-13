@@ -40,20 +40,35 @@ echo $this->render('head', ['mark' => $mark]);
                 </div>
                 <div class="form-group">
 
-                    <?= $form->field($model, 'city')->textInput([
-                        'value' => $userData['city'][0],
-                        'id' => 'basket-city',
-                    ]) ?>
+                    <?= $form->field($model, 'city')->widget(\yii\jui\AutoComplete::className(), [
+
+                        'clientOptions' => [
+                            'source' => $userData['city'],
+                        ],
+                        'options' => [
+                            'class' => 'form-control',
+                            'value' => $userData['city'][0],
+                            'id' => 'user-city-list',
+                        ],
+                    ])
+                    ?>
 
                 </div>
                 <div class="form-group">
 
 
-                    <?= $form->field($model, 'address')->textInput([
-                        'value' => $userData['address'][0],
-                        'id' => 'basket-address',
-                        'data-userId'=>$userData['id'],
-                    ]) ?>
+                    <?= $form->field($model, 'address')->widget(\yii\jui\AutoComplete::className(), [
+
+                        'clientOptions' => [
+                            'source' => $userData['address'],
+                        ],
+                        'options' => [
+                            'class' => 'form-control',
+                            'data-userId' => $userData['id'],
+                            'value' => $userData['address'][0],
+                            'id' => 'user-address-list',
+                        ],
+                    ])?>
                 </div>
                 <div class="row">
                     <div class="col">
@@ -128,7 +143,7 @@ echo $this->render('head', ['mark' => $mark]);
                         ); ?>
                     </div>
                     <div class="form-group form-check">
-                        <?= $form->field($model, 'isAgree')->checkbox(['value'=>1,'uncheckValue'=>0]); ?>
+                        <?= $form->field($model, 'isAgree')->checkbox(['value' => 1, 'uncheckValue' => 0]); ?>
                     </div>
                 </div>
                 <a class="btn btn-primary basket-next" href="<?= Url::toRoute('/basket') ?>" role="button">Назад</a>
