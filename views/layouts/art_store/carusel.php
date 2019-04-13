@@ -14,13 +14,13 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img class="d-block w-100" src="<?= Yii::$app->cloudinary->getImageURL('slider1.jpg') ?>" alt="#">
+            <div class="carousel-slide" style="background-image: url(<?= Yii::$app->cloudinary->getImageURL('slider1.jpg') ?>);"></div>
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="<?= Yii::$app->cloudinary->getImageURL('slider2.jpg') ?>" alt="#">
+            <div class="carousel-slide" style="background-image: url(<?= Yii::$app->cloudinary->getImageURL('slider2.jpg') ?>);"></div>
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="<?= Yii::$app->cloudinary->getImageURL('slider3.jpg') ?>" alt="#">
+            <div class="carousel-slide" style="background-image: url(<?= Yii::$app->cloudinary->getImageURL('slider3.jpg') ?>);"></div>
         </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -33,3 +33,4 @@
     </a>
 </div>
 
+<hr style="margin: 0; border-width: 3px; border-color: #FFA500;">

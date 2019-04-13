@@ -19,7 +19,7 @@ echo \yii\widgets\ListView::widget([
         'prevPageCssClass' => 'page-link',
         'nextPageCssClass' => 'page-link',
         'options' => [
-            'class' => 'pagination col-lg-12',
+            'class' => 'pagination justify-content-center',
         ],
     ],
 ]);
