@@ -30,7 +30,7 @@ class CategoryController extends \yii\web\Controller
         $productDataProvider = new ActiveDataProvider([
             'query' => $category->getProducts(),
             'pagination' => [
-                'pageSize' => 4
+                'pageSize' => 12
             ]
         ]);
 

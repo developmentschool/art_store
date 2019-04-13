@@ -157,6 +157,7 @@ if (is_array($this->params['breadcrumbs']) && count($this->params['breadcrumbs']
                 <div class="dropdown-menu" aria-labelledby="pagesDropdown">
                         <a class="dropdown-item" href="<?= Url::to(['/admin/user/index']) ?>">Users</a>
                         <a class="dropdown-item" href="<?= Url::to(['/admin/product/index']) ?>">Product</a>
+                        <a class="dropdown-item" href="<?= Url::to(['/admin/category/index']) ?>">Category</a>
 
                 </div>
             </li>
