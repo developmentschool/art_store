@@ -46,7 +46,7 @@ use yii\widgets\Menu;
                                 <button class="btn btn-outline-secondary _js_plus" type="button">+</button>
                             </div>
                         </div>
-                        <button class="btn btn-outline-secondary  basket-button" data-id="<?= $model->id ?>">Добавить в корзину</button>
+                        <button class="btn btn-outline-secondary  cart-button" data-id="<?= $model->id ?>">Добавить в корзину</button>
                     </div>
                 </div>
                 <hr>

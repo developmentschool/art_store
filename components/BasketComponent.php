@@ -13,23 +13,23 @@ class BasketComponent extends Component implements IBasket
     {
         $session = Yii::$app->session;
         $session->open();
-        if (!isset($session['basket'])) {
-            $session->set('basket', []);
+        if (!isset($session['cart'])) {
+            $session->set('cart', []);
         }
-        $arr = $session->get('basket');
+        $arr = $session->get('cart');
         if (!isset($arr[$id])) {
             $arr[$id] = $count;
         } else {
             $arr[$id] += $count;
         }
-        $session->set('basket', $arr);
+        $session->set('cart', $arr);
     }
 
     public function delFromBasket($id, $count = null)
     {
         $session = Yii::$app->session;
         $session->open();
-        $basket = $session['basket'];
+        $basket = $session['cart'];
         if (is_null($basket) || !isset($basket[$id])) {
             return;
         }
@@ -38,23 +38,22 @@ class BasketComponent extends Component implements IBasket
         } else {
             $basket[$id] -= $count;
         }
-        $session->set('basket', $basket);
+        $session->set('cart', $basket);
     }
 
-    public function clearBasket(): void
+    public function clearBasket()
     {
         $session = Yii::$app->session;
         $session->open();
-        unset($session['basket']);
+        unset($session['cart']);
     }
 
     public function getBasket()
     {
         $session = Yii::$app->session;
         $session->open();
-        return isset($session['basket']) ? $session['basket'] : null;
+        return isset($session['cart']) ? $session['cart'] : null;
     }
-
 
 
 }

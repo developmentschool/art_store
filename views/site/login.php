@@ -8,13 +8,13 @@
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
 
-$this->title = 'Login';
+$this->title = 'Авторизация';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to login:</p>
+    <p>Пожалуйста заполните поля, чтобы авторизироваться на сайте:</p>
     <div class="row">
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin([
@@ -33,15 +33,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="form-group">
                 <div class="col-lg-offset-1 col-lg-11">
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-                    <?= Html::a('Register', ['signup'], ['class' => 'btn btn-warning']) ?>
+                    <?= Html::submitButton('Вход', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                    <?= Html::a('Регистрация', ['signup'], ['class' => 'btn btn-warning']) ?>
                 </div>
             </div>
 
             <?php ActiveForm::end(); ?>
 
             <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::a('Reset password', ['request-password-reset']) ?>
+                <?= Html::a('Восстановить пароль', ['request-password-reset']) ?>
             </div>
 
         </div>

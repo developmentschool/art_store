@@ -49,6 +49,13 @@ class ResetPasswordForm extends Model
             [['password_repeat'], 'compare', 'compareAttribute' => 'password'],
         ];
     }
+    public function attributeLabels()
+    {
+        return [
+            'password'=>'Пароль',
+            'password_repeat'=>'Повторить пароль'
+        ];
+    }
 
     /**
      * Resets password.

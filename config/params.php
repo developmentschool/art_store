@@ -6,7 +6,7 @@ return [
     'user.passwordResetTokenExpire' => 3600,
     'bsVersion' => '4.x',
     'controllers'=>[
-        'basket',
+        'cart',
         'category',
         'picture',
         'product',

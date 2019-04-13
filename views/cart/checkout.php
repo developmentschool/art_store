@@ -9,7 +9,7 @@ use yii\helpers\Html;
 
 ?>
 <?php Pjax::begin([
-    'linkSelector' => '.basket-next',
+    'linkSelector' => '.cart-next',
 ]) ?>
 <?php
 echo $this->render('head', ['mark' => $mark]);
@@ -18,47 +18,57 @@ echo $this->render('head', ['mark' => $mark]);
 
     <div class="container-fluid my-5">
         <?php $form = ActiveForm::begin([
-            'action' => Url::toRoute('/basket/order'),
+            'action' => Url::toRoute('/cart/order'),
             'method' => 'post',
             'id' => 'order-form',
         ]); ?>
 
-        <!--        <form action="--><? //= ?><!--" name="order" method="post">-->
         <div class="row">
             <div class="col-md-6 pt-3" style="border: 5px solid transparent;">
                 <h2 class="h3 pb-3">Детали заказа</h2>
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-
                             <?= $form->field($model, 'firstName')->textInput(['value' => $userData['firstName']]) ?>
-                            <!--                                <input type="text" class="form-control" id="exampleInputFirstName1">-->
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
-
                             <?= $form->field($model, 'lastName')->textInput(['value' => $userData['lastName']]) ?>
-                            <!--                                <input type="text" class="form-control" id="exampleInputLastName1">-->
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
 
-                    <?= $form->field($model, 'city')->textInput([
-                        'value' => $userData['city'][0],
-                        'id' => 'basket-city',
-                    ]) ?>
+                    <?= $form->field($model, 'city')->widget(\yii\jui\AutoComplete::className(), [
+
+                        'clientOptions' => [
+                            'source' => $userData['city'],
+                        ],
+                        'options' => [
+                            'class' => 'form-control',
+                            'value' => $userData['city'][0],
+                            'id' => 'user-city-list',
+                        ],
+                    ])
+                    ?>
 
                 </div>
                 <div class="form-group">
 
 
-                    <?= $form->field($model, 'address')->textInput([
-                        'value' => $userData['address'][0],
-                        'id' => 'basket-address',
-                        'data-userId'=>$userData['id'],
-                    ]) ?>
+                    <?= $form->field($model, 'address')->widget(\yii\jui\AutoComplete::className(), [
+
+                        'clientOptions' => [
+                            'source' => $userData['address'],
+                        ],
+                        'options' => [
+                            'class' => 'form-control',
+                            'data-userId' => $userData['id'],
+                            'value' => $userData['address'][0],
+                            'id' => 'user-address-list',
+                        ],
+                    ])?>
                 </div>
                 <div class="row">
                     <div class="col">
@@ -133,18 +143,13 @@ echo $this->render('head', ['mark' => $mark]);
                         ); ?>
                     </div>
                     <div class="form-group form-check">
-                        <?= $form->field($model, 'isAgree')->checkbox(['value'=>1,'uncheckValue'=>0]); ?>
-
+                        <?= $form->field($model, 'isAgree')->checkbox(['value' => 1, 'uncheckValue' => 0]); ?>
                     </div>
-
                 </div>
-                <a class="btn btn-primary basket-next" href="<?= Url::toRoute('/basket') ?>" role="button">Назад</a>
+                <a class="btn btn-primary basket-next" href="<?= Url::toRoute('/cart') ?>" role="button">Назад</a>
                 <?= Html::submitButton('Оформить', ['class' => 'btn btn-primary']) ?>
-
             </div>
-
         </div>
-        <!--        </form>-->
         <?php ActiveForm::end(); ?>
     </div>
 <?php Pjax::end() ?>

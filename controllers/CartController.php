@@ -16,14 +16,14 @@ use Yii;
 use yii\helpers\Url;
 use yii\web\Controller;
 
-class BasketController extends Controller
+class CartController extends Controller
 {
     public function actionIndex()
     {
 
         $products = BasketService::getProductsInBasket();
         $totalSum = BasketService::getTotalSum();
-        $view = (isset($products[0]) ? 'index' : 'emptyBasket');
+        $view = (isset($products[0]) ? 'index' : 'emptyCart');
         return $this->render($view, [
             'mark' => $this->activeMarks(),
             'products' => $products,
@@ -108,9 +108,9 @@ class BasketController extends Controller
                 'pay' => null,
             ],
             'urls' => [
-                'index' => Url::toRoute('/basket'),
-                'checkout' => Url::toRoute('basket/checkout'),
-                'pay' => Url::toRoute('basket/pay'),
+                'index' => Url::toRoute('/cart'),
+                'checkout' => Url::toRoute('cart/checkout'),
+                'pay' => Url::toRoute('cart/pay'),
             ],
         ];
 

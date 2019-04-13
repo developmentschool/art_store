@@ -17,7 +17,7 @@ while ($parent = $cat->parent) {
     $cat = $parent;
 }
 
-$parents[] = ['label' => 'Category', 'url' => ['index']];
+$parents[] = ['label' => 'Категории', 'url' => ['index']];
 
 $parents = array_reverse($parents);
 
