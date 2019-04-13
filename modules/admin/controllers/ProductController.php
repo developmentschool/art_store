@@ -137,8 +137,9 @@ class ProductController extends Controller
         $model->status = Product::STATUS_DELETED;
         $model->save();
 
+        Yii::$app->user->setReturnUrl(Yii::$app->request->referrer);
         //return $this->actionIndex();
-        return $this->redirect(['index']);
+        return $this->goBack();
     }
 
     /**
