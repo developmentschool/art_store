@@ -38,6 +38,14 @@ FontAwesomeAsset::register($this);
                             <input type="text" placeholder="Поиск">
                         </form>
                     </div>
+                    <div class="col-auto">
+                        <ul class="nav header-nav">
+                            <li><a class="nav-link" href="/">Главная</a></li>
+                            <li><a class="nav-link" href="/products">Каталог</a></li>
+                            <li><a class="nav-link" href="/personal">Личный кабинет</a></li>
+                            <li><a class="nav-link" href="#">Контакты</a></li>
+                        </ul>
+                    </div>
                     <div class="col-auto d-flex">
                         <ul class="header-icons">
                             <li>&nbsp;</li>
@@ -48,7 +56,7 @@ FontAwesomeAsset::register($this);
                                 </a>
                             </li>
                             <li>
-                                <a href=" <?= Url::toRoute('/сart') ?>" class="count-item">
+                                <a href=" <?= Url::toRoute('/cart') ?>" class="count-item">
                                     <i class="fas fa-shopping-cart"></i>
                                     <div class="count-item__count">0</div>
                                 </a>
@@ -84,16 +92,8 @@ FontAwesomeAsset::register($this);
             <div class="container-fluid py-4">
                 <div class="row justify-content-between align-items-center">
                     <div class="col-auto d-flex align-items-center">
-
                         <a href="/" class="logo mr-5"><img src="<?= Yii::$app->cloudinary->getImageURL('logo.png') ?>"
                                                            alt="Art-Store-Studio"></a>
-
-                        <ul class="nav header-nav">
-                            <li><a class="nav-link" href="/">Главная</a></li>
-                            <li><a class="nav-link" href="/product">Каталог</a></li>
-                            <li><a class="nav-link" href="/personal">Личный кабинет</a></li>
-<!--                            <li><a class="nav-link" href="#">Контакты</a></li>-->
-                        </ul>
 
                     </div>
 
@@ -107,37 +107,52 @@ FontAwesomeAsset::register($this);
                                 <span>Email: mail@mail.com</span>
                             </li>
                         </ul>
+                        <div class="row"><hr></div>
                     </div>
+
+
+                    <!--                    <ul class="list-group list-group-horizontal">-->
+                    <!--                        <li class="list-group-item d-flex flex-column justify-content-center">-->
+                    <!--                            <span>Art-Store Studio<br>С нами проявится ваш талант</span>-->
+                    <!--                        </li>-->
+                    <!--                        <li class="list-group-item d-flex flex-column justify-content-center">-->
+                    <!--                            <span>Тел: +7777-777-77-77</span>-->
+                    <!--                        </li>-->
+                    <!--                        <li class="list-group-item d-flex flex-column justify-content-center">-->
+                    <!--                            <span>Email: mail@mail.com</span>-->
+                    <!--                        </li>-->
+                    <!--                    </ul>-->
+
+
                 </div>
-            </div>
-            <div class="wide-nav">
-                <div class="container-fluid">
-                    <div class="row justify-content-between align-items-center">
-                        <div class="col-auto">
-                            <div class="header-vertical-menu d-flex align-items-center _js_dropdown-menu">
-                                <div class="navbar-dark">
-                                    <span class="navbar-toggler-icon"></span>
+                <div class="wide-nav">
+                    <div class="container-fluid">
+                        <div class="row justify-content-between align-items-center">
+                            <div class="col-auto">
+                                <div class="header-vertical-menu d-flex align-items-center _js_dropdown-menu">
+                                    <div class="navbar-dark">
+                                        <span class="navbar-toggler-icon"></span>
+                                    </div>
+                                    <?= \yii\widgets\Menu::widget([
+                                        'items' => \app\services\MenuService::getItems([
+                                            'class' => \app\models\tables\Category::class,
+                                        ]),
+                                        'options' => [
+                                            'class' => 'dropdown-menu header-dropdown-menu',
+                                        ],
+                                    ]) ?>
                                 </div>
-                                <?= \yii\widgets\Menu::widget([
-                                    'items' => \app\services\MenuService::getItems([
-                                        'class' => \app\models\tables\Category::class,
-                                    ]),
-                                    'options' => [
-                                        'class' => 'dropdown-menu header-dropdown-menu',
-                                    ],
-                                ]) ?>
+                            </div>
+                            <div class="col-auto">
+                                <a href="#" class="social-item ml-3"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="social-item ml-3"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-item ml-3"><i class="fab fa-youtube"></i></a>
+                                <a href="#" class="social-item ml-3"><i class="fas fa-envelope"></i></a>
+                                <a href="#" class="social-item ml-3"><i class="fab fa-instagram"></i></a>
                             </div>
                         </div>
-                        <div class="col-auto">
-                            <a href="#" class="social-item ml-3"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social-item ml-3"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="social-item ml-3"><i class="fab fa-youtube"></i></a>
-                            <a href="#" class="social-item ml-3"><i class="fas fa-envelope"></i></a>
-                            <a href="#" class="social-item ml-3"><i class="fab fa-instagram"></i></a>
-                        </div>
                     </div>
                 </div>
-            </div>
         </header>
 
         <div class="container-fluid ">

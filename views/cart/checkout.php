@@ -48,7 +48,6 @@ echo $this->render('head', ['mark' => $mark]);
                         'options' => [
                             'class' => 'form-control',
                             'value' => $userData['city'][0],
-                            'id' => 'user-city-list',
                         ],
                     ])
                     ?>
@@ -66,7 +65,6 @@ echo $this->render('head', ['mark' => $mark]);
                             'class' => 'form-control',
                             'data-userId' => $userData['id'],
                             'value' => $userData['address'][0],
-                            'id' => 'user-address-list',
                         ],
                     ])?>
                 </div>
