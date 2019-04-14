@@ -36,7 +36,7 @@ class PictureBehavior extends Behavior
         ];
     }
 
-    public function getImageLinks(): ?array
+    public function getImageLinks(): array
     {
         $links = [];
         foreach ($this->owner->images as $image) {

@@ -61,50 +61,5 @@ use yii\bootstrap4\Html;
         <?php endforeach; ?>
     </div>
 </div>
-<!--<div class="row flex-nowrap">-->
-<!--    <div class="col-auto">-->
-<!--        <div class="sidebar">-->
-<!--            <a href="account-orders.php" class="btn btn-secondary btn-lg btn-block active">Orders</a>-->
-<!--            <a href="account-details.php" class="btn btn-secondary btn-lg btn-block">Account details</a>-->
-<!--            <a href="#" class="btn btn-secondary btn-lg btn-block">Logout</a>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="col-auto flex-fill">-->
-<!--        <h2 class="h3 pb-3">Account Details</h2>-->
-<!---->
-<!--        <table class="table table-striped">-->
-<!--            <tr>-->
-<!--                <th>#</th>-->
-<!--                <th>Продукт</th>-->
-<!--                <th>Цена</th>-->
-<!--                <th class="text-center">Количество</th>-->
-<!--                <th>Сумма</th>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td>1</td>-->
-<!--                <td>1/48 MESSERSCHMITT Me 410B-2/U2/R4 HEAVY FIGHTER</td>-->
-<!--                <td class="price">1000 РУБ</td>-->
-<!--                <td class="text-center">10</td>-->
-<!--                <td class="price">1000 РУБ</td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td>1</td>-->
-<!--                <td>1/48 MESSERSCHMITT Me 410B-2/U2/R4 HEAVY FIGHTER</td>-->
-<!--                <td class="price">1000 РУБ</td>-->
-<!--                <td class="text-center">10</td>-->
-<!--                <td class="price">1000 РУБ</td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td>1</td>-->
-<!--                <td>1/48 MESSERSCHMITT Me 410B-2/U2/R4 HEAVY FIGHTER</td>-->
-<!--                <td class="price">1000 РУБ</td>-->
-<!--                <td class="text-center">10</td>-->
-<!--                <td class="price">1000 РУБ</td>-->
-<!--            </tr>-->
-<!--        </table>-->
-<!---->
-<!--    </div>-->
-<!--</div>-->
-
 
 

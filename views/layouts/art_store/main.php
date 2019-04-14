@@ -48,7 +48,7 @@ FontAwesomeAsset::register($this);
                                 </a>
                             </li>
                             <li>
-                                <a href=" <?=Url::toRoute('/cart')?>" class="count-item">
+                                <a href=" <?= Url::toRoute('/сart') ?>" class="count-item">
                                     <i class="fas fa-shopping-cart"></i>
                                     <div class="count-item__count">0</div>
                                 </a>
@@ -83,16 +83,16 @@ FontAwesomeAsset::register($this);
         <header>
             <div class="container-fluid py-4">
                 <div class="row justify-content-between align-items-center">
-
                     <div class="col-auto d-flex align-items-center">
 
-                        <a href="/" class="logo mr-5"><img src="<?= Yii::$app->cloudinary->getImageURL('logo.png') ?>" alt="Art-Store-Studio"></a>
+                        <a href="/" class="logo mr-5"><img src="<?= Yii::$app->cloudinary->getImageURL('logo.png') ?>"
+                                                           alt="Art-Store-Studio"></a>
 
                         <ul class="nav header-nav">
-                            <li><a class="nav-link" href="#">Главная</a></li>
-                            <li><a class="nav-link" href="#">Каталог</a></li>
-                            <li><a class="nav-link" href="#">Личный кабинет</a></li>
-                            <li><a class="nav-link" href="#">Контакты</a></li>
+                            <li><a class="nav-link" href="/">Главная</a></li>
+                            <li><a class="nav-link" href="/product">Каталог</a></li>
+                            <li><a class="nav-link" href="/personal">Личный кабинет</a></li>
+<!--                            <li><a class="nav-link" href="#">Контакты</a></li>-->
                         </ul>
 
                     </div>
@@ -105,23 +105,10 @@ FontAwesomeAsset::register($this);
                             <li class="list-group-item d-flex flex-column justify-content-center">
                                 <span>Тел: +7777-777-77-77</span>
                                 <span>Email: mail@mail.com</span>
-                          </li>
+                            </li>
                         </ul>
-
                     </div>
-                    <ul class="list-group list-group-horizontal">
-                        <li class="list-group-item d-flex flex-column justify-content-center">
-                            <span>Art-Store Studio<br>С нами проявится ваш талант</span>
-                        </li>
-                        <li class="list-group-item d-flex flex-column justify-content-center">
-                            <span>Тел: +7777-777-77-77</span>
-                        </li>
-                        <li class="list-group-item d-flex flex-column justify-content-center">
-                            <span>Email: mail@mail.com</span>
-                        </li>
-                    </ul>
                 </div>
-
             </div>
             <div class="wide-nav">
                 <div class="container-fluid">
@@ -163,9 +150,11 @@ FontAwesomeAsset::register($this);
         </div>
 
         <?php
-            if (Yii::$app->controller->action->id == 'index') echo $this->render('carusel');
+        if (Yii::$app->controller->action->id == 'index' && Yii::$app->controller->id == 'site') {
+            echo $this->render('carusel');
+        }
         ?>
-        
+
         <div class="container-fluid py-5">
             <?= \app\widgets\Alert::widget() ?>
             <?= $content ?>
@@ -176,7 +165,7 @@ FontAwesomeAsset::register($this);
             'headerOptions' => ['id' => 'modalHeader'],
             'id' => 'modal',
             'size' => 'modal-sm',
-            'footer' =>  '<a class="btn btn-primary btn-block" href="/cart" role="button">Перейти в корзину</a>',
+            'footer' => '<a class="btn btn-primary btn-block" href="/cart" role="button">Перейти в корзину</a>',
         ]);
         echo '<h4 class="center-block">Товар в корзине!!!</h4>';
         \yii\bootstrap4\Modal::end();

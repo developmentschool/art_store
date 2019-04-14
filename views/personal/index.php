@@ -8,6 +8,10 @@ use yii\bootstrap4\Html;
 use yii\helpers\Url;
 use yii\web\View;
 
+
+$this->title = 'Личный кабинет';
+
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 

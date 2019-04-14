@@ -8,6 +8,7 @@ use app\models\tables\OrdersProducts;
 use app\models\tables\UserAddresses;
 use app\models\tables\UserProfiles;
 use app\models\tables\Users;
+use app\services\OrderService;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
@@ -168,6 +169,7 @@ class PersonalController extends Controller
         $order->setAttribute('status', Orders::STATUS_CANCELED);
         if ($order->save()) {
             Yii::$app->session->setFlash('success', 'Ваш заказ отменен');
+            OrderService::sendCancelOrderMail(Yii::$app->mailer, ['orderId'=>$id]);
         } else {
             Yii::$app->session->setFlash('warning', 'Произошла ошибка');
         };

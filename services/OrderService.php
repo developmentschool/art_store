@@ -53,4 +53,30 @@ class OrderService
         return $res;
     }
 
+    public static function sendCancelOrderMail($mailer, array $options)
+    {
+        $user_id = Yii::$app->user->getId();
+        $mail = $mailer
+            ->compose(
+                ['html' => 'order-cancel-html', 'text' => 'order-cancel-text',],
+                ['orderInfo' => $options]
+            )
+            ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->name . ' order'])
+            ->setTo(Yii::$app->params['logisticManagerEmail'])
+            ->setSubject('Отмена заказа №' . $options['orderId']);
+
+        for ($i = 0, $res = false; !$res && $i < 5; $i++) {
+
+            try {
+                $res = $mail->send();
+            } catch (\Swift_TransportException $e) {
+                Yii::error($e->getMessage(), __CLASS__);
+                $res = false;
+            }
+
+            sleep(1);
+        }
+        return $res;
+    }
+
 }
