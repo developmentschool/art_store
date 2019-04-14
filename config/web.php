@@ -113,7 +113,7 @@ $config = [
             //'defaultRoles' => ['guest'],
         ],
         'assetManager' => [
-            'linkAssets' => true,
+            'linkAssets' => false,
             'appendTimestamp' => true,
         ],
     ],
