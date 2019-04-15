@@ -15,6 +15,7 @@ use yii\filters\VerbFilter;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\web\Response;
+use yii\helpers\Url;
 
 class SiteController extends Controller
 {
@@ -84,11 +85,12 @@ class SiteController extends Controller
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+            return $this->goBack();
         }
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+
             return $this->goBack();
         }
 
@@ -97,7 +99,6 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
-
     /**
      * Signs user up.
      *
@@ -107,7 +108,8 @@ class SiteController extends Controller
     {
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
-            Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
+            Yii::$app->session->setFlash('success',
+                'Спасибо за регистрацию. Пожалуйста проверьте Ваш почтовый ящик для подтверждения email.');
             return $this->goHome();
         }
         return $this->render('signup', [
@@ -120,8 +122,9 @@ class SiteController extends Controller
      * Verify email address
      *
      * @param string $token
-     * @throws BadRequestHttpException
+     *
      * @return yii\web\Response
+     * @throws BadRequestHttpException
      */
     public function actionVerifyEmail($token)
     {
@@ -132,11 +135,11 @@ class SiteController extends Controller
         }
         if ($user = $model->verifyEmail()) {
             if (Yii::$app->user->login($user)) {
-                Yii::$app->session->setFlash('success', 'Your email has been confirmed!');
+                Yii::$app->session->setFlash('success', 'Ваш email подтвержден!');
                 return $this->goHome();
             }
         }
-        Yii::$app->session->setFlash('error', 'Sorry, we are unable to verify your account with provided token.');
+        Yii::$app->session->setFlash('error', 'Извините, мы не можем Вас верифицировать с этим токеном.');
         return $this->goHome();
     }
 
@@ -150,10 +153,11 @@ class SiteController extends Controller
         $model = new PasswordResetRequestForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
+                Yii::$app->session->setFlash('success', 'Проверьте почту на предмет дальнейших инструкций.');
                 return $this->goHome();
             } else {
-                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for the provided email address.');
+                Yii::$app->session->setFlash('error',
+                    'Извините, мы не можем восстановить пароль с этим Email.');
             }
         }
         return $this->render('requestPasswordResetToken', [
@@ -166,6 +170,7 @@ class SiteController extends Controller
      * Resets password.
      *
      * @param string $token
+     *
      * @return mixed
      * @throws BadRequestHttpException
      */
@@ -177,7 +182,7 @@ class SiteController extends Controller
             throw new BadRequestHttpException($e->getMessage());
         }
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
-            Yii::$app->session->setFlash('success', 'New password saved.');
+            Yii::$app->session->setFlash('success', 'Новый пароль сохранен.');
             return $this->goHome();
         }
         return $this->render('resetPassword', [
@@ -225,4 +230,5 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
 }

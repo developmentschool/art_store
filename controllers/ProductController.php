@@ -7,7 +7,7 @@ use app\models\tables\Category;
 use app\models\tables\Product;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
-
+use Yii;
 
 class ProductController extends Controller
 {
@@ -42,5 +42,6 @@ class ProductController extends Controller
             'menu' => $menu,
         ]);
     }
+
 
 }
