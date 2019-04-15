@@ -48,7 +48,7 @@ FontAwesomeAsset::register($this);
                                 </a>
                             </li>
                             <li>
-                                <a href=" <?= Url::toRoute('/сart') ?>" class="count-item">
+                                <a href=" <?= Url::toRoute('/cart') ?>" class="count-item">
                                     <i class="fas fa-shopping-cart"></i>
                                     <div class="count-item__count">0</div>
                                 </a>
