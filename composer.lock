@@ -292,6 +292,7 @@
                 "sdk"
             ],
             "time": "2019-04-02T13:08:04+00:00"
+
         },
         {
             "name": "codemix/yii2-streamlog",
@@ -331,6 +332,7 @@
                 "yii2"
             ],
             "time": "2017-02-16T14:50:01+00:00"
+
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -1839,6 +1841,79 @@
                 "fixtures"
             ],
             "time": "2019-04-01T21:23:46+00:00"
+
+        },
+        {
+            "name": "guzzlehttp/psr7",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/psr7.git",
+                "reference": "a346647434953deb5bd599d92922b2d225e25170"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/a346647434953deb5bd599d92922b2d225e25170",
+                "reference": "a346647434953deb5bd599d92922b2d225e25170",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "psr/http-message": "~1.0",
+                "ralouphie/getallheaders": "^2.0.5 || ^3.0.0"
+            },
+            "provide": {
+                "psr/http-message-implementation": "1.0"
+            },
+            "require-dev": {
+                "ext-zlib": "*",
+                "phpunit/phpunit": "~4.8.36 || ^5.7.27 || ^6.5.8"
+            },
+            "suggest": {
+                "zendframework/zend-httphandlerrunner": "Emit PSR-7 responses"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GuzzleHttp\\Psr7\\": "src/"
+                },
+                "files": [
+                    "src/functions_include.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                },
+                {
+                    "name": "Tobias Schultze",
+                    "homepage": "https://github.com/Tobion"
+                }
+            ],
+            "description": "PSR-7 message implementation that also provides common utility methods",
+            "keywords": [
+                "http",
+                "message",
+                "psr-7",
+                "request",
+                "response",
+                "stream",
+                "uri",
+                "url"
+            ],
+            "time": "2019-04-01T06:40:32+00:00"
+
         },
         {
             "name": "myclabs/deep-copy",
@@ -3163,6 +3238,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/browser-kit.git",
+
                 "reference": "5502f01de44b6275912c1c20c5a7dd3feb59c522"
             },
             "dist": {
@@ -3214,6 +3290,7 @@
             ],
             "description": "Symfony BrowserKit Component",
             "homepage": "https://symfony.com",
+
             "time": "2019-04-07T09:58:10+00:00"
         },
         {
@@ -3297,6 +3374,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/contracts.git",
+
                 "reference": "2ae87c20fb85e5f71af65adfe39cde9e09a72ed2"
             },
             "dist": {
