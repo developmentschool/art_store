@@ -2,17 +2,16 @@
 
 namespace app\modules\admin\models\search;
 
-use app\modules\admin\models\Product;
+use app\modules\admin\models\Orders;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 /**
- * ProductSearch represents the model behind the search form of `app\modules\admin\models\Product`.
+ * OrdersSearch represents the model behind the search form of `app\modules\admin\models\Orders`.
  */
-class ProductSearch extends Product
+class OrdersSearch extends Orders
 {
-    public $category;
-
+    public $username;
 
     /**
      * {@inheritdoc}
@@ -20,10 +19,9 @@ class ProductSearch extends Product
     public function rules()
     {
         return [
-            [['id', 'category_id', 'status'], 'integer'],
-            [['title', 'description', 'created_at', 'updated_at'], 'safe'],
-            [['price'], 'number'],
-            [['category'], 'string']
+            [['id', 'user_id', 'status'], 'integer'],
+            [['shipment_addr', 'created_at', 'updated_at'], 'safe'],
+            [['username'], 'string']
         ];
     }
 
@@ -45,7 +43,7 @@ class ProductSearch extends Product
      */
     public function search($params)
     {
-        $query = Product::find();
+        $query = Orders::find();
 
         // add conditions that should always apply here
 
@@ -63,19 +61,19 @@ class ProductSearch extends Product
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'product.id' => $this->id,
-            'product.price' => $this->price,
-            'product.category_id' => $this->category_id,
-            'product.status' => $this->status,
-            'product.created_at' => $this->created_at,
-            'product.updated_at' => $this->updated_at,
+            'orders.id' => $this->id,
+            'orders.user_id' => $this->user_id,
+            'orders.status' => $this->status,
+            'orders.created_at' => $this->created_at,
+            'orders.updated_at' => $this->updated_at,
         ]);
 
-        $query->joinWith('category');
-        $query->andFilterWhere(['like', 'category.title', $this->category]);
 
-        $query->andFilterWhere(['like', 'product.title', $this->title])
-            ->andFilterWhere(['like', 'product.description', $this->description]);
+        $query->joinWith('user');
+        $query->andFilterWhere(['like', 'users.username', $this->username]);
+
+
+        $query->andFilterWhere(['like', 'shipment_addr', $this->shipment_addr]);
 
         return $dataProvider;
     }

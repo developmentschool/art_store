@@ -2,7 +2,6 @@
 
 namespace app\models\tables;
 
-use Yii;
 use yii\db\ActiveRecord;
 
 /**
@@ -57,7 +56,7 @@ class Orders extends \yii\db\ActiveRecord
             [['user_id',], 'required'],
             [['user_id', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['status'], 'default', 'value' => self::STATUS_ACTIVE, 'on' => 'insert'],
+            [['status'], 'default', 'value' => self::STATUS_ACTIVE],
             [['status'], 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DONE, self::STATUS_CANCELED]],
             [['shipment_addr'], 'string', 'max' => 255],
             [
@@ -98,5 +97,14 @@ class Orders extends \yii\db\ActiveRecord
     public function getOrdersProducts()
     {
         return $this->hasMany(OrdersProducts::className(), ['order_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProducts()
+    {
+        return $this->hasMany(Product::class, ['id' => 'product_id'])
+            ->via('ordersProducts');
     }
 }

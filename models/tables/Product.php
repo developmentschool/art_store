@@ -74,7 +74,13 @@ class Product extends \yii\db\ActiveRecord
             [['category_id', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['title'], 'string', 'max' => 255],
-            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
+            [
+                ['category_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Category::className(),
+                'targetAttribute' => ['category_id' => 'id']
+            ],
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
         ];
@@ -107,7 +113,7 @@ class Product extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return \yii\db\ActiveQuery | ActiveRecord
      */
     public function getOrdersProducts()
     {
@@ -150,5 +156,14 @@ class Product extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Picture::class, ['id' => 'picture_id'])
             ->via('productPictures');
+    }
+
+    /**
+     * @param $orderId
+     * @return array|ActiveRecord|null
+     */
+    public function getQuantityInOrder($orderId)
+    {
+        return $this->getOrdersProducts()->where(['order_id' => $orderId])->one()->quantity;
     }
 }

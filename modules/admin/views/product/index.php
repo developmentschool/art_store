@@ -45,7 +45,7 @@ $dataProvider->setSort([
             'price',
             [
                 'attribute' => 'category.title',
-                'filter' => Html::input('text', 'ProductSearch[category]', '', ['class' => 'form-control'])
+                'filter' => Html::input('text', 'ProductSearch[category]', $searchModel->category, ['class' => 'form-control'])
             ],
             Product::getStatusColumnForWidget(),
             [
