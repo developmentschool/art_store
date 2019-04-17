@@ -5,6 +5,7 @@ namespace app\modules\admin\controllers;
 use app\modules\admin\models\Orders;
 use app\modules\admin\models\search\OrdersSearch;
 use Yii;
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -24,9 +25,13 @@ class OrderController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
-                    'changeStatus' => ['POST'],
+                    'change-status' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::class,
+                'only' => ['update', 'delete'],
+            ]
         ];
     }
 
@@ -55,24 +60,6 @@ class OrderController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
-     * Creates a new Orders model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-        $model = new Orders();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('create', [
-            'model' => $model,
         ]);
     }
 
@@ -130,7 +117,9 @@ class OrderController extends Controller
     {
         $model = $this->findModel($id);
         $model->status = $status;
-        $model->save();
+        if ($model->save()) {
+            $model->sendEmail();
+        }
 
         $this->redirect(['view', 'id' => $id]);
     }

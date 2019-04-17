@@ -40,7 +40,12 @@ FontAwesomeAsset::register($this);
                     </div>
                     <div class="col-auto d-flex">
                         <ul class="header-icons">
-                            <li>&nbsp;</li>
+                            <li>&nbsp</li>
+                            <?php if (Yii::$app->user->can(\rbac\commands\User::PERMISSION_ADMIN_PANEL)): ?>
+                                <li>
+                                    <?= Html::a('Administration', ['/admin'], ['class' => 'link']) ?>
+                                </li>
+                            <?php endif; ?>
                             <li>
                                 <a href="#" class="count-item">
                                     <i class="fas fa-tag"></i>
@@ -80,6 +85,10 @@ FontAwesomeAsset::register($this);
             </div>
         </div>
 
+        <div class="container-fluid">
+            <?= \app\widgets\Alert::widget() ?>
+        </div>
+
         <header>
             <div class="container-fluid py-4">
                 <div class="row justify-content-between align-items-center">
@@ -92,7 +101,7 @@ FontAwesomeAsset::register($this);
                             <li><a class="nav-link" href="/">Главная</a></li>
                             <li><a class="nav-link" href="/product">Каталог</a></li>
                             <li><a class="nav-link" href="/personal">Личный кабинет</a></li>
-<!--                            <li><a class="nav-link" href="#">Контакты</a></li>-->
+                            <!--                            <li><a class="nav-link" href="#">Контакты</a></li>-->
                         </ul>
 
                     </div>
@@ -156,7 +165,6 @@ FontAwesomeAsset::register($this);
         ?>
 
         <div class="container-fluid py-5">
-            <?= \app\widgets\Alert::widget() ?>
             <?= $content ?>
         </div>
 

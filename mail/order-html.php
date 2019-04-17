@@ -5,7 +5,7 @@ use yii\web\View;
 use yii\helpers\Html;
 
 ?>
-<div>Добрый день, <?= Html::encode($order['isername']) ?>!</div>
+<div>Добрый день, <?= Html::encode($order['username']) ?>!</div>
 <div class="order-detail">
     <h4>Информация о заказе</h4>
     <hr>

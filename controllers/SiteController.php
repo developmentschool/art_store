@@ -95,6 +95,7 @@ class SiteController extends Controller
         }
 
         $model->password = '';
+        $model->captcha = '';
         return $this->render('login', [
             'model' => $model,
         ]);
@@ -112,6 +113,7 @@ class SiteController extends Controller
                 'Спасибо за регистрацию. Пожалуйста проверьте Ваш почтовый ящик для подтверждения email.');
             return $this->goHome();
         }
+        $model->captcha = '';
         return $this->render('signup', [
             'model' => $model,
         ]);

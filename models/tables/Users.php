@@ -84,8 +84,8 @@ class Users extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUserProfiles()
+    public function getUserProfile()
     {
-        return $this->hasMany(UserProfiles::className(), ['user_id' => 'id']);
+        return $this->hasOne(UserProfiles::className(), ['user_id' => 'id']);
     }
 }

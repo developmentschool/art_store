@@ -54,7 +54,13 @@ class UserProfiles extends \yii\db\ActiveRecord
             [['birthday', 'created_at', 'updated_at'], 'safe'],
             [['first_name', 'last_name'], 'string', 'max' => 50],
             [['phone'], 'string', 'max' => 20],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [
+                ['user_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Users::className(),
+                'targetAttribute' => ['user_id' => 'id']
+            ],
         ];
     }
 
@@ -81,5 +87,13 @@ class UserProfiles extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(Users::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullUserName()
+    {
+        return $this->first_name . ' ' . $this->last_name;
     }
 }

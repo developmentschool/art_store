@@ -28,6 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'method' => 'post',
                 ],
             ];
+            Html::addCssClass($options, 'mr-1');
             if ($model->status === constant($const)) {
                 Html::addCssClass($options, 'disabled');
             }
