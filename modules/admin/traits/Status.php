@@ -49,16 +49,9 @@ trait Status
     public function statusRender()
     {
         $options = ['class' => 'align-middle badge'];
-        switch ($this->status) {
-            case static::STATUS_ACTIVE:
-                Html::addCssClass($options, 'badge-success');
-                break;
-            case static::STATUS_INACTIVE:
-                Html::addCssClass($options, 'badge-warning');
-                break;
-            case static::STATUS_DELETED:
-                Html::addCssClass($options, 'badge-dark');
-        }
+
+        Html::addCssClass($options, $this->getStatusesCssClass()[$this->status]);
+
         return Html::tag('span', static::getStatuses()[$this->status], $options);
     }
 
@@ -78,4 +71,17 @@ trait Status
             'format' => 'html'
         ];
     }
+
+    /**
+     * @return array
+     */
+    protected function getStatusesCssClass(): array
+    {
+        return [
+            static::STATUS_ACTIVE => 'badge-success',
+            static::STATUS_INACTIVE => 'badge-warning',
+            static::STATUS_DELETED => 'badge-dark',
+        ];
+    }
+
 }

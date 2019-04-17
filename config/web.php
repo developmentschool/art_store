@@ -97,6 +97,7 @@ $config = [
                 '<module1:(admin)>/<module2:(rbac)>/<controller:[\w-]+>' => '<module1>/<module2>/<controller>',
                 '<module1:(admin)>/<module2:(rbac)>/<controller:[\w-]+>/<id:\d+>' => '<module1>/<module2>/<controller>/view',
                 '<module1:(admin)>/<module2:(rbac)>/<controller:[\w-]+>/<action:\w+>/<id:\w+>' => '<module1>/<module2>/<controller>/<action>',
+                '<module1:(admin)>/<module2:(rbac)>/<controller:[\w-]+>/<action:\w+>' => '<module1>/<module2>/<controller>/<action>',
                 '<module:(admin)>/<controller:[\w-]+>' => '<module>/<controller>',
                 '<module:(admin)>/<controller:[\w-]+>/<action:[\w-]+>' => '<module>/<controller>/<action>',
                 '<module:(admin)>/<controller:[\w-]+>/<action:[\w-]+>/<id:\w+>' => '<module>/<controller>/<action>',
@@ -115,6 +116,14 @@ $config = [
         'assetManager' => [
             'linkAssets' => false,
             'appendTimestamp' => true,
+        ],
+        'i18n' => [
+            'translations' => [
+                'admin.orders' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/modules/admin/messages',
+                ],
+            ],
         ],
     ],
     'params' => $params,

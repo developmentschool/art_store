@@ -5,7 +5,7 @@ namespace app\services;
 
 
 use app\models\OrderForm;
-use app\models\tables\Users;
+use app\modules\admin\models\Orders;
 use Yii;
 use yii\swiftmailer\Mailer;
 
@@ -77,6 +77,17 @@ class OrderService
             sleep(1);
         }
         return $res;
+    }
+
+    public static function getTotalCostOrder(Orders $order)
+    {
+        $total = 0;
+
+        foreach ($order->products as $product) {
+            $total += $product->price * $product->getQuantityInOrder($order->id);
+        }
+
+        return $total;
     }
 
 }
