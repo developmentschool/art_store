@@ -51,11 +51,9 @@ class ProductPicture extends ActiveRecord
     public function rules()
     {
         return [
-<<<<<<< HEAD
+
             [['product_id', 'picture_id', 'is_main', ], 'required'],
-=======
-            [['product_id', 'picture_id', 'is_main', 'created_at'], 'required'],
->>>>>>> master
+
             [['product_id', 'picture_id', 'is_main'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [

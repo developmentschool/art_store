@@ -2,10 +2,9 @@
 
 namespace app\models\tables;
 
-<<<<<<< HEAD
+
 use app\components\imageControl\MainImageBehavior;
-=======
->>>>>>> master
+
 use app\components\PictureBehavior;
 use yii\db\ActiveRecord;
 
@@ -15,7 +14,7 @@ use yii\db\ActiveRecord;
  * @property int $id
  * @property string $title
  * @property int $parent_id
-<<<<<<< HEAD
+
  * @property int $status
  * @property string $created_at
  * @property string $updated_at
@@ -31,15 +30,7 @@ class Category extends ActiveRecord
     const STATUS_INACTIVE = 9;
     const STATUS_ACTIVE = 10;
 
-=======
- * @property string $created_at
- * @property string $updated_at
- *
- * @property Product[] $products
- */
-class Category extends ActiveRecord
-{
->>>>>>> master
+
     /**
      * {@inheritdoc}
      */
@@ -66,13 +57,12 @@ class Category extends ActiveRecord
                 'class' => PictureBehavior::className(),
                 'connectedClassName' => CategoryPicture::className(),
             ],
-<<<<<<< HEAD
+
             'mainImage' => [
                 'class' => MainImageBehavior::class,
                 'relationship' => 'pictures'
             ]
-=======
->>>>>>> master
+
         ];
     }
 
@@ -83,16 +73,12 @@ class Category extends ActiveRecord
     {
         return [
             [['title'], 'required'],
-<<<<<<< HEAD
+
             [['parent_id', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['title'], 'string', 'max' => 255],
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
-=======
-            [['parent_id'], 'integer'],
-            [['created_at', 'updated_at'], 'safe'],
-            [['title'], 'string', 'max' => 255],
->>>>>>> master
+
         ];
     }
 
@@ -105,10 +91,9 @@ class Category extends ActiveRecord
             'id' => 'ID',
             'title' => 'Title',
             'parent_id' => 'Parent ID',
-<<<<<<< HEAD
+
             'status' => 'Status',
-=======
->>>>>>> master
+
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
@@ -127,11 +112,9 @@ class Category extends ActiveRecord
      */
     public function getParent()
     {
-<<<<<<< HEAD
+
         return $this->hasOne(static::className(), ['id' => 'parent_id']);
-=======
-        return $this->hasOne(Category::className(), ['id' => 'parent_id']);
->>>>>>> master
+
     }
 
     /**
@@ -139,7 +122,7 @@ class Category extends ActiveRecord
      */
     public function getCategories()
     {
-<<<<<<< HEAD
+
         return $this->hasMany(static::className(), ['parent_id' => 'id']);
     }
 
@@ -171,8 +154,6 @@ class Category extends ActiveRecord
     {
         return $this->hasMany(Picture::class, ['id' => 'picture_id'])
             ->via('categoryPictures');
-=======
-        return $this->hasMany(Category::className(), ['parent_id' => 'id']);
->>>>>>> master
+
     }
 }

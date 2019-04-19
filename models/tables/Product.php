@@ -2,28 +2,21 @@
 
 namespace app\models\tables;
 
-<<<<<<< HEAD
+
 use app\components\imageControl\MainImageBehavior;
 use app\components\PictureBehavior;
 use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "{{%product}}".
-=======
-use app\components\PictureBehavior;
-use Yii;
-use yii\db\ActiveRecord;
 
-/**
- * This is the model class for table "product".
->>>>>>> master
  *
  * @property int $id
  * @property string $title
  * @property string $description
  * @property string $price
  * @property int $category_id
-<<<<<<< HEAD
+
  * @property int $status
  * @property string $created_at
  * @property string $updated_at
@@ -38,27 +31,16 @@ class Product extends \yii\db\ActiveRecord
     const STATUS_DELETED = 0;
     const STATUS_INACTIVE = 9;
     const STATUS_ACTIVE = 10;
-=======
- * @property string $created_at
- * @property string $updated_at
- *
- * @property Category $category
- */
-class Product extends ActiveRecord
-{
-    public $mainPictureUrl = null;
->>>>>>> master
+
 
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-<<<<<<< HEAD
+
         return '{{%product}}';
-=======
-        return 'product';
->>>>>>> master
+
     }
 
     /**
@@ -79,13 +61,12 @@ class Product extends ActiveRecord
                 'class' => PictureBehavior::className(),
                 'connectedClassName' => ProductPicture::className(),
             ],
-<<<<<<< HEAD
+
             'mainImage' => [
                 'class' => MainImageBehavior::class,
                 'relationship' => 'pictures'
             ]
-=======
->>>>>>> master
+
         ];
     }
 
@@ -98,11 +79,9 @@ class Product extends ActiveRecord
             [['title', 'price', 'category_id'], 'required'],
             [['description'], 'string'],
             [['price'], 'number'],
-<<<<<<< HEAD
+
             [['category_id', 'status'], 'integer'],
-=======
-            [['category_id'], 'integer'],
->>>>>>> master
+
             [['created_at', 'updated_at'], 'safe'],
             [['title'], 'string', 'max' => 255],
             [
@@ -110,15 +89,12 @@ class Product extends ActiveRecord
                 'exist',
                 'skipOnError' => true,
                 'targetClass' => Category::className(),
-<<<<<<< HEAD
+
                 'targetAttribute' => ['category_id' => 'id']
             ],
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
-=======
-                'targetAttribute' => ['category_id' => 'id'],
-            ],
->>>>>>> master
+
         ];
     }
 
@@ -133,11 +109,10 @@ class Product extends ActiveRecord
             'description' => 'Description',
             'price' => 'Price',
             'category_id' => 'Category ID',
-<<<<<<< HEAD
+
             'category.title' => 'Category',
             'status' => 'Status',
-=======
->>>>>>> master
+
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
@@ -146,7 +121,7 @@ class Product extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-<<<<<<< HEAD
+
     public function getCps()
     {
         return $this->hasMany(CategoryPicture::className(), ['product_id' => 'id']);
@@ -163,13 +138,12 @@ class Product extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-=======
->>>>>>> master
+
     public function getCategory()
     {
         return $this->hasOne(Category::className(), ['id' => 'category_id']);
     }
-<<<<<<< HEAD
+
 
     /**
      * @return \yii\db\ActiveQuery
@@ -209,6 +183,5 @@ class Product extends ActiveRecord
     {
         return $this->getOrdersProducts()->where(['order_id' => $orderId])->one()->quantity;
     }
-=======
->>>>>>> master
+
 }

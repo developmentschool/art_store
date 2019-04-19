@@ -4,11 +4,10 @@ namespace app\controllers;
 
 use app\models\ContactForm;
 use app\models\LoginForm;
-<<<<<<< HEAD
+
 use app\models\PasswordResetRequestForm;
 use app\models\ResetPasswordForm;
-=======
->>>>>>> master
+
 use app\models\SignupForm;
 use app\models\VerifyEmailForm;
 use Yii;
@@ -18,10 +17,9 @@ use yii\filters\VerbFilter;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\web\Response;
-<<<<<<< HEAD
+
 use yii\helpers\Url;
-=======
->>>>>>> master
+
 
 class SiteController extends Controller
 {

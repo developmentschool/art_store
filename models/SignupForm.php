@@ -24,31 +24,27 @@ class SignupForm extends Model
         return [
             ['username', 'trim'],
             ['username', 'required'],
-<<<<<<< HEAD
+
             [
                 'username',
                 'unique',
                 'targetClass' => '\app\models\User',
                 'message' => 'This username has already been taken.',
             ],
-=======
-            ['username', 'unique', 'targetClass' => '\app\models\User', 'message' => 'This username has already been taken.'],
->>>>>>> master
+
             ['username', 'string', 'min' => 2, 'max' => 255],
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
-<<<<<<< HEAD
+
             [
                 'email',
                 'unique',
                 'targetClass' => '\app\models\User',
                 'message' => 'This email address has already been taken.',
             ],
-=======
-            ['email', 'unique', 'targetClass' => '\app\models\User', 'message' => 'This email address has already been taken.'],
->>>>>>> master
+
             [['password', 'password_repeat'], 'required'],
             [['password', 'password_repeat'], 'string', 'min' => 6],
             [['password_repeat'], 'compare', 'compareAttribute' => 'password'],
@@ -56,7 +52,7 @@ class SignupForm extends Model
         ];
     }
 
-<<<<<<< HEAD
+
     public function attributeLabels()
     {
         return [
@@ -67,8 +63,7 @@ class SignupForm extends Model
         ];
     }
 
-=======
->>>>>>> master
+
     /**
      * Signs user up.
      *
@@ -91,24 +86,20 @@ class SignupForm extends Model
 
     /**
      * Sends confirmation email to user
-<<<<<<< HEAD
+
      *
      * @param User $user user model to with email should be send
      *
-=======
-     * @param User $user user model to with email should be send
->>>>>>> master
+
      * @return bool whether the email was sent
      */
     protected function sendEmail($user)
     {
-<<<<<<< HEAD
+
 
 
         $mail = Yii::$app
-=======
-        return Yii::$app
->>>>>>> master
+
             ->mailer
             ->compose(
                 ['html' => 'emailVerify-html', 'text' => 'emailVerify-text'],
@@ -116,7 +107,7 @@ class SignupForm extends Model
             )
             ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->name . ' robot'])
             ->setTo($this->email)
-<<<<<<< HEAD
+
             ->setSubject('Регистрация на сайте ' . Yii::$app->name);
 
         for ($i = 0, $res = false; !$res && $i < 5; $i++) {
@@ -131,9 +122,6 @@ class SignupForm extends Model
             sleep(1);
         }
         return $res;
-=======
-            ->setSubject('Account registration at ' . Yii::$app->name)
-            ->send();
->>>>>>> master
+
     }
 }

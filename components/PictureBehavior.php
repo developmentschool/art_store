@@ -36,7 +36,7 @@ class PictureBehavior extends Behavior
         ];
     }
 
-<<<<<<< HEAD
+
     public function getImageLinks(): array
     {
         $links = [];
@@ -52,6 +52,5 @@ class PictureBehavior extends Behavior
         }
         return $links;
     }
-=======
->>>>>>> master
+
 }

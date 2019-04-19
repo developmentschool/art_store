@@ -49,16 +49,14 @@ class UserProfiles extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-<<<<<<< HEAD
+
             [['user_id', 'first_name', 'last_name',], 'required'],
-=======
-            [['user_id', 'first_name', 'last_name', 'created_at', 'updated_at'], 'required'],
->>>>>>> master
+
             [['user_id'], 'integer'],
             [['birthday', 'created_at', 'updated_at'], 'safe'],
             [['first_name', 'last_name'], 'string', 'max' => 50],
             [['phone'], 'string', 'max' => 20],
-<<<<<<< HEAD
+
             [
                 ['user_id'],
                 'exist',
@@ -66,9 +64,6 @@ class UserProfiles extends \yii\db\ActiveRecord
                 'targetClass' => Users::className(),
                 'targetAttribute' => ['user_id' => 'id']
             ],
-=======
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['user_id' => 'id']],
->>>>>>> master
         ];
     }
 
@@ -96,7 +91,7 @@ class UserProfiles extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Users::className(), ['id' => 'user_id']);
     }
-<<<<<<< HEAD
+
 
     /**
      * @return string
@@ -105,6 +100,5 @@ class UserProfiles extends \yii\db\ActiveRecord
     {
         return $this->first_name . ' ' . $this->last_name;
     }
-=======
->>>>>>> master
+
 }

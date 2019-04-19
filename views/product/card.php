@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 
-<<<<<<< HEAD
+
 use app\models\tables\Product;
 use yii\widgets\Menu;
 
@@ -22,12 +22,6 @@ use yii\widgets\Menu;
         </div>
     </div>
 
-
-=======
-use app\models\tables\Product; ?>
-<div class="row flex-nowrap">
-    <?php echo $this->render('sideBar') ?>
->>>>>>> master
     <div class="col-auto flex-fill">
         <div class="row">
             <div class="col-6">
@@ -37,11 +31,9 @@ use app\models\tables\Product; ?>
             </div>
             <div class="col-6">
                 <div class="product-info-item">
-<<<<<<< HEAD
+
                     <p class="h6 mb-3">Код товара: <?= $model->id ?></p>
-=======
-                    <p class="h6 mb-3">SKU: <?= $model->id ?></p>
->>>>>>> master
+
                     <p class="h6 mb-3"><?= $model->description ?></p>
                     <h1 class="h2 mb-3"><?= $model->title ?></h1>
                 </div>
@@ -49,7 +41,7 @@ use app\models\tables\Product; ?>
                 <div class="product-info-item">
                     <div class="input-group justify-content-between">
                         <div class="input-group-prepend align-items-center">
-<<<<<<< HEAD
+
                             <span class="mr-3">Количество:</span>
                             <div class="input-quantity _js_quantity">
                                 <button class="btn btn-outline-secondary _js_minus" type="button">-</button>
@@ -58,41 +50,25 @@ use app\models\tables\Product; ?>
                             </div>
                         </div>
                         <button class="btn btn-outline-secondary  cart-button" data-id="<?= $model->id ?>">Добавить в корзину</button>
-=======
-                            <span class="mr-3">Quantity:</span>
-                            <div class="input-quantity _js_quantity">
-                                <button class="btn btn-outline-secondary _js_minus" type="button">-</button>
-                                <input type="text" class="form-control _js_input" value="1">
-                                <button class="btn btn-outline-secondary _js_plus" type="button">+</button>
-                            </div>
-                        </div>
-                        <button class="btn btn-outline-secondary">Add to cart</button>
->>>>>>> master
+
                     </div>
                 </div>
                 <hr>
                 <div class="product-info-item">
                     <div class="product-price"><?= $model->price ?> РУБ</div>
 
-<<<<<<< HEAD
                     <a href="" class="card-link mt-4">
                         <i class="far fa-heart"></i>
                         <span>Хочу</span>
-=======
-                    <a href="#" class="card-link mt-4">
-                        <i class="far fa-heart"></i>
-                        <span>Add to cart</span>
->>>>>>> master
+
                     </a>
                 </div>
                 <hr>
                 <div class="product-info-item">
                     <div>
-<<<<<<< HEAD
+
                         <span class="mr-3">Поделится:</span>
-=======
-                        <span class="mr-3">Share it:</span>
->>>>>>> master
+
                         <a href="#" class="social-item-border-round mr-3"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social-item-border-round mr-3"><i class="fab fa-twitter"></i></a>
                         <a href="#" class="social-item-border-round mr-3"><i class="fab fa-youtube"></i></a>
@@ -102,7 +78,7 @@ use app\models\tables\Product; ?>
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
+
     </div>
 </div>
 <div class="mt-5 pt-5">
@@ -123,29 +99,6 @@ use app\models\tables\Product; ?>
 
     </div>
 </div>
-</div>
-</div>
-=======
-
-        <div class="mt-5 pt-5">
-            <h5 class="heading-title">
-                <hr>
-                <span>Похожие товары</span>
-            </h5>
-            <div class="row">
-                <?php
-                echo $this->render('productView', [
-                    'productDataProvider' => (new \yii\data\ActiveDataProvider([
-                        'query' => Product::find()
-                            ->where(['category_id' => $model->category_id]),
-                        'totalCount' => 4,
-                    ])),
-                ])
-                ?>
-
-            </div>
-        </div>
-    </div>
-</div>
->>>>>>> master
+<!--</div>-->
+<!--</div>-->
 

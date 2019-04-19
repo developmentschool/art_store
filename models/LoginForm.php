@@ -34,7 +34,7 @@ class LoginForm extends Model
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
             [['captcha'], 'captcha'],
-<<<<<<< HEAD
+
         ];
     }
     public function attributeLabels()
@@ -43,8 +43,7 @@ class LoginForm extends Model
             'username'=>'Логин',
             'password'=>'Пароль',
             'rememberMe'=>'Запомнить меня'
-=======
->>>>>>> master
+
         ];
     }
 

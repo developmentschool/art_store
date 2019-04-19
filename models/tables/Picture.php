@@ -2,11 +2,8 @@
 
 namespace app\models\tables;
 
-<<<<<<< HEAD
 use app\components\imageControl\FileBehavior;
-=======
-use Yii;
->>>>>>> master
+
 use yii\db\ActiveRecord;
 
 /**
@@ -38,10 +35,9 @@ class Picture extends ActiveRecord
             [['created_at', 'updated_at'], 'safe'],
             [['title'], 'string', 'max' => 255,],
             [['ext'], 'string', 'max' => 12],
-<<<<<<< HEAD
+
             ['file', 'file', 'extensions' => ['jpg', 'jpeg', 'pjpeg', 'png', 'gif'], 'skipOnEmpty' => !$this->isNewRecord],
-=======
->>>>>>> master
+
         ];
     }
 
@@ -59,13 +55,12 @@ class Picture extends ActiveRecord
                 ],
                 'value' => date('Y-m-d H:i:s'),
             ],
-<<<<<<< HEAD
+
             'file' => [
                 'class' => FileBehavior::class,
                 'storage' => \Yii::$app->cloudinary,
             ]
-=======
->>>>>>> master
+
         ];
     }
 
@@ -83,7 +78,7 @@ class Picture extends ActiveRecord
             'updated_at' => 'Updated At',
         ];
     }
-<<<<<<< HEAD
+
 
     /**
      * @return \yii\db\ActiveQuery
@@ -118,6 +113,5 @@ class Picture extends ActiveRecord
         return $this->hasMany(Product::class, ['id' => 'product_id'])
             ->via('productPictures');
     }
-=======
->>>>>>> master
+
 }

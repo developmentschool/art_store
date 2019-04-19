@@ -3,10 +3,9 @@
 namespace app\controllers;
 
 use app\models\tables\Category;
-<<<<<<< HEAD
+
 use Yii;
-=======
->>>>>>> master
+
 use yii\data\ActiveDataProvider;
 
 class CategoryController extends \yii\web\Controller
@@ -33,11 +32,9 @@ class CategoryController extends \yii\web\Controller
         $productDataProvider = new ActiveDataProvider([
             'query' => $category->getProducts(),
             'pagination' => [
-<<<<<<< HEAD
+
                 'pageSize' => 12
-=======
-                'pageSize' => 4
->>>>>>> master
+
             ]
         ]);
 
