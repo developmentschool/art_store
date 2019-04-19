@@ -123,7 +123,6 @@ class SiteController extends Controller
         ]);
     }
 
-
     /**
      * Verify email address
      *
@@ -170,8 +169,6 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
-
-
     /**
      * Resets password.
      *
@@ -195,49 +192,47 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
-
-
-    /**
-     * Signs user up.
-     *
-     * @return mixed
-     */
-    public function actionSignup()
-    {
-        $model = new SignupForm();
-        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
-            Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
-            return $this->goHome();
-        }
-        return $this->render('signup', [
-            'model' => $model,
-        ]);
-    }
-
-
-    /**
-     * Verify email address
-     *
-     * @param string $token
-     * @throws BadRequestHttpException
-     * @return yii\web\Response
-     */
-    public function actionVerifyEmail($token)
-    {
-        try {
-            $model = new VerifyEmailForm($token);
-        } catch (InvalidArgumentException $e) {
-            throw new BadRequestHttpException($e->getMessage());
-        }
-        if ($user = $model->verifyEmail()) {
-            if (Yii::$app->user->login($user)) {
-                Yii::$app->session->setFlash('success', 'Your email has been confirmed!');
-                return $this->goHome();
-            }
-        }
-        Yii::$app->session->setFlash('error', 'Sorry, we are unable to verify your account with provided token.');
-        return $this->goHome();
-    }
+//    /**
+//     * Signs user up.
+//     *
+//     * @return mixed
+//     */
+//    public function actionSignup()
+//    {
+//        $model = new SignupForm();
+//        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
+//            Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
+//            return $this->goHome();
+//        }
+//        return $this->render('signup', [
+//            'model' => $model,
+//        ]);
+//    }
+//
+//
+//    /**
+//     * Verify email address
+//     *
+//     * @param string $token
+//     * @throws BadRequestHttpException
+//     * @return yii\web\Response
+//     */
+//    public function actionVerifyEmail($token)
+//    {
+//        try {
+//            $model = new VerifyEmailForm($token);
+//        } catch (InvalidArgumentException $e) {
+//            throw new BadRequestHttpException($e->getMessage());
+//        }
+//        if ($user = $model->verifyEmail()) {
+//            if (Yii::$app->user->login($user)) {
+//                Yii::$app->session->setFlash('success', 'Your email has been confirmed!');
+//                return $this->goHome();
+//            }
+//        }
+//        Yii::$app->session->setFlash('error', 'Sorry, we are unable to verify your account with provided token.');
+//        return $this->goHome();
+//    }
 
     /**
      * Logout action.
