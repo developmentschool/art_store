@@ -16,6 +16,7 @@
     "require": {
         "php": ">=5.4.0",
         "ext-gd": "*",
+        "ext-intl": "*",
         "yiisoft/yii2": "~2.0.14",
         "yiisoft/yii2-bootstrap4": "~1.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
@@ -23,7 +24,12 @@
         "yiisoft/yii2-gii": "~2.0.0",
         "bower-asset/fontawesome": "~5.0.0",
         "yiisoft/yii2-imagine": "^2.0@dev",
-        "cloudinary/cloudinary_php": "dev-master"
+        "cloudinary/cloudinary_php": "dev-master",
+        "2amigos/yii2-arrayquery-component": "~1.0",
+        "yiisoft/yii2-jui": "~2.0",
+        "kartik-v/yii2-widget-fileinput": "dev-master",
+        "guzzlehttp/guzzle": "^6.3@dev",
+        "codemix/yii2-streamlog": "dev-master"
 
     },
     "require-dev": {
@@ -73,5 +79,10 @@
             "type": "composer",
             "url": "https://asset-packagist.org"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "rbac\\": "modules/admin/modules/rbac"
+        }
+    }
 }

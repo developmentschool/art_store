@@ -2,7 +2,9 @@
 /* @var $this \yii\web\View */
 /* @var $categoryDataProvider \yii\data\ActiveDataProvider */
 
-$this->title = 'Category';
+
+$this->title = 'Категории';
+
 
 $this->params['breadcrumbs'][] = $this->title;
 

@@ -17,7 +17,9 @@ while ($parent = $cat->parent) {
     $cat = $parent;
 }
 
-$parents[] = ['label' => 'Category', 'url' => ['index']];
+
+$parents[] = ['label' => 'Категории', 'url' => ['index']];
+
 
 $parents = array_reverse($parents);
 
@@ -28,9 +30,9 @@ echo $this->render('categoryView', ['categoryDataProvider' => $categoryDataProvi
 
 echo \yii\widgets\ListView::widget([
     'dataProvider' => $productDataProvider,
-    'options' => [
-        'class' => 'row'
-    ],
+
+    'layout' => "{summary}\n<div class=row>{items}</div>\n{pager}",
+
     'itemOptions' => [
         'class' => 'col-sm-6 col-lg-3'
     ],
@@ -42,13 +44,20 @@ echo \yii\widgets\ListView::widget([
         return $widget->getView()->render('productItem', ['model' => $model]);
     },
     'pager' => [
-        'pageCssClass' => 'page-link',
-        'prevPageCssClass' => 'page-link',
-        'nextPageCssClass' => 'page-link',
+
+        'firstPageLabel' => 'Начало',
+        'lastPageLabel' => 'Конец',
+        'prevPageLabel' => '«',
+        'nextPageLabel' => '»',
+        'linkContainerOptions' => ['class' => 'page-item'],
+        'linkOptions' => ['class' => 'page-link'],
+        'disabledListItemSubTagOptions' => ['tag' => 'a', 'class' => 'page-link'],
+        'maxButtonCount' => 3,
         'options' => [
-            'class' => 'pagination col-lg-12'
+            'class' => 'pagination justify-content-center'
         ]
-    ]
+    ],
+
 ]);
 
 

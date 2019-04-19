@@ -51,7 +51,9 @@ class ProductPicture extends ActiveRecord
     public function rules()
     {
         return [
-            [['product_id', 'picture_id', 'is_main', 'created_at'], 'required'],
+
+            [['product_id', 'picture_id', 'is_main', ], 'required'],
+
             [['product_id', 'picture_id', 'is_main'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [

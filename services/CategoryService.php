@@ -48,6 +48,22 @@ class CategoryService
             }
         }
         return $array;
+<<<<<<< HEAD
+    }
 
+    /**
+     * @param array $exception
+     * @return array
+     */
+    public static function getAllCategoryDrop($exception = [])
+    {
+        $query = Category::find();
+        if ($column = array_key_first($exception)) {
+            $query->where(['not in', $column, $exception[$column]]);
+        }
+        return ArrayHelper::map($query->asArray()->all(), 'id', 'title');
+=======
+
+>>>>>>> master
     }
 }
