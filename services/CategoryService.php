@@ -48,6 +48,7 @@ class CategoryService
             }
         }
         return $array;
+<<<<<<< HEAD
     }
 
     /**
@@ -61,5 +62,8 @@ class CategoryService
             $query->where(['not in', $column, $exception[$column]]);
         }
         return ArrayHelper::map($query->asArray()->all(), 'id', 'title');
+=======
+
+>>>>>>> master
     }
 }

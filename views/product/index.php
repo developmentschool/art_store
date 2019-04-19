@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 $this->title = 'Каталог';
+=======
+$this->title = 'Product';
+>>>>>>> master
 
 $this->params['breadcrumbs'][] = $this->title;
 

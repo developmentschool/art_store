@@ -7,10 +7,14 @@ use app\assets\AppAsset;
 use app\assets\FontAwesomeAsset;
 use yii\bootstrap4\Breadcrumbs;
 use yii\helpers\Html;
+<<<<<<< HEAD
 use yii\helpers\Url;
 
 $session = Yii::$app->session;
 $session->open();
+=======
+
+>>>>>>> master
 AppAsset::register($this);
 FontAwesomeAsset::register($this);
 ?>
@@ -21,6 +25,11 @@ FontAwesomeAsset::register($this);
         <meta charset="<?= Yii::$app->charset ?>">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+<<<<<<< HEAD
+=======
+        <!--        <link rel="shortcut icon" href="-->
+        <?php //Yii::$app->cloudinary->getImageUrl('favicon.ico') ?><!--" type="image/png">-->
+>>>>>>> master
         <?php $this->registerCsrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
@@ -35,17 +44,25 @@ FontAwesomeAsset::register($this);
                 <div class="row justify-content-between align-items-center">
                     <div class="col-auto">
                         <form action="#" class="header-search">
+<<<<<<< HEAD
                             <input type="text" placeholder="Поиск">
+=======
+                            <input type="text" placeholder="Search">
+>>>>>>> master
                         </form>
                     </div>
                     <div class="col-auto d-flex">
                         <ul class="header-icons">
+<<<<<<< HEAD
                             <li>&nbsp</li>
                             <?php if (Yii::$app->user->can(\rbac\commands\User::PERMISSION_ADMIN_PANEL)): ?>
                                 <li>
                                     <?= Html::a('Administration', ['/admin'], ['class' => 'link']) ?>
                                 </li>
                             <?php endif; ?>
+=======
+                            <li>&nbsp;</li>
+>>>>>>> master
                             <li>
                                 <a href="#" class="count-item">
                                     <i class="fas fa-tag"></i>
@@ -53,26 +70,44 @@ FontAwesomeAsset::register($this);
                                 </a>
                             </li>
                             <li>
+<<<<<<< HEAD
                                 <a href=" <?= Url::toRoute('/cart') ?>" class="count-item">
                                     <i class="fas fa-shopping-cart"></i>
                                     <div class="count-item__count">0</div>
+=======
+                                <a href="#" class="count-item">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <div class="count-item__count">12</div>
+>>>>>>> master
                                 </a>
                             </li>
                             <li>
                                 <div class="header-account">
                                     <?php
                                     if (Yii::$app->user->isGuest) {
+<<<<<<< HEAD
                                         echo Html::a('Вход или Регистрация', ['site/login'], ['class' => 'link']);
                                     } else {
                                         echo Html::a(
                                             'Выйти',
+=======
+                                        echo Html::a('Login or Register', ['site/login'], ['class' => 'link']);
+                                    } else {
+                                        echo Html::a(
+                                            'Logout',
+>>>>>>> master
                                             ['site/logout'],
                                             [
                                                 'class' => 'link',
                                                 'data' => [
                                                     'method' => 'post',
+<<<<<<< HEAD
                                                     'confirm' => 'Вы действительно хотите выйти?',
                                                 ],
+=======
+                                                    'confirm' => 'Вы действительно хотите выйти?'
+                                                ]
+>>>>>>> master
                                             ]
                                         );
                                     }
@@ -85,6 +120,7 @@ FontAwesomeAsset::register($this);
             </div>
         </div>
 
+<<<<<<< HEAD
         <div class="container-fluid">
             <?= \app\widgets\Alert::widget() ?>
         </div>
@@ -117,6 +153,17 @@ FontAwesomeAsset::register($this);
                             </li>
                         </ul>
                     </div>
+=======
+        <header>
+            <div class="container-fluid py-4">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-auto">
+
+                        <a href="/" class="logo"><img src="<?= Yii::$app->cloudinary->getImageURL('logo.png') ?>"
+                                                      alt="Art-Store-Studio"></a>
+
+                    </div>
+>>>>>>> master
                 </div>
             </div>
             <div class="wide-nav">
@@ -132,7 +179,11 @@ FontAwesomeAsset::register($this);
                                         'class' => \app\models\tables\Category::class,
                                     ]),
                                     'options' => [
+<<<<<<< HEAD
                                         'class' => 'dropdown-menu header-dropdown-menu',
+=======
+                                        'class' => 'dropdown-menu header-dropdown-menu'
+>>>>>>> master
                                     ],
                                 ]) ?>
                             </div>
@@ -158,16 +209,20 @@ FontAwesomeAsset::register($this);
             ]) ?>
         </div>
 
+<<<<<<< HEAD
         <?php
         if (Yii::$app->controller->action->id == 'index' && Yii::$app->controller->id == 'site') {
             echo $this->render('carusel');
         }
         ?>
 
+=======
+>>>>>>> master
         <div class="container-fluid py-5">
             <?= $content ?>
         </div>
 
+<<<<<<< HEAD
         <?php
         \yii\bootstrap4\Modal::begin([
             'headerOptions' => ['id' => 'modalHeader'],
@@ -179,6 +234,8 @@ FontAwesomeAsset::register($this);
         \yii\bootstrap4\Modal::end();
         ?>
 
+=======
+>>>>>>> master
         <footer class="mt-auto">
             <div class="footer-top-bar">
                 <div class="container-fluid">
@@ -190,12 +247,21 @@ FontAwesomeAsset::register($this);
                         <div class="col-auto">
                             <ul class="nav footer-nav">
                                 <li>&nbsp;</li>
+<<<<<<< HEAD
                                 <li><a href="#">Загрузки</a></li>
                                 <li><a href="#">Доставка</a></li>
                                 <li><a href="#">Политика конфидециальности</a></li>
                                 <li><a href="#">Порядок и условия</a></li>
                                 <li><a href="#">О нас</a></li>
                                 <li><a href="#">Заказы и возврат</a></li>
+=======
+                                <li><a href="#">Downloads</a></li>
+                                <li><a href="#">Delivery Information</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Terms & Condition</a></li>
+                                <li><a href="#">About us</a></li>
+                                <li><a href="#">Order & Return</a></li>
+>>>>>>> master
                             </ul>
                         </div>
                     </div>
@@ -215,7 +281,11 @@ FontAwesomeAsset::register($this);
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Email">
                                 <div class="input-group-append">
+<<<<<<< HEAD
                                     <button class="btn btn-outline-secondary" type="button">Подписаться</button>
+=======
+                                    <button class="btn btn-outline-secondary" type="button">Subscribe</button>
+>>>>>>> master
                                 </div>
                             </div>
                         </div>

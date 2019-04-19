@@ -1,7 +1,13 @@
 <?php
 echo \yii\widgets\ListView::widget([
     'dataProvider' => $productDataProvider,
+<<<<<<< HEAD
     'layout' => "{summary}\n<div class=row>{items}</div>\n{pager}",
+=======
+    'options' => [
+        'class' => 'row',
+    ],
+>>>>>>> master
     'itemOptions' => [
         'class' => 'col-sm-6 col-md-4 col-lg-3',
     ],
@@ -13,6 +19,7 @@ echo \yii\widgets\ListView::widget([
         return $widget->getView()->render('productItem', ['model' => $model]);
     },
     'pager' => [
+<<<<<<< HEAD
         'firstPageLabel' => 'Начало',
         'lastPageLabel' => 'Конец',
         'prevPageLabel' => '«',
@@ -24,5 +31,13 @@ echo \yii\widgets\ListView::widget([
         'options' => [
             'class' => 'pagination justify-content-center'
         ]
+=======
+        'pageCssClass' => 'page-link',
+        'prevPageCssClass' => 'page-link',
+        'nextPageCssClass' => 'page-link',
+        'options' => [
+            'class' => 'pagination col-lg-12',
+        ],
+>>>>>>> master
     ],
 ]);

@@ -1128,7 +1128,11 @@ maps:
     - ship
     - shoe-prints
     - shopping-bag
+<<<<<<< HEAD
     - shopping-cart
+=======
+    - shopping-basket
+>>>>>>> master
     - shopping-cart
     - shower
     - snowplow
@@ -1444,7 +1448,11 @@ objects:
     - search
     - shield-alt
     - shopping-bag
+<<<<<<< HEAD
     - shopping-cart
+=======
+    - shopping-basket
+>>>>>>> master
     - shopping-cart
     - shower
     - sim-card
@@ -1528,7 +1536,11 @@ payments-shopping:
     - money-check-alt
     - paypal
     - shopping-bag
+<<<<<<< HEAD
     - shopping-cart
+=======
+    - shopping-basket
+>>>>>>> master
     - shopping-cart
     - star
     - stripe

@@ -247,7 +247,10 @@ img {
 }
 
 .category-img {
+<<<<<<< HEAD
     max-height: 120px;
+=======
+>>>>>>> master
     margin-bottom: 8px;
     border-radius: 50%;
 }
@@ -348,6 +351,7 @@ img {
 .footer-bottom-bar {
     padding: 2rem 0;
 }
+<<<<<<< HEAD
 
 .page {
     max-width: 1920px;
@@ -361,3 +365,5 @@ img {
     background-repeat: no-repeat;
     background-size: cover;
 }
+=======
+>>>>>>> master

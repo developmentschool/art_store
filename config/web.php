@@ -3,8 +3,11 @@
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 $cloudinary = require __DIR__ . '/cloudinary.php';
+<<<<<<< HEAD
 $mail = require __DIR__ . '/mail.php';
 $logging = require __DIR__ . '/logging.php';
+=======
+>>>>>>> master
 
 $config = [
     'id' => 'basic',
@@ -13,6 +16,7 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'layout' => 'art_store/main',
+<<<<<<< HEAD
     'on afterAction' => function (yii\base\ActionEvent $e) use ($params) {
 
         if (in_array($e->action->controller->id, $params['controllers'])
@@ -21,12 +25,15 @@ $config = [
         }
 
     },
+=======
+>>>>>>> master
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
         '@bigImg' => '@app/web/img/big',
         '@midImg' => '@app/web/img/mid',
         '@smallImg' => '@app/web/img/small',
+<<<<<<< HEAD
     ],
     'modules' => [
         'admin' => [
@@ -37,6 +44,10 @@ $config = [
         'basket' => [
             'class' => '\app\components\BasketComponent',
         ],
+=======
+    ],
+    'components' => [
+>>>>>>> master
         'cloudinary' => [
             'class' => '\app\components\CloudinaryComponent',
             'cloud_name' => $cloudinary['cloud_name'],
@@ -92,6 +103,7 @@ $config = [
             'enableStrictParsing' => false,
             'rules' => [
                 '/' => 'site/index',
+<<<<<<< HEAD
                 '<module:(admin)>/' => '<module>/default',
                 '<module1:(admin)>/<module2:(rbac)>' => '<module1>/<module2>/assignment',
                 '<module1:(admin)>/<module2:(rbac)>/<controller:[\w-]+>' => '<module1>/<module2>/<controller>',
@@ -125,6 +137,15 @@ $config = [
                 ],
             ],
         ],
+=======
+                '<controller:\w+>/' => '<controller>/index',
+                '<controller:\w+>/<id:\d+>' => '<controller>/view',
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+            ],
+        ],
+
+>>>>>>> master
     ],
     'params' => $params,
 ];

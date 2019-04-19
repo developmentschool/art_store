@@ -11,7 +11,11 @@
         <p class="card-text"><?= $model['description'] ?></p>
         <div class="d-flex justify-content-between align-items-center">
             <span class="card-price"><?= $model['price'] ?> руб</span>
+<<<<<<< HEAD
             <a class="btn btn-primary cart-button" data-id="<?= $model['id'] ?>" href="" role="button">В корзину</a>
+=======
+            <a class="btn btn-primary" href="#" role="button">В корзину</a>
+>>>>>>> master
         </div>
     </div>
 </div>

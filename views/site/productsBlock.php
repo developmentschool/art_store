@@ -23,11 +23,19 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <a href="#" class="card-link">
                             <i class="far fa-heart"></i>
+<<<<<<< HEAD
                             <span>Хочу</span>
                         </a>
                         <a href="#" class="card-link cart-button" data-id="<?= $product->id ?>">
                             <i class="fas fa-shopping-basket"></i>
                             <span>В корзину</span>
+=======
+                            <span>Wishlist</span>
+                        </a>
+                        <a href="#" class="card-link">
+                            <i class="fas fa-shopping-basket"></i>
+                            <span>Add to cart</span>
+>>>>>>> master
                         </a>
                     </div>
                 </div>
