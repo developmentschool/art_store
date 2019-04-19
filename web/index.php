@@ -1,7 +1,7 @@
 <?php
 
 // comment out the following two lines when deployed to production
-defined('YII_DEBUG') or define('YII_DEBUG', true);
+//defined('YII_DEBUG') or define('YII_DEBUG', true);
 $env = !getenv("DYNO") ? 'dev' : getenv("ENV") ?: 'prod';
 defined('YII_ENV') or define('YII_ENV', $env);
 //defined('YII_ENV_TEST') or define('YII_ENV_TEST', true);
