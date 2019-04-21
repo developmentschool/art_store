@@ -12,6 +12,8 @@ class m190416_145007_update_column_status_order_table extends Migration
      */
     public function safeUp()
     {
+        $this->setDefaultValue(3);
+
         $this->alterColumn('{{%orders}}', 'status', $this->smallInteger()->notNull());
     }
 
@@ -21,6 +23,11 @@ class m190416_145007_update_column_status_order_table extends Migration
     public function safeDown()
     {
         $this->alterColumn('{{%orders}}', 'status', $this->integer());
+    }
+
+    public function setDefaultValue($val)
+    {
+        $this->update('{{%orders}}', ['status' => $val], ['status' => null]);
     }
 
     /*
