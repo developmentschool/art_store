@@ -120,7 +120,6 @@ class SiteController extends Controller
         ]);
     }
 
-
     /**
      * Verify email address
      *
@@ -167,8 +166,6 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
-
-
     /**
      * Resets password.
      *
