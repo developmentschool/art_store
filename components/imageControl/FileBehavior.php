@@ -15,13 +15,12 @@ use yii\web\UploadedFile;
 
 /**
  *
- *
- *  public function behaviors()
+ * public function behaviors()
  *  {
  *      return [
- *          'mainImage' => [
- *              'class' => MainImageBehavior::class,
- *              'relationship' => 'pictures'
+ *          'file' => [
+ *              'class' => FileBehavior::class,
+ *              'storage' => \Yii::$app->cloudinary,
  *          ]
  *      ];
  *  }
@@ -79,6 +78,11 @@ class FileBehavior extends Behavior
      */
     public $fileTabularInputIndex;
 
+    /**
+     * @var string
+     */
+    public $placeholderImage = 'http://placehold.it/640x640/33bee5/ffffff/&text=Image';
+
 
     /**
      * @return mixed
@@ -93,7 +97,11 @@ class FileBehavior extends Behavior
      */
     public function getUrl()
     {
-        return $this->getStorage()->getImageUrl($this->getFullFileName());
+        if (!$this->getFullFileName() || !$url = $this->getStorage()->getImageUrl($this->getFullFileName())) {
+            return $this->placeholderImage;
+        }
+
+        return $url;
     }
 
     /**
@@ -307,18 +315,21 @@ class FileBehavior extends Behavior
     {
         $options = [
             "public_id" => $this->getFullFileName(),
-            "overwrite" => TRUE
+            "overwrite" => true
         ];
         $this->storage->uploadImage($sourceFileNameOrUploadedFile->tempName, $options);
 
         return true;
     }
 
-    public function getFullFileName($name = null)
+    /**
+     * @return mixed|string
+     */
+    public function getFullFileName()
     {
         /* @var $owner ActiveRecord */
         $owner = $this->owner;
-        return $this->folderName
+        return $owner->getAttribute($this->fileTitleAttribute) && $this->folderName
             ? $this->folderName . '/' . $owner->getAttribute($this->fileTitleAttribute)
             : $owner->getAttribute($this->fileTitleAttribute);
     }

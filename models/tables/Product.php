@@ -4,7 +4,7 @@ namespace app\models\tables;
 
 
 use app\components\imageControl\MainImageBehavior;
-use app\components\PictureBehavior;
+use app\models\tables\query\ProductQuery;
 use yii\db\ActiveRecord;
 
 /**
@@ -57,11 +57,6 @@ class Product extends \yii\db\ActiveRecord
                 ],
                 'value' => date('Y-m-d H:i:s'),
             ],
-            'mainPictureUrl' => [
-                'class' => PictureBehavior::className(),
-                'connectedClassName' => ProductPicture::className(),
-            ],
-
             'mainImage' => [
                 'class' => MainImageBehavior::class,
                 'relationship' => 'pictures'
@@ -155,13 +150,15 @@ class Product extends \yii\db\ActiveRecord
 
     /**
      * {@inheritdoc}
-     * @return \app\models\tables\query\ProductQuery the active query used by this AR class.
+     * @return ProductQuery the active query used by this AR class.
      */
     public static function find()
     {
-        $query = new \app\models\tables\query\ProductQuery(get_called_class());
+        $query = new ProductQuery(get_called_class());
         if (!\Yii::$app->getModule('admin', false)) {
             $query->active();
+            //$query->loadImages();
+            $query->loadMainImage();
         }
         return $query;
     }

@@ -11,7 +11,7 @@
         <div class="card p-3 mb-4">
             <h5 class="card-title text-center"><?= $product->title ?></h5>
             <a href="product/view/<?= $product->id ?>" class="card-img mb-3">
-                <img src="<?= $product->mainPictureUrl ?>" alt="#">
+                <img src="<?= $product->mainImage->url ?>" alt="#">
             </a>
             <div class="d-flex justify-content-between align-items-center">
                 <span class="card-price"><?= $product->price ?> руб</span>

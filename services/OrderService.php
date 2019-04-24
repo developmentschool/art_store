@@ -36,7 +36,7 @@ class OrderService
             )
             ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->name . ' order'])
             ->setTo($orderInfo['email'])
-            ->setCc(Yii::$app->params['logisticManagerEmail'])
+//            ->setCc(Yii::$app->params['logisticManagerEmail'])
             ->setSubject('Информация о заказе №' . $orderInfo['orderId']);
 
         for ($i = 0, $res = false; !$res && $i < 5; $i++) {

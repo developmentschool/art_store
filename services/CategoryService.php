@@ -28,26 +28,11 @@ class CategoryService
 
     private static function randIntArray(int $sum): array
     {
-        $quantityOfCategory = Category::find()->count();
+        $ids = Category::find()->where(['parent_id' => null])->select('id')->column();
 
-        $data = Category::find()->select('id')->asArray(true)->all();
-        $ids = ArrayHelper::getColumn($data, 'id');
-        if ($quantityOfCategory <= $sum) {
-            return $ids;
-        }
-        $array = [];
-        $iterator = 1;
+        shuffle($ids);
 
-        while ($iterator <= $sum) {
-            $int = random_int(1, $quantityOfCategory);
-            if (in_array($int, $array) || !in_array($int, $ids)) {
-                continue;
-            } else {
-                $array[] = $int;
-                $iterator++;
-            }
-        }
-        return $array;
+        return array_slice($ids, 0, $sum);
     }
 
     /**

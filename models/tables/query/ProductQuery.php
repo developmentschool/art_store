@@ -17,6 +17,16 @@ class ProductQuery extends \yii\db\ActiveQuery
         return $this->andWhere([Product::tableName() . '.status' => Product::STATUS_ACTIVE]);
     }
 
+    public function loadImages()
+    {
+        return $this->with('pictures');
+    }
+
+    public function loadMainImage()
+    {
+        return $this->with('loadMainImage');
+    }
+
     /**
      * {@inheritdoc}
      * @return \app\models\tables\Product[]|array

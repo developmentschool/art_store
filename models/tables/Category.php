@@ -4,8 +4,7 @@ namespace app\models\tables;
 
 
 use app\components\imageControl\MainImageBehavior;
-
-use app\components\PictureBehavior;
+use app\models\tables\query\CategoryQuery;
 use yii\db\ActiveRecord;
 
 /**
@@ -14,7 +13,6 @@ use yii\db\ActiveRecord;
  * @property int $id
  * @property string $title
  * @property int $parent_id
-
  * @property int $status
  * @property string $created_at
  * @property string $updated_at
@@ -53,11 +51,6 @@ class Category extends ActiveRecord
                 ],
                 'value' => date('Y-m-d H:i:s'),
             ],
-            'mainPictureUrl' => [
-                'class' => PictureBehavior::className(),
-                'connectedClassName' => CategoryPicture::className(),
-            ],
-
             'mainImage' => [
                 'class' => MainImageBehavior::class,
                 'relationship' => 'pictures'
@@ -128,14 +121,18 @@ class Category extends ActiveRecord
 
     /**
      * {@inheritdoc}
-     * @return \app\models\tables\query\CategoryQuery the active query used by this AR class.
+     * @return CategoryQuery the active query used by this AR class.
      */
     public static function find()
     {
-        $query = new \app\models\tables\query\CategoryQuery(get_called_class());
+        $query = new CategoryQuery(get_called_class());
         if (!\Yii::$app->getModule('admin', false)) {
             $query->active();
+            //$query->loadImages();
+            //$query->loadMainImage();
         }
+        $query->loadCategories();
+
         return $query;
     }
 

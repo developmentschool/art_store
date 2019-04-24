@@ -26,7 +26,7 @@ use yii\widgets\Menu;
         <div class="row">
             <div class="col-6">
                 <div class="product-img">
-                    <img src="<?= $model->mainPictureUrl ?>" alt="Изображение">
+                    <img src="<?= $model->mainImage->url ?>" alt="Изображение">
                 </div>
             </div>
             <div class="col-6">
@@ -91,7 +91,7 @@ use yii\widgets\Menu;
         echo $this->render('productView', [
             'productDataProvider' => (new \yii\data\ActiveDataProvider([
                 'query' => Product::find()
-                    ->where(['category_id' => $model->category_id]),
+                    ->andWhere(['category_id' => $model->category_id]),
                 'totalCount' => 4,
             ])),
         ])
