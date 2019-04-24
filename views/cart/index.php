@@ -27,7 +27,7 @@ echo $this->render('head', ['mark' => $mark]);
             <?php foreach ($products as $product): ?>
                 <tr data-id="<?= $product['product']->id ?>">
                     <td><?= $product['num'] ?></td>
-                    <td><img src="<?= $product['product']->mainPictureUrl ?>" alt="#"></td>
+                    <td><img src="<?= $product['product']->mainImage->url ?>" alt="#"></td>
                     <td><?= $product['product']->title ?></td>
                     <td><span class="prod-price"><?= $product['product']->price ?></span> РУБ</td>
                     <td>

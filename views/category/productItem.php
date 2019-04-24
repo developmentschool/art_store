@@ -4,7 +4,7 @@
 
 <div class="card mb-4">
     <a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $model['id']]) ?>">
-        <img src="<?= $model['mainPictureUrl'] ?>" alt="#">
+        <img src="<?= $model->mainImage->url ?>" alt="#">
     </a>
     <div class="card-body">
         <h5 class="card-title"><?= $model['title'] ?></h5>

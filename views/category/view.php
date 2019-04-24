@@ -44,7 +44,6 @@ echo \yii\widgets\ListView::widget([
         return $widget->getView()->render('productItem', ['model' => $model]);
     },
     'pager' => [
-
         'firstPageLabel' => 'Начало',
         'lastPageLabel' => 'Конец',
         'prevPageLabel' => '«',

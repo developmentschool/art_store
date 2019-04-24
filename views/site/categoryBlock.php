@@ -13,7 +13,7 @@ use yii\helpers\Url;
     <div class="col">
         <div class="category text-center">
             <a href="<?= Url::to(['category/view', 'id' => $cat->id]) ?>">
-                <img src="<?= $cat->mainPictureUrl ?>"
+                <img src="<?= $cat->mainImage->url ?>"
                      alt="#">
                 <p><?= $cat->title ?></p>
             </a>

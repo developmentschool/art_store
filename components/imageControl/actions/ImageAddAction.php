@@ -18,7 +18,7 @@ class ImageAddAction extends ImageBaseAction
         $imageModel->save();
 
         $extraColumns = [];
-        if (!$ownerModel->mainImage) {
+        if (!$ownerModel->hasMainImage()) {
             $extraColumns = ['is_main' => $ownerModel->mainFlag];
         }
         $imageModel->link($this->getOwnerName(), $ownerModel, $extraColumns);

@@ -9,25 +9,22 @@ use yii\db\ActiveRecord;
 
 /**
  *
- *  public function behaviors()
+ *
+ * public function behaviors()
  *  {
  *      return [
- *          'file' => [
- *              'class' => FileBehavior::class,
- *              'storage' => \Yii::$app->cloudinary,
+ *          'mainImage' => [
+ *              'class' => MainImageBehavior::class,
+ *              'relationship' => 'pictures'
  *          ]
  *      ];
  *  }
  *
  *
  *
- *
- *
  * Class MainImageBehavior
  * @package app\components\imageControl
  */
-
-
 class MainImageBehavior extends Behavior
 {
 
@@ -61,7 +58,7 @@ class MainImageBehavior extends Behavior
      * @return \yii\db\ActiveQuery
      * @throws \yii\base\InvalidConfigException
      */
-    public function getMainImage()
+    public function getLoadMainImage()
     {
         /* @var $owner ActiveRecord */
         $owner = $this->owner;
@@ -70,9 +67,53 @@ class MainImageBehavior extends Behavior
         $viaRelation = $relation->via[1];
         $viaTable = $viaRelation->modelClass::tableName();
         $viaRelationLink = $viaRelation->link;
-        $viaRelationLink[$this->mainColumnName] = $this->mainFlagAttribute;
 
-        return $owner->hasOne($relation->modelClass, $relation->link)
+        $query = $owner->hasOne($relation->modelClass, $relation->link)
             ->viaTable($viaTable, $viaRelationLink);
+
+        if ($this->hasMainImage()) {
+            $query->via->andWhere([$this->mainColumnName => $this->mainFlag]);
+        } else {
+            \Yii::warning('Нет главного изображения у ' . get_class($owner) . ' с ID ' . $owner->id);
+        }
+
+        return $query;
+    }
+
+    /**
+     * @return mixed|object|\yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getMainImage()
+    {
+        $owner = $this->owner;
+
+        if ($model = $owner->loadMainImage) {
+            return $model;
+        }
+
+        if ($model = $this->getLoadMainImage()->one()) {
+            return $model;
+        }
+
+        $relationClass = $this->owner->getRelation($this->relationship)->modelClass;
+
+        return \Yii::createObject($relationClass);
+    }
+
+
+    /**
+     * @param $viaRelation
+     * @return bool
+     */
+    public function hasMainImage()
+    {
+        /* @var $owner ActiveRecord */
+        $owner = $this->owner;
+
+        $relation = $owner->getRelation($this->relationship);
+        $viaRelation = $relation->via[1];
+
+        return (bool)$viaRelation->where([$this->mainColumnName => $this->mainFlag])->one();
     }
 }
